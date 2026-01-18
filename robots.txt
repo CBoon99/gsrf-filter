@@ -1,0 +1,6 @@
+# robots.txt for zeroovershoot.com
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://zeroovershoot.com/sitemap.xml

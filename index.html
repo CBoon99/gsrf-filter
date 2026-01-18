@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Primary SEO -->
+  <title>Gradient-Stabilized Recursive Filtering (GSRF) — Deterministic, Zero-Overshoot Safety for Recursive Systems</title>
+  <meta name="description" content="Gradient-Stabilized Recursive Filtering (GSRF) is a deterministic, zero-overshoot safety framework for safety-critical systems. It enforces bounded recursion and stability constraints to prevent runaway optimisation in recursive and autonomous systems.">
+  <meta name="keywords" content="GSRF, gradient stabilized recursive filtering, zero overshoot, deterministic safety, safety-critical systems, bounded recursion, recursive instability, control systems safety, safety filter, runaway optimisation">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="BoonMind">
+  <link rel="canonical" href="https://zeroovershoot.com/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zeroovershoot.com/">
+  <meta property="og:title" content="Gradient-Stabilized Recursive Filtering (GSRF) — Deterministic, Zero-Overshoot Safety">
+  <meta property="og:description" content="A deterministic safety framework enforcing zero-overshoot constraints and bounded recursion for safety-critical systems.">
+  <meta property="og:site_name" content="GSRF">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Gradient-Stabilized Recursive Filtering (GSRF)">
+  <meta name="twitter:description" content="Deterministic, zero-overshoot safety framework for recursive and safety-critical systems.">
+  
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Gradient-Stabilized Recursive Filtering (GSRF)",
+    "description": "A deterministic safety framework designed to prevent runaway optimisation and instability in recursive, autonomous, and safety-critical systems.",
+    "author": {
+      "@type": "Organization",
+      "name": "BoonMind",
+      "url": "https://boonmind.io"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "BoonMind"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://zeroovershoot.com/"
+    },
+    "keywords": ["deterministic safety", "zero overshoot", "recursive systems", "safety-critical", "bounded recursion", "gradient bounding", "control systems"],
+    "about": {
+      "@type": "Thing",
+      "name": "Safety-Critical Systems Engineering"
+    }
+  }
+  </script>
+  
+  <style>
+    :root {
+      --bg: #fafafa;
+      --text: #1a1a1a;
+      --text-secondary: #4a4a4a;
+      --border: #e0e0e0;
+      --accent: #2c3e50;
+      --link: #1a5276;
+      --section-bg: #ffffff;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 17px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    
+    header {
+      padding: 80px 0 60px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    h1 {
+      font-size: 32px;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+      color: var(--accent);
+    }
+    
+    .subtitle {
+      font-size: 19px;
+      color: var(--text-secondary);
+      font-style: italic;
+    }
+    
+    main {
+      padding: 48px 0;
+    }
+    
+    section {
+      margin-bottom: 56px;
+    }
+    
+    h2 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: var(--accent);
+      letter-spacing: -0.3px;
+    }
+    
+    h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+    
+    p {
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+    
+    ul {
+      margin: 16px 0;
+      padding-left: 24px;
+    }
+    
+    li {
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+    
+    a {
+      color: var(--link);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    
+    a:hover {
+      text-decoration-thickness: 2px;
+    }
+    
+    a:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    
+    .paper {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .paper:last-child {
+      border-bottom: none;
+    }
+    
+    .paper h3 {
+      margin-bottom: 8px;
+    }
+    
+    .paper p {
+      margin-bottom: 10px;
+      font-size: 16px;
+      color: var(--text-secondary);
+    }
+    
+    .paper a {
+      font-size: 15px;
+    }
+    
+    .contact-form {
+      margin-top: 32px;
+      padding: 24px;
+      background: var(--section-bg);
+      border: 1px solid var(--border);
+    }
+    
+    .contact-form > p {
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+    
+    .contact-form label {
+      display: block;
+      margin-bottom: 16px;
+      font-size: 15px;
+      color: var(--text-secondary);
+    }
+    
+    .contact-form label span {
+      display: block;
+      margin-bottom: 6px;
+    }
+    
+    .contact-form input[type="text"],
+    .contact-form input[type="email"],
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px 14px;
+      font-family: inherit;
+      font-size: 16px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    
+    .contact-form input[type="text"]:focus,
+    .contact-form input[type="email"]:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(44, 62, 80, 0.1);
+    }
+    
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+    
+    .contact-form button[type="submit"] {
+      padding: 12px 24px;
+      font-family: inherit;
+      font-size: 15px;
+      background: var(--accent);
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      -webkit-appearance: none;
+      appearance: none;
+      touch-action: manipulation;
+    }
+    
+    .contact-form button[type="submit"]:hover {
+      background: #1a252f;
+    }
+    
+    .contact-form button[type="submit"]:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    
+    .contact-form .email-alt {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    
+    .contact-form .email-alt a {
+      color: var(--text);
+    }
+    
+    /* Honeypot field - hidden from users, catches bots */
+    .ohnohoney {
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 0;
+      width: 0;
+      z-index: -1;
+    }
+    
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    
+    footer p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 0;
+      line-height: 1.6;
+    }
+    
+    /* Responsive */
+    @media (max-width: 600px) {
+      header {
+        padding: 48px 0 40px;
+      }
+      
+      h1 {
+        font-size: 26px;
+      }
+      
+      .subtitle {
+        font-size: 17px;
+      }
+      
+      h2 {
+        font-size: 20px;
+      }
+      
+      body {
+        font-size: 16px;
+      }
+      
+      .container {
+        padding: 0 16px;
+      }
+      
+      .contact-form {
+        padding: 20px 16px;
+      }
+      
+      .contact-form input[type="text"],
+      .contact-form input[type="email"],
+      .contact-form textarea {
+        font-size: 16px; /* Prevents iOS zoom */
+      }
+    }
+    
+    /* Print styles */
+    @media print {
+      body {
+        background: white;
+        color: black;
+        font-size: 12pt;
+      }
+      
+      .contact-form {
+        display: none;
+      }
+      
+      a {
+        color: black;
+        text-decoration: none;
+      }
+      
+      a[href]:after {
+        content: " (" attr(href) ")";
+        font-size: 10pt;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Gradient-Stabilized Recursive Filtering (GSRF)</h1>
+      <p class="subtitle">A deterministic safety layer for systems that cannot fail unpredictably.</p>
+      <p style="margin-top: 16px; font-size: 15px; color: #4a4a4a;">GSRF (Zero Overshoot) is a deterministic safety filter for recursive and safety-critical systems.</p>
+    </header>
+    
+    <main>
+      <section>
+        <h2>Why Modern Safety Mechanisms Fail in Recursive Systems</h2>
+        <p>Recursive systems—whether in control loops, optimisation engines, or autonomous agents—exhibit a class of failure modes that conventional safeguards cannot reliably prevent. The core issue is structural: when a system's output feeds back into its own inputs, small errors can compound exponentially.</p>
+        <p><strong>Runaway gradients</strong> occur when optimisation processes update parameters without bounds, leading to values that grow unboundedly large or oscillate violently. In recursive systems, this is not an edge case but a predictable failure mode under specific conditions.</p>
+        <p><strong>Recursive amplification</strong> compounds errors across iterations. A 1% deviation in iteration <em>n</em> can become a 50% deviation by iteration <em>n+10</em> if the system lacks inherent stability constraints. This is why systems that "usually work" fail catastrophically under pressure.</p>
+        <p><strong>Delayed failure detection</strong> is endemic to recursive architectures. By the time monitoring systems register anomalous behaviour, the underlying state may already be irrecoverable. Probabilistic safeguards, which trigger on statistical anomalies, often activate too late or not at all when the system drifts gradually rather than failing abruptly.</p>
+        <p><strong>Optimisation loops</strong> in safety-critical systems present a specific risk: they are designed to seek extrema, but without deterministic constraints, they cannot distinguish between beneficial optimisation and runaway optimisation toward destructive states. Alignment—ensuring a system pursues intended goals—is necessary but insufficient. A well-aligned system can still exhibit recursive instability if its underlying dynamics are unbounded.</p>
+        <p>In safety-critical systems, probabilistic safeguards provide statistical guarantees that hold on average. But averages do not prevent the single catastrophic failure that destroys a turbine, crashes an aircraft, or corrupts a financial system. Deterministic constraints that guarantee zero overshoot behaviour, by contrast, provide guarantees that hold in every execution, without exception.</p>
+      </section>
+      
+      <section>
+        <h2>What Gradient-Stabilized Recursive Filtering Does</h2>
+        <p>GSRF is a zero-overshoot safety filter for recursive and safety-critical systems. It enforces deterministic constraints before execution, not after failure detection. The framework is designed to maintain stability with zero overshoot under recursion.</p>
+        <p><strong>Gradient bounding</strong> ensures that update magnitudes remain within predefined envelopes. Rather than allowing gradients to grow without limit and then attempting to detect runaway states, GSRF constrains the rate of change structurally. The system cannot produce unbounded updates because the update mechanism itself is bounded.</p>
+        <p><strong>Recursive depth constraints</strong> limit how far feedback can propagate through the system before encountering a stabilising checkpoint. This prevents the exponential error amplification that characterises unconstrained recursion.</p>
+        <p><strong>Stability enforcement prior to execution</strong> means that GSRF validates system state and proposed actions against stability criteria before they are committed. GSRF acts as a deterministic, zero-overshoot safety filter: actions that would violate stability constraints are rejected or modified before they affect system state.</p>
+        <p><strong>Prevention of uncontrolled system divergence</strong> follows from the above. By bounding gradients, limiting recursion depth, and filtering decisions prior to execution, GSRF eliminates the pathways through which recursive systems typically fail.</p>
+        <p>The framework operates on mathematical guarantees rather than empirical heuristics. The stability bounds are derived analytically and provide deterministic bounds within the defined envelope, bounded-by-construction under stated assumptions. This is what distinguishes a deterministic safety layer from probabilistic monitoring.</p>
+        <p>An <a href="/demo/">interactive demonstration</a> compares bounded (GSRF) versus unbounded (EMA) filtering on synthetic signals.</p>
+      </section>
+      
+      <section>
+        <h2>Where GSRF Applies</h2>
+        <p>GSRF is designed for systems where failure is not tolerable and where recursive dynamics create instability risk. Zero overshoot behaviour is essential in safety-critical control systems where even momentary excursions beyond acceptable bounds can cause irreversible damage:</p>
+        <ul>
+          <li><strong>Autonomous control systems</strong> — including vehicle control, flight systems, and process control where feedback loops must remain stable under all conditions</li>
+          <li><strong>Robotics</strong> — particularly systems with learned controllers or adaptive behaviours that could exhibit runaway optimisation</li>
+          <li><strong>Optimisation engines</strong> — any system that iteratively improves toward an objective and risks divergence if unconstrained</li>
+          <li><strong>Reinforcement learning pipelines</strong> — where reward-seeking behaviour must be bounded to prevent unsafe policy development</li>
+          <li><strong>Industrial automation</strong> — control systems governing physical processes where instability has immediate physical consequences</li>
+          <li><strong>Financial or operational decision systems</strong> — automated trading, resource allocation, or scheduling systems where recursive optimisation must be bounded</li>
+          <li><strong>Safety-critical software environments</strong> — any context where deterministic guarantees are required by regulation, liability, or operational necessity</li>
+        </ul>
+      </section>
+      
+      <section>
+        <h2>What GSRF Is Not</h2>
+        <p>Clarity about scope prevents misapplication:</p>
+        <ul>
+          <li><strong>Not a plug-and-play library.</strong> GSRF requires system-specific analysis to configure stability bounds and integration points. There is no generic "install and run" implementation.</li>
+          <li><strong>Not a SaaS product.</strong> GSRF is a framework deployed through tailored engineering work, not a hosted service.</li>
+          <li><strong>Not a general AI alignment solution.</strong> GSRF addresses recursive stability, not value alignment, goal specification, or intent interpretation. These are separate problems.</li>
+          <li><strong>Not probabilistic or heuristic-based.</strong> The guarantees GSRF provides are deterministic. If probabilistic monitoring is sufficient for your application, GSRF may be more rigorous than necessary.</li>
+        </ul>
+      </section>
+      
+      <section>
+        <h2>Consulting &amp; Integration</h2>
+        <p>GSRF is deployed through tailored system analysis rather than off-the-shelf implementation. Each engagement is structured around the specific stability requirements and failure modes of the target system.</p>
+        <p>Typical engagements involve:</p>
+        <ul>
+          <li><strong>System audit</strong> — analysis of existing architecture, feedback pathways, and potential instability sources</li>
+          <li><strong>Failure-mode analysis</strong> — identification of conditions under which the system could exhibit runaway behaviour or recursive instability</li>
+          <li><strong>Constraint design</strong> — derivation of stability bounds and integration architecture specific to the system</li>
+          <li><strong>Validation guidance</strong> — methodology for verifying that implemented constraints achieve the required stability guarantees</li>
+        </ul>
+        
+        <div class="contact-form">
+          <p>For technical collaboration or consulting inquiries:</p>
+          <form name="gsrf-contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks/">
+            <input type="hidden" name="form-name" value="gsrf-contact">
+            <p class="ohnohoney">
+              <label>Don't fill this out if you're human: <input name="bot-field"></label>
+            </p>
+            
+            <label>
+              <span>Name</span>
+              <input type="text" name="name" autocomplete="name" required>
+            </label>
+            
+            <label>
+              <span>Email</span>
+              <input type="email" name="email" autocomplete="email" required>
+            </label>
+            
+            <label>
+              <span>Message</span>
+              <textarea name="message" rows="5" required></textarea>
+            </label>
+            
+            <button type="submit">Send</button>
+          </form>
+          <p class="email-alt">Prefer email: <a href="mailto:info@boonmind.io">info@boonmind.io</a></p>
+        </div>
+      </section>
+      
+      <section>
+        <h2>Technical Papers</h2>
+        
+        <article class="paper">
+          <h3>Gradient-Stabilized Recursive Filtering: A Structurally Bounded Framework for Safety-Critical Applications</h3>
+          <p>A formal technical paper describing the mathematical foundations and stability guarantees of GSRF in recursive and safety-critical systems.</p>
+          <a href="/papers/gsrf/gradient-stabilized-recursive-filtering-safety-critical-applications.pdf" type="application/pdf">View PDF</a>
+        </article>
+        
+        <article class="paper">
+          <h3>GSRF Safety Filter</h3>
+          <p>Technical specification of the GSRF safety filter mechanism and its application to pre-decision constraint enforcement.</p>
+          <a href="/papers/gsrf/gsrf-safety-filter.pdf" type="application/pdf">View PDF</a>
+        </article>
+        
+        <article class="paper">
+          <h3>GSRF: The Safety Brake for Computer Systems That Can't Get It Wrong</h3>
+          <p>An accessible technical overview of GSRF principles and their application to systems requiring deterministic safety guarantees.</p>
+          <a href="/papers/gsrf/gsrf-safety-brake.pdf" type="application/pdf">View PDF</a>
+        </article>
+      </section>
+    </main>
+    
+    <footer>
+      <p>Built by <a href="https://boonmind.io">BoonMind</a>.<br>Research, safety frameworks, and system architecture.<br>For inquiries: <a href="mailto:info@boonmind.io">info@boonmind.io</a></p>
+    </footer>
+  </div>
+</body>
+</html>

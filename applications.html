@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GSRF Applications — Where Bounded Filtering Limits Overshoot</title>
+  <meta name="description" content="Where bounded, zero-overshoot filtering matters: autonomous control, robotics, and financial decision systems. Explore application notes, links, and demo paths.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://gsrf-filter.netlify.app/applications.html">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://gsrf-filter.netlify.app/applications.html">
+  <meta property="og:title" content="GSRF Applications — Where Bounded Filtering Limits Overshoot">
+  <meta property="og:description" content="Where bounded filtering matters: autonomous control, robotics, and financial decision systems.">
+  <meta property="og:site_name" content="GSRF Filter">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="GSRF Applications — Where Bounded Filtering Limits Overshoot">
+  <meta name="twitter:description" content="Autonomous control, robotics, and financial decision systems: where overshoot is unacceptable.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Applications of bounded filtering (GSRF)",
+    "description": "Where bounded, zero-overshoot filtering matters: autonomous control, robotics, and financial decision systems.",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://gsrf-filter.netlify.app/applications.html" },
+    "author": { "@type": "Organization", "name": "BoonMind", "url": "https://boonmind.io" },
+    "publisher": { "@type": "Organization", "name": "BoonMind" }
+  }
+  </script>
+
+  <style>
+    main { padding: 28px 0 56px; }
+    .grid { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 10px; }
+    .card h3 { margin: 0 0 8px; color: var(--text); font-size: 18px; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="container">
+    <header>
+      <h1>Applications</h1>
+      <p class="lede">Where overshoot is unacceptable, bounded-by-construction filtering can be a safety primitive. These notes connect the demo intuition to real application classes.</p>
+      <nav aria-label="Site">
+        <a href="./">Home</a>
+        <a href="./demo/">Demo</a>
+        <a href="./deterministic-safety-recursive-systems.html">Deterministic safety</a>
+        <a href="./runaway-feedback-loop-prevention.html">Runaway feedback</a>
+        <a href="./index.html#papers">Papers</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <h2>Pick an application area</h2>
+      <div class="grid" role="list">
+        <div class="card" role="listitem">
+          <h3>Autonomous control</h3>
+          <p>Control loops where bounded response and zero-overshoot behavior reduce risk of physical excursions.</p>
+          <div class="btnrow">
+            <a class="btn primary" href="./applications-autonomous-control.html">Read</a>
+            <a class="btn" href="./demo/">Run demo</a>
+          </div>
+        </div>
+        <div class="card" role="listitem">
+          <h3>Robotics</h3>
+          <p>Adaptive behaviors and learned controllers that can drift under feedback without deterministic constraints.</p>
+          <div class="btnrow">
+            <a class="btn primary" href="./applications-robotics.html">Read</a>
+            <a class="btn" href="./demo/">Run demo</a>
+          </div>
+        </div>
+        <div class="card" role="listitem">
+          <h3>Financial systems</h3>
+          <p>Recursive optimization loops where bounded updates can limit runaway risk in automated decision systems.</p>
+          <div class="btnrow">
+            <a class="btn primary" href="./applications-financial-systems.html">Read</a>
+            <a class="btn" href="./demo/">Run demo</a>
+          </div>
+        </div>
+      </div>
+
+      <h2>Related reading</h2>
+      <ul>
+        <li><a href="./deterministic-safety-recursive-systems.html">Deterministic safety for recursive systems</a></li>
+        <li><a href="./runaway-feedback-loop-prevention.html">Runaway feedback loop prevention</a></li>
+        <li><a href="./paper-gsrf-framework.html">Paper abstracts</a></li>
+      </ul>
+    </main>
+
+  <footer>
+    <p style="margin-bottom: 10px;">
+      © 2026 Carl Boon (BoonMind). Commercial use requires a license. Patent application in preparation.
+      Contact: <a href="mailto:info@boonmind.io">info@boonmind.io</a>.
+      <a href="./LICENSE">LICENSE</a> · <a href="./README.md">README</a>
+    </p>
+    <p>Built by <a href="https://boonmind.io" rel="noopener noreferrer">BoonMind</a>. For inquiries: <a href="mailto:info@boonmind.io">info@boonmind.io</a></p>
+  </footer>
+  </div>
+</body>
+</html>

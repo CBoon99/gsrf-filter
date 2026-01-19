@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Autonomous Control Safety — Bounded Filtering with GSRF</title>
+  <meta name="description" content="How deterministic bounding can reduce overshoot risk in control loops (vehicles, flight, process control). Connect the demo intuition to integration notes.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://gsrf-filter.netlify.app/applications-autonomous-control.html">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://gsrf-filter.netlify.app/applications-autonomous-control.html">
+  <meta property="og:title" content="Autonomous Control Safety — Bounded Filtering with GSRF">
+  <meta property="og:description" content="Deterministic bounding to reduce overshoot risk in control loops; includes demo links and integration considerations.">
+  <meta property="og:site_name" content="GSRF Filter">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Autonomous Control Safety — Bounded Filtering with GSRF">
+  <meta name="twitter:description" content="How deterministic bounding can reduce overshoot risk in control loops; connects the demo to integration notes.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "GSRF for autonomous control systems",
+    "description": "Autonomous control loops are sensitive to overshoot and drift; bounded filtering can reduce runaway amplification risk in recursive controllers.",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://gsrf-filter.netlify.app/applications-autonomous-control.html" },
+    "author": { "@type": "Organization", "name": "BoonMind", "url": "https://boonmind.io" },
+    "publisher": { "@type": "Organization", "name": "BoonMind" }
+  }
+  </script>
+
+  <style>
+    main { padding: 28px 0 56px; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="container">
+    <header>
+      <h1>Autonomous control</h1>
+      <p class="lede">In control systems, transient overshoot can be more dangerous than steady-state error. Bounded updates are a structural safety lever.</p>
+      <nav aria-label="Site">
+        <a href="./">Home</a>
+        <a href="./demo/">Demo</a>
+        <a href="./applications.html">Applications</a>
+        <a href="./deterministic-safety-recursive-systems.html">Deterministic safety</a>
+        <a href="./runaway-feedback-loop-prevention.html">Runaway feedback</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <h2>Why overshoot matters</h2>
+      <p>In safety-critical control, crossing a bound even briefly can cause irreversible damage (mechanical limits, thermal excursions, unsafe trajectories). The goal is often <em>bounded response</em> rather than best average performance.</p>
+
+      <h2>Where recursive amplification appears</h2>
+      <ul>
+        <li>Adaptive controllers updating gains online</li>
+        <li>State estimation feeding into action selection (tight coupling)</li>
+        <li>Optimization-in-the-loop systems with receding horizons</li>
+      </ul>
+
+      <div class="card">
+        <h2>Try it</h2>
+        <p>Use the demo step signal and compare EMA vs GSRF to build intuition for overshoot and boundedness.</p>
+        <div class="btnrow">
+          <a class="btn primary" href="./demo/">Run the demo</a>
+          <a class="btn" href="./paper-gsrf-framework.html">Read paper abstract</a>
+        </div>
+      </div>
+    </main>
+
+  <footer>
+    <p style="margin-bottom: 10px;">
+      © 2026 Carl Boon (BoonMind). Commercial use requires a license. Patent application in preparation.
+      Contact: <a href="mailto:info@boonmind.io">info@boonmind.io</a>.
+      <a href="./LICENSE">LICENSE</a> · <a href="./README.md">README</a>
+    </p>
+    <p>Built by <a href="https://boonmind.io" rel="noopener noreferrer">BoonMind</a>. For inquiries: <a href="mailto:info@boonmind.io">info@boonmind.io</a></p>
+  </footer>
+  </div>
+</body>
+</html>

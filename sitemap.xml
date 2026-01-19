@@ -1,27 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://zeroovershoot.com/</loc>
+    <loc>https://gsrf-filter.netlify.app/</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://zeroovershoot.com/demo/</loc>
+    <loc>https://gsrf-filter.netlify.app/demo/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://zeroovershoot.com/papers/gsrf/gradient-stabilized-recursive-filtering-safety-critical-applications.pdf</loc>
+    <loc>https://gsrf-filter.netlify.app/deterministic-safety-recursive-systems.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gsrf-filter.netlify.app/runaway-feedback-loop-prevention.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gsrf-filter.netlify.app/applications.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gsrf-filter.netlify.app/applications-autonomous-control.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://gsrf-filter.netlify.app/applications-robotics.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://gsrf-filter.netlify.app/applications-financial-systems.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://gsrf-filter.netlify.app/paper-gsrf-framework.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://gsrf-filter.netlify.app/paper-gsrf-safety-filter.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://gsrf-filter.netlify.app/paper-gsrf-safety-brake.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://gsrf-filter.netlify.app/papers/gsrf/gradient-stabilized-recursive-filtering-safety-critical-applications.pdf</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zeroovershoot.com/papers/gsrf/gsrf-safety-filter.pdf</loc>
+    <loc>https://gsrf-filter.netlify.app/papers/gsrf/gsrf-safety-filter.pdf</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zeroovershoot.com/papers/gsrf/gsrf-safety-brake.pdf</loc>
+    <loc>https://gsrf-filter.netlify.app/papers/gsrf/gsrf-safety-brake.pdf</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>

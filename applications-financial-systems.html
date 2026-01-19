@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Financial Systems — Bounded Filtering for Recursive Control</title>
+  <meta name="description" content="How bounded updates can reduce runaway risk in recursive optimization loops for automated trading, allocation, and scheduling systems. Links to the demo.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://gsrf-filter.netlify.app/applications-financial-systems.html">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://gsrf-filter.netlify.app/applications-financial-systems.html">
+  <meta property="og:title" content="Financial Systems — Bounded Filtering for Recursive Control">
+  <meta property="og:description" content="How bounded updates can reduce runaway risk in recursive optimization loops for automated financial decision systems; includes demo links.">
+  <meta property="og:site_name" content="GSRF Filter">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Financial Systems — Bounded Filtering for Recursive Control">
+  <meta name="twitter:description" content="How bounded updates can reduce runaway risk in recursive optimization loops for automated trading and decision systems.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "GSRF for financial decision systems",
+    "description": "Recursive optimization in financial systems can amplify risk; bounded updates and stability constraints can reduce runaway behavior in automated decisions.",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://gsrf-filter.netlify.app/applications-financial-systems.html" },
+    "author": { "@type": "Organization", "name": "BoonMind", "url": "https://boonmind.io" },
+    "publisher": { "@type": "Organization", "name": "BoonMind" }
+  }
+  </script>
+
+  <style>
+    main { padding: 28px 0 56px; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="container">
+    <header>
+      <h1>Financial systems</h1>
+      <p class="lede">Recursive optimization loops can amplify exposure if the update rule chases short-term signals without structural bounds.</p>
+      <nav aria-label="Site">
+        <a href="./">Home</a>
+        <a href="./demo/">Demo</a>
+        <a href="./applications.html">Applications</a>
+        <a href="./deterministic-safety-recursive-systems.html">Deterministic safety</a>
+        <a href="./runaway-feedback-loop-prevention.html">Runaway feedback</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <h2>Where recursion appears</h2>
+      <ul>
+        <li>Strategy parameters updated based on recent performance (self-referential)</li>
+        <li>Risk models feeding allocation decisions, which change the data distribution</li>
+        <li>Automated decision pipelines that optimize toward extrema under constraints</li>
+      </ul>
+
+      <h2>Why bounded updates help</h2>
+      <p>Bounding update magnitude can reduce sudden divergence and can make worst-case behavior more auditable under defined assumptions.</p>
+
+      <div class="card">
+        <h2>Try it</h2>
+        <p>Use the demo to see the difference between bounded and unbounded updates under identical inputs.</p>
+        <div class="btnrow">
+          <a class="btn primary" href="./demo/">Run the demo</a>
+          <a class="btn" href="./paper-gsrf-safety-brake.html">Safety brake abstract</a>
+        </div>
+      </div>
+    </main>
+
+  <footer>
+    <p style="margin-bottom: 10px;">
+      © 2026 Carl Boon (BoonMind). Commercial use requires a license. Patent application in preparation.
+      Contact: <a href="mailto:info@boonmind.io">info@boonmind.io</a>.
+      <a href="./LICENSE">LICENSE</a> · <a href="./README.md">README</a>
+    </p>
+    <p>Built by <a href="https://boonmind.io" rel="noopener noreferrer">BoonMind</a>. For inquiries: <a href="mailto:info@boonmind.io">info@boonmind.io</a></p>
+  </footer>
+  </div>
+</body>
+</html>

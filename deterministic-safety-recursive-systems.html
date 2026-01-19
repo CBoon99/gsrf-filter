@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Deterministic Safety for Recursive Systems — GSRF Filter</title>
+  <meta name="description" content="Guide to deterministic safety in feedback loops: why recursion amplifies error, and how bounded filtering enforces stability envelopes before execution.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://gsrf-filter.netlify.app/deterministic-safety-recursive-systems.html">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://gsrf-filter.netlify.app/deterministic-safety-recursive-systems.html">
+  <meta property="og:title" content="Deterministic Safety for Recursive Systems — GSRF Filter">
+  <meta property="og:description" content="Why feedback loops fail and how bounded filtering can enforce stability envelopes before execution.">
+  <meta property="og:site_name" content="GSRF Filter">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Deterministic Safety for Recursive Systems — GSRF">
+  <meta name="twitter:description" content="Why recursion amplifies error, and how bounded filtering can enforce stability envelopes before execution.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Deterministic Safety for Recursive Systems",
+    "description": "Why recursive systems fail catastrophically and how deterministic bounds provide safety guarantees beyond probabilistic monitoring.",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://gsrf-filter.netlify.app/deterministic-safety-recursive-systems.html" },
+    "author": { "@type": "Organization", "name": "BoonMind", "url": "https://boonmind.io" },
+    "publisher": { "@type": "Organization", "name": "BoonMind" }
+  }
+  </script>
+
+  <style>
+    main { padding: 28px 0 56px; }
+    .lede { max-width: 70ch; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="container">
+    <header>
+      <h1>Deterministic safety for recursive systems</h1>
+      <p class="lede">Recursive loops amplify error. Deterministic bounds shift safety from “detect after drift” to “prevent unsafe updates.”</p>
+      <nav aria-label="Site">
+        <a href="./">Home</a>
+        <a href="./demo/">Demo</a>
+        <a href="./runaway-feedback-loop-prevention.html">Runaway feedback</a>
+        <a href="./applications.html">Applications</a>
+        <a href="./index.html#papers">Papers</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <h2>Why recursion breaks “normal” safety</h2>
+      <p>When outputs feed back into inputs, small misestimates compound. A system can appear stable for many iterations and then cross a threshold where the state becomes unrecoverable.</p>
+      <ul>
+        <li><strong>Amplification</strong>: error can grow superlinearly under feedback.</li>
+        <li><strong>Delayed detection</strong>: monitors often trigger after the unsafe state is already reached.</li>
+        <li><strong>Overshoot</strong>: transient excursions can be catastrophic in safety-critical systems.</li>
+      </ul>
+
+      <h2>What “deterministic” means here</h2>
+      <p>Deterministic safety is a structural guarantee: if an update would violate a bound, it is rejected or modified before it affects system state. This is different from probabilistic alarms that are only likely to catch drift.</p>
+
+      <div class="card">
+        <h2>Best next step</h2>
+        <p>Start with the demo to get intuition, then read the paper abstracts for the formal framing.</p>
+        <div class="btnrow">
+          <a class="btn primary" href="./demo/">Run the demo</a>
+          <a class="btn" href="./paper-gsrf-framework.html">Read paper abstracts</a>
+        </div>
+      </div>
+    </main>
+
+  <footer>
+    <p style="margin-bottom: 10px;">
+      © 2026 Carl Boon (BoonMind). Commercial use requires a license. Patent application in preparation.
+      Contact: <a href="mailto:info@boonmind.io">info@boonmind.io</a>.
+      <a href="./LICENSE">LICENSE</a> · <a href="./README.md">README</a>
+    </p>
+    <p>Built by <a href="https://boonmind.io" rel="noopener noreferrer">BoonMind</a>. For inquiries: <a href="mailto:info@boonmind.io">info@boonmind.io</a></p>
+  </footer>
+  </div>
+</body>
+</html>

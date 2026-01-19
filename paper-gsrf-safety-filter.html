@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GSRF Safety Filter Spec — Pre-Decision Constraint Design</title>
+  <meta name="description" content="Abstract + reading guide for the GSRF safety filter specification (PDF). Learn pre-decision constraint enforcement and link it to bounded demo behavior.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://gsrf-filter.netlify.app/paper-gsrf-safety-filter.html">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://gsrf-filter.netlify.app/paper-gsrf-safety-filter.html">
+  <meta property="og:title" content="GSRF Safety Filter Spec — Pre-Decision Constraint Design">
+  <meta property="og:description" content="Abstract + reading guide for the GSRF safety filter specification (PDF), including links to the demo and framework context.">
+  <meta property="og:site_name" content="GSRF Filter">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="GSRF Safety Filter Spec — Pre-Decision Constraint Design">
+  <meta name="twitter:description" content="Abstract + reading guide for the safety filter spec (PDF). Learn pre-decision constraint enforcement and connect it to bounded demo behavior.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "GSRF Safety Filter — specification",
+    "description": "Abstract and reading guide for the GSRF safety filter PDF.",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://gsrf-filter.netlify.app/paper-gsrf-safety-filter.html" },
+    "author": { "@type": "Organization", "name": "BoonMind", "url": "https://boonmind.io" },
+    "publisher": { "@type": "Organization", "name": "BoonMind" },
+    "isBasedOn": { "@type": "MediaObject", "contentUrl": "https://gsrf-filter.netlify.app/papers/gsrf/gsrf-safety-filter.pdf", "encodingFormat": "application/pdf" }
+  }
+  </script>
+
+  <style>
+    main { padding: 28px 0 56px; }
+    h1 { font-size: 28px; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="container">
+    <header>
+      <h1>Paper abstract: GSRF safety filter</h1>
+      <p class="lede">This document focuses on pre-decision constraint enforcement: rejecting or modifying actions that would violate stability bounds.</p>
+      <nav aria-label="Site">
+        <a href="./">Home</a>
+        <a href="./demo/">Demo</a>
+        <a href="./paper-gsrf-framework.html">Framework abstract</a>
+        <a href="./runaway-feedback-loop-prevention.html">Runaway feedback</a>
+        <a href="./applications.html">Applications</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <h2>PDF</h2>
+      <p><a class="btn primary" href="./papers/gsrf/gsrf-safety-filter.pdf">Open the PDF</a></p>
+
+      <div class="card">
+        <h2>Abstract (plain language)</h2>
+        <p>The safety filter paper describes how to enforce stability constraints before actions change system state. In practice: check candidate updates against bounds, and block or reshape updates that would introduce overshoot or divergence risk.</p>
+        <ul>
+          <li>Defines stability checks as a pre-execution gate.</li>
+          <li>Frames constraints as deterministic guarantees within an envelope.</li>
+          <li>Connects boundedness to predictable system behavior under recursion.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Recommended path</h2>
+        <div class="btnrow">
+          <a class="btn primary" href="./demo/">Run the demo</a>
+          <a class="btn" href="./deterministic-safety-recursive-systems.html">Deterministic safety</a>
+          <a class="btn" href="./paper-gsrf-safety-brake.html">Next: safety brake</a>
+        </div>
+      </div>
+    </main>
+
+  <footer>
+    <p style="margin-bottom: 10px;">
+      © 2026 Carl Boon (BoonMind). Commercial use requires a license. Patent application in preparation.
+      Contact: <a href="mailto:info@boonmind.io">info@boonmind.io</a>.
+      <a href="./LICENSE">LICENSE</a> · <a href="./README.md">README</a>
+    </p>
+    <p>Built by <a href="https://boonmind.io" rel="noopener noreferrer">BoonMind</a>. For inquiries: <a href="mailto:info@boonmind.io">info@boonmind.io</a></p>
+  </footer>
+  </div>
+</body>
+</html>

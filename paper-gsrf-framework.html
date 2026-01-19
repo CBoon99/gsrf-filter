@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GSRF Framework Paper — Stability Bounds for Feedback Loops</title>
+  <meta name="description" content="Abstract + reading guide for the GSRF framework paper (PDF). Start with the demo, then review assumptions and stability bounds for recursive feedback.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://gsrf-filter.netlify.app/paper-gsrf-framework.html">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://gsrf-filter.netlify.app/paper-gsrf-framework.html">
+  <meta property="og:title" content="GSRF Framework Paper — Stability Bounds for Feedback Loops">
+  <meta property="og:description" content="Abstract + reading guide for the GSRF framework paper (PDF), with links to the demo and related pages.">
+  <meta property="og:site_name" content="GSRF Filter">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="GSRF Framework Paper — Stability Bounds for Feedback Loops">
+  <meta name="twitter:description" content="Abstract + reading guide for the GSRF framework paper (PDF). Start with the demo, then review assumptions and stability bounds.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "Gradient-Stabilized Recursive Filtering (GSRF) — framework paper",
+    "description": "Abstract and reading guide for the GSRF framework paper PDF.",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://gsrf-filter.netlify.app/paper-gsrf-framework.html" },
+    "author": { "@type": "Organization", "name": "BoonMind", "url": "https://boonmind.io" },
+    "publisher": { "@type": "Organization", "name": "BoonMind" },
+    "isBasedOn": { "@type": "MediaObject", "contentUrl": "https://gsrf-filter.netlify.app/papers/gsrf/gradient-stabilized-recursive-filtering-safety-critical-applications.pdf", "encodingFormat": "application/pdf" }
+  }
+  </script>
+
+  <style>
+    main { padding: 28px 0 56px; }
+    h1 { font-size: 28px; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="container">
+    <header>
+      <h1>Paper abstract: GSRF framework</h1>
+      <p class="lede">A short reading guide for the main framework paper. Start with the demo if you want the intuition first.</p>
+      <nav aria-label="Site">
+        <a href="./">Home</a>
+        <a href="./demo/">Demo</a>
+        <a href="./deterministic-safety-recursive-systems.html">Deterministic safety</a>
+        <a href="./runaway-feedback-loop-prevention.html">Runaway feedback</a>
+        <a href="./applications.html">Applications</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <h2>PDF</h2>
+      <p><a class="btn primary" href="./papers/gsrf/gradient-stabilized-recursive-filtering-safety-critical-applications.pdf">Open the PDF</a></p>
+
+      <div class="card">
+        <h2>Abstract (plain language)</h2>
+        <p>This paper frames GSRF as a structurally bounded safety layer for recursive systems. The goal is to prevent runaway amplification and overshoot by constraining updates and enforcing stability checks prior to state changes.</p>
+        <ul>
+          <li>Defines the failure mode: recursive amplification under feedback.</li>
+          <li>Proposes bounded-by-construction constraints as prevention.</li>
+          <li>Discusses how stability criteria can be enforced before execution.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Recommended path</h2>
+        <div class="btnrow">
+          <a class="btn primary" href="./demo/">Run the demo</a>
+          <a class="btn" href="./applications.html">Applications</a>
+          <a class="btn" href="./paper-gsrf-safety-filter.html">Next: safety filter</a>
+        </div>
+      </div>
+    </main>
+
+  <footer>
+    <p style="margin-bottom: 10px;">
+      © 2026 Carl Boon (BoonMind). Commercial use requires a license. Patent application in preparation.
+      Contact: <a href="mailto:info@boonmind.io">info@boonmind.io</a>.
+      <a href="./LICENSE">LICENSE</a> · <a href="./README.md">README</a>
+    </p>
+    <p>Built by <a href="https://boonmind.io" rel="noopener noreferrer">BoonMind</a>. For inquiries: <a href="mailto:info@boonmind.io">info@boonmind.io</a></p>
+  </footer>
+  </div>
+</body>
+</html>

@@ -5,55 +5,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   <!-- SEO -->
-  <title>GSRF Interactive Demonstration — Bounded vs Unbounded Filtering</title>
-  <meta name="description" content="Interactive demonstration comparing GSRF (bounded, zero-overshoot behaviour) versus EMA on synthetic signals. Visualize gradient bounding and stability constraints.">
+  <title>GSRF Demo — Bounded vs Unbounded Recursive Filtering Tool</title>
+  <meta name="description" content="Interactive demo comparing bounded GSRF filtering vs EMA on synthetic signals. Adjust noise, target band, and parameters to see overshoot and crossings.">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://zeroovershoot.com/demo/">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://gsrf-filter.netlify.app/demo/">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../style.css">
   
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://zeroovershoot.com/demo/">
-  <meta property="og:title" content="GSRF Interactive Demonstration">
-  <meta property="og:description" content="Compare bounded (GSRF) vs unbounded (EMA) recursive filtering on synthetic signals.">
+  <meta property="og:url" content="https://gsrf-filter.netlify.app/demo/">
+  <meta property="og:title" content="GSRF Demo — Bounded vs Unbounded Recursive Filtering Tool">
+  <meta property="og:description" content="Compare bounded GSRF filtering vs EMA on synthetic signals. Adjust noise, target band, and parameters to see overshoot and crossings.">
   <meta property="og:site_name" content="GSRF">
   
   <!-- Twitter -->
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="GSRF Interactive Demonstration">
-  <meta name="twitter:description" content="Compare bounded vs unbounded recursive filtering behaviour.">
+  <meta name="twitter:title" content="GSRF Demo — Bounded vs Unbounded Filtering Tool">
+  <meta name="twitter:description" content="Compare bounded GSRF filtering vs EMA on synthetic signals. Adjust noise, target band, and parameters to see overshoot and crossings.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "GSRF Demo: bounded vs unbounded recursive filtering",
+    "description": "Interactive demo comparing bounded GSRF filtering versus EMA on synthetic signals, highlighting overshoot and band-crossing metrics.",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://gsrf-filter.netlify.app/demo/"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "BoonMind",
+      "url": "https://boonmind.io"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "BoonMind"
+    }
+  }
+  </script>
   
   <style>
-    :root {
-      --bg: #0b1220;
-      --panel: #101a2e;
-      --panel2: #0f172a;
-      --text: #e7eefc;
-      --muted: #9fb1d1;
-      --line: #223253;
-      --accent: #7dd3fc;
-      --accent2: #a78bfa;
-      --good: #34d399;
-      --warn: #fbbf24;
-      --bad: #fb7185;
-      --shadow: 0 12px 40px rgba(0,0,0,.35);
-      --radius: 16px;
-    }
-    
-    * {
-      box-sizing: border-box;
-    }
-    
-    body {
-      margin: 0;
-      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: radial-gradient(1200px 900px at 20% 10%, #18264a 0%, transparent 55%),
-                  radial-gradient(1000px 900px at 80% 20%, #2a1b4b 0%, transparent 55%),
-                  var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
-    }
+    /* Demo keeps its layout + component rules; base identity comes from ../style.css */
+    :root { --good: #34d399; --warn: #fbbf24; --bad: #fb7185; --line: rgba(231,238,252,.14); --radius: 16px; }
+    body { color: var(--text); }
     
     header {
       padding: 28px 18px 10px;
@@ -114,8 +110,6 @@
     
     .card {
       background: linear-gradient(180deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.02) 100%);
-      border: 1px solid rgba(255,255,255,.08);
-      box-shadow: var(--shadow);
       border-radius: var(--radius);
       overflow: hidden;
     }
@@ -218,24 +212,11 @@
       flex-wrap: wrap;
     }
     
-    button {
-      border: none;
-      background: linear-gradient(180deg, rgba(125, 211, 252, .24) 0%, rgba(125, 211, 252, .12) 100%);
-      color: var(--text);
-      border: 1px solid rgba(125, 211, 252, .30);
-      padding: 10px 12px;
-      border-radius: 12px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 13px;
-      touch-action: manipulation;
-    }
-    
+    /* Base button styles come from ../style.css; demo-specific tweaks only */
     button.secondary {
       background: rgba(15, 23, 42, .6);
       border: 1px solid rgba(255,255,255,.12);
       color: #dbe7ff;
-      font-weight: 600;
     }
     
     .hint {
@@ -270,6 +251,59 @@
       font-size: 11px;
       color: var(--muted);
       margin-top: 2px;
+    }
+
+    .industry-context{
+      margin-bottom: 12px;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(15, 23, 42, .55);
+    }
+    .industry-context .ctx-title{
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .industry-context .ctx-grid{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .industry-context .ctx-item{
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(15, 23, 42, .45);
+      padding: 10px;
+      border-radius: 14px;
+    }
+    .industry-context .ctx-k{
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .industry-context .ctx-v{
+      font-size: 12px;
+      line-height: 1.45;
+      color: #dbe7ff;
+    }
+    .industry-context .ctx-ex{
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+    .industry-context .ctx-note{
+      margin-top: 8px;
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.45;
+      opacity: .95;
+    }
+    .industry-context .ctx-note strong{ color: #dbe7ff; font-weight: 700; }
+    @media (min-width: 980px){
+      .industry-context .ctx-grid{ grid-template-columns: repeat(3, 1fr); }
     }
     
     .chart-container {
@@ -372,9 +406,11 @@
     }
   </style>
 </head>
-<body>
+<body class="theme-dark">
+  <a class="skip-link" href="#main">Skip to content</a>
   <header>
-    <a href="/" class="back-link">← Back to GSRF</a>
+    <a href="../" class="back-link" id="backLink">← Back to GSRF</a>
+    <button class="secondary" id="copyLinkBtn" type="button" style="margin-left: 10px;">Copy share link</button>
     <div class="title">
       <h1>GSRF Interactive Demonstration</h1>
     </div>
@@ -384,13 +420,51 @@
     </p>
   </header>
 
-  <main>
+  <main id="main">
+    <section class="card" aria-label="How to read the demo">
+      <div class="hd">
+        <h2>How to read the demo</h2>
+        <span class="badge">quick start</span>
+      </div>
+      <div class="bd">
+        <ol style="margin: 0; padding-left: 18px; color: var(--muted); font-size: 13px; line-height: 1.6;">
+          <li>Start with <strong>Step</strong> + <strong>EMA (α=0.50)</strong> to see overshoot.</li>
+          <li>Switch to <strong>GSRF</strong> and compare how the output stays within the target band.</li>
+          <li>Use <strong>Max overshoot</strong> and <strong>Band crossings</strong> as a quick boundedness read.</li>
+        </ol>
+        <p style="margin-top: 12px; margin-bottom: 0; color: var(--muted); font-size: 12px;">
+          Assumptions/limits: <strong>synthetic-only</strong>; boundedness here means <strong>behavior stays within the configured band</strong> for the shown update rule and parameter envelope.
+          This is an intuition tool, not a certification claim.
+        </p>
+        <p style="margin-top: 12px; margin-bottom: 0; color: var(--muted); font-size: 12px;">
+          Learn more: <a href="../deterministic-safety-recursive-systems.html">deterministic safety</a>,
+          <a href="../runaway-feedback-loop-prevention.html">runaway feedback</a>,
+          <a href="../paper-gsrf-framework.html">paper abstracts</a>.
+        </p>
+      </div>
+    </section>
+
     <section class="card" aria-label="Filter controls">
       <div class="hd">
         <h2>Controls</h2>
         <span class="badge" id="seedBadge">seed: 2026</span>
       </div>
       <div class="bd">
+        <label for="industry">Industry preset</label>
+        <select id="industry">
+          <option value="">General (default)</option>
+          <option value="autonomous">Autonomous control</option>
+          <option value="robotics">Robotics</option>
+          <option value="finance">Finance / Trading systems</option>
+          <option value="industrial">Industrial control</option>
+        </select>
+
+        <label for="signalModel">Signal model</label>
+        <select id="signalModel">
+          <option value="industry">Industry-shaped (synthetic)</option>
+          <option value="generic">Generic (synthetic)</option>
+        </select>
+
         <label for="signalType">Signal type</label>
         <select id="signalType">
           <option value="step">Step</option>
@@ -465,6 +539,10 @@
             <div class="v" id="kpiCross">—</div>
             <div class="l">Band crossings (selected)</div>
           </div>
+          <div class="kpi">
+            <div class="v" id="kpiStable">—</div>
+            <div class="l">Time to stability (steps)</div>
+          </div>
         </div>
 
         <div class="hint">
@@ -480,6 +558,25 @@
         <span class="badge" id="modeBadge">mode: gsrf</span>
       </div>
       <div class="bd">
+        <div class="industry-context" aria-label="Industry context">
+          <div class="ctx-title" id="ctxTitle">Industry context</div>
+          <div class="ctx-grid">
+            <div class="ctx-item">
+              <div class="ctx-k">Typically optimizes</div>
+              <div class="ctx-v" id="ctxOptimizes">—</div>
+            </div>
+            <div class="ctx-item">
+              <div class="ctx-k">Common runaway failure pattern</div>
+              <div class="ctx-v" id="ctxPattern">—</div>
+            </div>
+            <div class="ctx-item">
+              <div class="ctx-k">What GSRF constrains</div>
+              <div class="ctx-v" id="ctxConstrains">—</div>
+            </div>
+          </div>
+          <div class="ctx-ex" id="ctxExamples">Examples: —</div>
+          <div class="ctx-note" id="ctxModelNote">Signal model: — (synthetic)</div>
+        </div>
         <div class="chart-container">
           <canvas id="chart"></canvas>
         </div>
@@ -490,12 +587,17 @@
   <div class="foot">
     <p>
       Notes: Synthetic-only. This demonstration visualizes boundedness behaviour and overshoot suppression — it does not claim clinical / industrial efficacy.
-      Parameter envelopes are enforced in code. <a href="/">Return to GSRF overview</a>.
+      Parameter envelopes are enforced in code. <a href="../">Return to GSRF overview</a>.
     </p>
   </div>
   
   <footer>
-    <p>Built by <a href="https://boonmind.io">BoonMind</a>.<br>Research, safety frameworks, and system architecture.<br>For inquiries: <a href="mailto:info@boonmind.io">info@boonmind.io</a></p>
+    <p style="margin-bottom: 10px;">
+      © 2026 Carl Boon (BoonMind). Commercial use requires a license. Patent application in preparation.
+      Contact: <a href="mailto:info@boonmind.io">info@boonmind.io</a>.
+      <a href="../LICENSE">LICENSE</a> · <a href="../README.md">README</a>
+    </p>
+    <p>Built by <a href="https://boonmind.io" rel="noopener noreferrer">BoonMind</a>.<br>Research, safety frameworks, and system architecture.<br>For inquiries: <a href="mailto:info@boonmind.io">info@boonmind.io</a></p>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -524,7 +626,7 @@
     }
 
     // Signal generators
-    function generateSignal({ type, n, target, noiseSigma, rng }) {
+    function generateSignalGeneric({ type, n, target, noiseSigma, rng }) {
       const y = new Array(n);
       for (let i = 0; i < n; i++) {
         let base = target;
@@ -539,6 +641,88 @@
         y[i] = base + noiseSigma * randn(rng);
       }
       return y;
+    }
+
+    function sat(x, lo, hi) { return Math.max(lo, Math.min(hi, x)); }
+
+    function generateSignalIndustryShaped({ industryKey, n, target, noiseSigma, rng }) {
+      const y = new Array(n);
+      const key = industryKey || "";
+
+      // Synthetic, domain-shaped signal models (for intuition only).
+      if (key === "autonomous") {
+        // Step commands + actuator saturation + first-order lag + sensor noise
+        const uMin = target - 1.2;
+        const uMax = target + 1.2;
+        const lag = 0.12;
+        let x = target;
+        for (let i = 0; i < n; i++) {
+          const cmd = (i < 90) ? (target - 1.0) : (i < 180 ? (target + 1.0) : target);
+          const u = sat(cmd, uMin, uMax);
+          x = x + lag * (u - x);
+          y[i] = x + noiseSigma * randn(rng);
+        }
+        return y;
+      }
+
+      if (key === "robotics") {
+        // Oscillatory setpoint tracking + stiction + load changes
+        let x = target;
+        let load = 1.0;
+        const lag = 0.10;
+        const stiction = 0.02;
+        for (let i = 0; i < n; i++) {
+          if (i === 120) load = 1.25;
+          if (i === 220) load = 0.90;
+          const setpoint = target + 0.9 * Math.sin((2 * Math.PI * i) / 70);
+          const err = (setpoint - x);
+          const move = (Math.abs(err) < stiction) ? 0 : err;
+          x = x + lag * (move / load);
+          y[i] = x + noiseSigma * randn(rng);
+        }
+        return y;
+      }
+
+      if (key === "industrial") {
+        // Setpoint steps + process dead time + slow drift
+        const dead = 12;
+        const tau = 0.06;
+        let x = target;
+        let drift = 0;
+        const uHist = new Array(n).fill(target);
+        for (let i = 0; i < n; i++) {
+          const sp = (i < 110) ? (target - 0.7) : (i < 220 ? (target + 0.7) : target);
+          uHist[i] = sp;
+          const u = (i - dead >= 0) ? uHist[i - dead] : target;
+          drift = 0.995 * drift + 0.003 * randn(rng);
+          x = x + tau * ((u + 0.15 * drift) - x);
+          y[i] = x + noiseSigma * randn(rng);
+        }
+        return y;
+      }
+
+      if (key === "finance") {
+        // Regime shifts + volatility clustering + jumps + feedback amplification proxy
+        let s = target;
+        let sigma = Math.max(0.02, noiseSigma);
+        let regime = 1.0;
+        for (let i = 0; i < n; i++) {
+          if (i === 90) regime = 1.6;
+          if (i === 200) regime = 0.9;
+
+          const z = randn(rng);
+          const ret = regime * sigma * z;
+          sigma = sat(0.92 * sigma + 0.10 * Math.abs(ret), 0.02, 0.35);
+
+          const jump = (rng() < 0.02) ? (regime * (rng() < 0.5 ? -1 : 1) * (0.6 + 0.6 * rng())) : 0;
+          const fb = 0.06 * (s - target);
+          s = s + ret + jump + fb;
+          y[i] = s;
+        }
+        return y;
+      }
+
+      return generateSignalGeneric({ type: "step", n, target, noiseSigma, rng });
     }
 
     // Filters
@@ -606,8 +790,22 @@
       return { maxOvershoot, crossings };
     }
 
+    function timeToStability(series, target, band, windowLen = 20) {
+      if (series.length < windowLen) return null;
+      for (let i = 0; i <= series.length - windowLen; i++) {
+        let ok = true;
+        for (let j = 0; j < windowLen; j++) {
+          if (Math.abs(series[i + j] - target) > band) { ok = false; break; }
+        }
+        if (ok) return i;
+      }
+      return null;
+    }
+
     // UI + Chart
     const els = {
+      industry: document.getElementById("industry"),
+      signalModel: document.getElementById("signalModel"),
       signalType: document.getElementById("signalType"),
       noise: document.getElementById("noise"),
       noiseVal: document.getElementById("noiseVal"),
@@ -622,13 +820,94 @@
       run: document.getElementById("run"),
       kpiOvershoot: document.getElementById("kpiOvershoot"),
       kpiCross: document.getElementById("kpiCross"),
+      kpiStable: document.getElementById("kpiStable"),
       filterToggles: document.getElementById("filterToggles"),
       modeBadge: document.getElementById("modeBadge"),
       seedBadge: document.getElementById("seedBadge"),
     };
 
+    const ctxEls = {
+      backLink: document.getElementById("backLink"),
+      title: document.getElementById("ctxTitle"),
+      optimizes: document.getElementById("ctxOptimizes"),
+      pattern: document.getElementById("ctxPattern"),
+      constrains: document.getElementById("ctxConstrains"),
+      examples: document.getElementById("ctxExamples"),
+      modelNote: document.getElementById("ctxModelNote"),
+    };
+
+    const INDUSTRIES = {
+      "": {
+        key: "",
+        name: "General (default)",
+        axis: { x: "Time step", y: "Signal value (normalized)" },
+        defaults: { signalType: "step", target: 1.0, band: 0.15, noise: 0.15, beta: 0.30, kreturn: 1.00, mem: 0.20, baseline: 0.00, mode: "gsrf" },
+        context: {
+          title: "Industry context",
+          optimizes: "Stability and boundedness under recursion",
+          pattern: "Amplified error and overshoot under feedback",
+          constrains: "Update magnitude within a configured envelope",
+          examples: "Examples: band ±0.15, σ=0.15 (example)"
+        }
+      },
+      autonomous: {
+        key: "autonomous",
+        name: "Autonomous control",
+        axis: { x: "Time (steps)", y: "Tracking error (deg, example)" },
+        defaults: { signalType: "step", target: 0.0, band: 0.6, noise: 0.10, beta: 0.28, kreturn: 1.20, mem: 0.18, baseline: 0.00, mode: "gsrf" },
+        context: {
+          title: "Industry context: autonomous control",
+          optimizes: "Tracking error, settling time, and actuator smoothness",
+          pattern: "Overshoot/oscillation after step changes; unstable correction loops",
+          constrains: "Update step size so response stays within the target band",
+          examples: "Examples: target 0.0° ±0.6°, σ=0.10; 0.18s settling (example)"
+        }
+      },
+      robotics: {
+        key: "robotics",
+        name: "Robotics",
+        axis: { x: "Time (steps)", y: "Command deviation (%, example)" },
+        defaults: { signalType: "ramp", target: 0.0, band: 12.0, noise: 0.12, beta: 0.26, kreturn: 1.10, mem: 0.22, baseline: 0.00, mode: "gsrf" },
+        context: {
+          title: "Industry context: robotics",
+          optimizes: "Task success, smooth motion, and constraint compliance",
+          pattern: "Adaptive drift and unstable corrections under feedback",
+          constrains: "Per-step change so commands stay within a safe envelope",
+          examples: "Examples: band ±12%, σ=0.12; 35-step stability window (example)"
+        }
+      },
+      finance: {
+        key: "finance",
+        name: "Finance / Trading systems",
+        axis: { x: "Time (steps)", y: "Signal / exposure (normalized, example)" },
+        defaults: { signalType: "sine", target: 1.0, band: 0.25, noise: 0.25, beta: 0.22, kreturn: 0.95, mem: 0.25, baseline: 0.05, mode: "ema_fast" },
+        context: {
+          title: "Industry context: finance / trading",
+          optimizes: "Return vs risk (volatility, drawdown) under iterative updates",
+          pattern: "Signal chasing and amplified exposure changes across iterations",
+          constrains: "Update magnitude and momentum so the loop stays bounded",
+          examples: "Examples: σ=0.25, band ±0.25; 2.5× peak amplitude (example)"
+        }
+      },
+      industrial: {
+        key: "industrial",
+        name: "Industrial control",
+        axis: { x: "Time (steps)", y: "Process variable (%, example)" },
+        defaults: { signalType: "step", target: 1.0, band: 3.0, noise: 0.06, beta: 0.30, kreturn: 1.05, mem: 0.16, baseline: 0.00, mode: "gsrf" },
+        context: {
+          title: "Industry context: industrial control",
+          optimizes: "Stability, constraint compliance, and recovery after disturbances",
+          pattern: "Slow drift, saturation, and delayed divergence in feedback loops",
+          constrains: "Bounded response within a configured tolerance band",
+          examples: "Examples: band ±3.0%, σ=0.06; 0.9s settling (example)"
+        }
+      }
+    };
+
     let seed = 2026;
     els.seedBadge.textContent = "seed: " + seed;
+
+    let userLockedSignalModel = false;
 
     // Initialize mode to match the active chip (gsrf)
     let mode = "gsrf";
@@ -642,6 +921,57 @@
       });
       els.modeBadge.textContent = "mode: " + (mode === "all" ? "show all" : mode);
       render();
+    }
+
+    function applyIndustryPreset(key, opts = { pushState: true }) {
+      const preset = INDUSTRIES[key] || INDUSTRIES[""];
+      els.industry.value = preset.key;
+
+      if (!userLockedSignalModel) {
+        els.signalModel.value = preset.key ? "industry" : "generic";
+      }
+
+      els.signalType.value = preset.defaults.signalType;
+      els.target.value = String(preset.defaults.target);
+      els.band.value = String(preset.defaults.band);
+      els.noise.value = String(preset.defaults.noise);
+      els.noiseVal.value = String(preset.defaults.noise);
+      els.beta.value = String(preset.defaults.beta);
+      els.kreturn.value = String(preset.defaults.kreturn);
+      els.mem.value = String(preset.defaults.mem);
+      els.baseline.value = String(preset.defaults.baseline);
+
+      if (ctxEls.title) ctxEls.title.textContent = preset.context.title;
+      if (ctxEls.optimizes) ctxEls.optimizes.textContent = preset.context.optimizes;
+      if (ctxEls.pattern) ctxEls.pattern.textContent = preset.context.pattern;
+      if (ctxEls.constrains) ctxEls.constrains.textContent = preset.context.constrains;
+      if (ctxEls.examples) ctxEls.examples.textContent = preset.context.examples;
+      if (ctxEls.modelNote) {
+        const m = (els.signalModel.value || "generic") === "industry" ? "Industry-shaped" : "Generic";
+        ctxEls.modelNote.innerHTML = 'Signal model: <strong>' + m + '</strong> (synthetic)';
+      }
+
+      if (ctxEls.backLink) {
+        ctxEls.backLink.href = preset.key ? ("../?industry=" + encodeURIComponent(preset.key)) : "../";
+      }
+
+      // Axis labels (Chart.js)
+      chart.options.scales.x.title = { display: true, text: preset.axis.x, color: "#cfe0ff", font: { size: 12, weight: "600" } };
+      chart.options.scales.y.title = { display: true, text: preset.axis.y, color: "#cfe0ff", font: { size: 12, weight: "600" } };
+
+      if (opts && opts.pushState) {
+        try {
+          const url = new URL(window.location.href);
+          if (preset.key) url.searchParams.set("industry", preset.key);
+          else url.searchParams.delete("industry");
+          // Persist signal model so share links are stable
+          const model = (els.signalModel.value || "generic").trim().toLowerCase();
+          url.searchParams.set("signalModel", model === "industry" ? "industry" : "generic");
+          window.history.replaceState({}, "", url.toString());
+        } catch (_) {}
+      }
+
+      setMode(preset.defaults.mode);
     }
 
     els.filterToggles.addEventListener("click", (e) => {
@@ -713,7 +1043,11 @@
       const band = parseFloat(els.band.value);
       const noiseSigma = parseFloat(els.noise.value);
 
-      const y = generateSignal({ type, n: N, target, noiseSigma, rng });
+      const industryKey = (els.industry.value || "").trim().toLowerCase();
+      const model = (els.signalModel.value || "generic").trim().toLowerCase();
+      const y = (model === "industry")
+        ? generateSignalIndustryShaped({ industryKey, n: N, target, noiseSigma, rng })
+        : generateSignalGeneric({ type, n: N, target, noiseSigma, rng });
       const emaSlow = emaFilter(y, 0.10);
       const emaFast = emaFilter(y, 0.50);
 
@@ -814,10 +1148,79 @@
       const m = calcMetrics(selectedSeries, target, band);
       els.kpiOvershoot.textContent = m.maxOvershoot.toFixed(3);
       els.kpiCross.textContent = String(m.crossings);
+
+      const tts = timeToStability(selectedSeries, target, band, 20);
+      els.kpiStable.textContent = (tts === null) ? "—" : String(tts);
     }
 
     els.stepOnce.addEventListener("click", render);
     els.run.addEventListener("click", render);
+
+    els.signalModel.addEventListener("input", () => {
+      userLockedSignalModel = true;
+      if (ctxEls.modelNote) {
+        const m = (els.signalModel.value || "generic") === "industry" ? "Industry-shaped" : "Generic";
+        ctxEls.modelNote.innerHTML = 'Signal model: <strong>' + m + '</strong> (synthetic)';
+      }
+      // Keep URL in sync when user changes model
+      try {
+        const url = new URL(window.location.href);
+        const model = (els.signalModel.value || "generic").trim().toLowerCase();
+        url.searchParams.set("signalModel", model === "industry" ? "industry" : "generic");
+        window.history.replaceState({}, "", url.toString());
+      } catch (_) {}
+      render();
+    });
+
+    // Init industry preset from URL
+    (function initIndustry() {
+      let key = "";
+      try {
+        const params = new URLSearchParams(window.location.search);
+        key = (params.get("industry") || "").trim().toLowerCase();
+      } catch (_) {}
+      if (!Object.prototype.hasOwnProperty.call(INDUSTRIES, key)) key = "";
+      applyIndustryPreset(key, { pushState: false });
+    })();
+
+    els.industry.addEventListener("input", () => applyIndustryPreset(els.industry.value, { pushState: true }));
+
+    // Initialize / persist signalModel from URL if present
+    (function initSignalModel() {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const sm = (params.get("signalModel") || "").trim().toLowerCase();
+        if (sm === "industry" || sm === "generic") {
+          userLockedSignalModel = true;
+          els.signalModel.value = sm;
+          if (ctxEls.modelNote) {
+            const m = sm === "industry" ? "Industry-shaped" : "Generic";
+            ctxEls.modelNote.innerHTML = 'Signal model: <strong>' + m + '</strong> (synthetic)';
+          }
+        }
+      } catch (_) {}
+    })();
+
+    // Copy share link (clipboard with fallback)
+    (function initCopyLink() {
+      const btn = document.getElementById("copyLinkBtn");
+      if (!btn) return;
+      btn.addEventListener("click", async () => {
+        const link = window.location.href;
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(link);
+            const old = btn.textContent;
+            btn.textContent = "Copied";
+            setTimeout(() => { btn.textContent = old; }, 1200);
+          } else {
+            window.prompt("Copy this link:", link);
+          }
+        } catch (_) {
+          window.prompt("Copy this link:", link);
+        }
+      });
+    })();
 
     // Initial render
     render();

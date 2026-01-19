@@ -1,0 +1,44 @@
+Business Source License 1.1
+
+Parameters
+
+Licensor: Carl Boon
+Licensed Work: GSRF Filter (Gradient-Stabilized Recursive Filtering)
+Additional Use Grant: You may use, copy, modify, and run the Licensed Work for Non-Commercial purposes,
+including private evaluation, academic/research use, and internal prototyping that is not used to provide a
+commercial product or service. You may not use the Licensed Work in Production, for Commercial purposes,
+or to provide it as a hosted or managed service without a separate commercial license from the Licensor.
+
+Change Date: 2030-01-19
+Change License: Apache License, Version 2.0
+
+Terms
+
+The Licensor hereby grants you the right to copy, modify, create derivative works, redistribute, and make
+non-production use of the Licensed Work, subject to the terms of this License.
+
+“Commercial” means use of the Licensed Work (or any portion thereof) to generate revenue or to provide a
+product or service to third parties for a fee, including offering it as a service (SaaS), hosting, managed
+services, consulting deliverables that embed the Licensed Work, or use in a revenue-producing Production
+system.
+
+“Production” means use of the Licensed Work to provide a product or service to end users (internal or
+external) beyond private evaluation, including any use in live environments, safety-critical operations,
+or decision-making systems where failures can cause harm.
+
+If you want to use the Licensed Work for Commercial or Production purposes, you must contact the Licensor
+to obtain a commercial license.
+
+On the Change Date, the Licensed Work will become available under the Change License.
+
+This License is based on the Business Source License 1.1 (BSL 1.1). For the full text of BSL 1.1, see:
+https://mariadb.com/bsl11/
+
+Disclaimer
+
+THE LICENSED WORK IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO
+EVENT SHALL THE LICENSOR BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
+CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE LICENSED WORK OR THE USE OR
+OTHER DEALINGS IN THE LICENSED WORK.
+

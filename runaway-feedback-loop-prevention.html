@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Runaway Feedback Loop Prevention — Bounded Filtering (GSRF)</title>
+  <meta name="description" content="How runaway feedback emerges in recursive systems, and how bounded update rules can reduce overshoot and instability. Includes links to the demo and papers.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://gsrf-filter.netlify.app/runaway-feedback-loop-prevention.html">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://gsrf-filter.netlify.app/runaway-feedback-loop-prevention.html">
+  <meta property="og:title" content="Runaway Feedback Loop Prevention — Bounded Filtering (GSRF)">
+  <meta property="og:description" content="How runaway feedback emerges in recursive systems, and how bounded updates can reduce overshoot and instability.">
+  <meta property="og:site_name" content="GSRF Filter">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Runaway Feedback Loop Prevention — Bounded Filtering">
+  <meta name="twitter:description" content="How runaway feedback emerges in recursive systems, and how bounded updates can reduce overshoot and instability.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Runaway feedback loop prevention",
+    "description": "Runaway feedback loops are a predictable failure mode in recursive systems; bounded updates and stability constraints prevent uncontrolled divergence.",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://gsrf-filter.netlify.app/runaway-feedback-loop-prevention.html" },
+    "author": { "@type": "Organization", "name": "BoonMind", "url": "https://boonmind.io" },
+    "publisher": { "@type": "Organization", "name": "BoonMind" }
+  }
+  </script>
+
+  <style>
+    main { padding: 28px 0 56px; }
+    .lede { max-width: 72ch; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="container">
+    <header>
+      <h1>Runaway feedback loop prevention</h1>
+      <p class="lede">Feedback is a multiplier. If updates aren’t structurally bounded, the loop can “run away” under pressure even when it looks fine in normal conditions.</p>
+      <nav aria-label="Site">
+        <a href="./">Home</a>
+        <a href="./demo/">Demo</a>
+        <a href="./deterministic-safety-recursive-systems.html">Deterministic safety</a>
+        <a href="./applications.html">Applications</a>
+        <a href="./index.html#papers">Papers</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <h2>The failure mode</h2>
+      <p>In recursive systems, each iteration uses the last iteration’s output as an input. If the update rule allows large steps, small disturbances can accumulate until the loop diverges or oscillates.</p>
+      <ul>
+        <li><strong>Unbounded updates</strong> can produce overshoot and instability.</li>
+        <li><strong>Monitoring</strong> often detects after the state is already unsafe.</li>
+        <li><strong>Bounds-by-construction</strong> prevent the unsafe update from being applied.</li>
+      </ul>
+
+      <h2>What to look for in the demo</h2>
+      <p>Use <strong>EMA (α=0.50)</strong> on a step input to see overshoot, then switch to <strong>GSRF</strong> to see how boundedness suppresses excursions outside the target band.</p>
+
+      <div class="card">
+        <h2>Go deeper</h2>
+        <p>If you want the formal framing, start with the paper abstract and then open the PDF.</p>
+        <div class="btnrow">
+          <a class="btn primary" href="./demo/">Run the demo</a>
+          <a class="btn" href="./paper-gsrf-framework.html">Read paper abstract</a>
+        </div>
+      </div>
+    </main>
+
+  <footer>
+    <p style="margin-bottom: 10px;">
+      © 2026 Carl Boon (BoonMind). Commercial use requires a license. Patent application in preparation.
+      Contact: <a href="mailto:info@boonmind.io">info@boonmind.io</a>.
+      <a href="./LICENSE">LICENSE</a> · <a href="./README.md">README</a>
+    </p>
+    <p>Built by <a href="https://boonmind.io" rel="noopener noreferrer">BoonMind</a>. For inquiries: <a href="mailto:info@boonmind.io">info@boonmind.io</a></p>
+  </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Robotics Stability — Bounded Filtering for Adaptive Control</title>
+  <meta name="description" content="How bounded filtering can reduce drift and overshoot risk in robotics with adaptive or learned controllers. Includes integration notes and links to the demo.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://gsrf-filter.netlify.app/applications-robotics.html">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://gsrf-filter.netlify.app/applications-robotics.html">
+  <meta property="og:title" content="Robotics Stability — Bounded Filtering for Adaptive Control">
+  <meta property="og:description" content="How bounded filtering can reduce drift and overshoot risk in robotics with adaptive feedback; includes links to the demo and papers.">
+  <meta property="og:site_name" content="GSRF Filter">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Robotics Stability — Bounded Filtering for Adaptive Control">
+  <meta name="twitter:description" content="How bounded filtering can reduce drift and overshoot risk in robotics with adaptive or learned controllers.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "GSRF for robotics and learned control",
+    "description": "Robotic systems with adaptive or learned components can drift under feedback; bounded filtering provides deterministic limits to reduce runaway behavior risk.",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://gsrf-filter.netlify.app/applications-robotics.html" },
+    "author": { "@type": "Organization", "name": "BoonMind", "url": "https://boonmind.io" },
+    "publisher": { "@type": "Organization", "name": "BoonMind" }
+  }
+  </script>
+
+  <style>
+    main { padding: 28px 0 56px; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="container">
+    <header>
+      <h1>Robotics</h1>
+      <p class="lede">Robots mix perception, estimation, and control. Feedback between these layers can create runaway behavior if update rules are unconstrained.</p>
+      <nav aria-label="Site">
+        <a href="./">Home</a>
+        <a href="./demo/">Demo</a>
+        <a href="./applications.html">Applications</a>
+        <a href="./deterministic-safety-recursive-systems.html">Deterministic safety</a>
+        <a href="./runaway-feedback-loop-prevention.html">Runaway feedback</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <h2>Typical recursion points</h2>
+      <ul>
+        <li>State estimation influencing the controller, which changes the next observation distribution</li>
+        <li>Online adaptation / tuning loops for learned policies</li>
+        <li>Optimization loops that trade off objectives without explicit safety bounds</li>
+      </ul>
+
+      <h2>What boundedness buys you</h2>
+      <p>Bounding the magnitude of updates reduces the chance of sudden excursions, and makes worst-case behavior more legible for validation.</p>
+
+      <div class="card">
+        <h2>Try it</h2>
+        <p>Switch the demo to noisy sine and compare EMA vs GSRF for stability under noise and repeated feedback-like updates.</p>
+        <div class="btnrow">
+          <a class="btn primary" href="./demo/">Run the demo</a>
+          <a class="btn" href="./paper-gsrf-safety-filter.html">Safety filter abstract</a>
+        </div>
+      </div>
+    </main>
+
+  <footer>
+    <p style="margin-bottom: 10px;">
+      © 2026 Carl Boon (BoonMind). Commercial use requires a license. Patent application in preparation.
+      Contact: <a href="mailto:info@boonmind.io">info@boonmind.io</a>.
+      <a href="./LICENSE">LICENSE</a> · <a href="./README.md">README</a>
+    </p>
+    <p>Built by <a href="https://boonmind.io" rel="noopener noreferrer">BoonMind</a>. For inquiries: <a href="mailto:info@boonmind.io">info@boonmind.io</a></p>
+  </footer>
+  </div>
+</body>
+</html>

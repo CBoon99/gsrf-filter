@@ -8,8 +8,8 @@ Recursive systems (control loops, optimization engines, autonomous agents, decis
 
 ## Demo (fastest way to understand)
 
-- Live demo: `https://gsrf-filter.netlify.app/demo/`
-- Homepage: `https://gsrf-filter.netlify.app/`
+- Live demo: `https://zeroovershoot.com/demo/`
+- Homepage: `https://zeroovershoot.com/`
 
 The demo compares bounded (GSRF) versus unbounded (EMA) filtering on synthetic signals and surfaces overshoot + band‑crossing metrics.
 
@@ -68,7 +68,7 @@ To discuss commercial licensing:
 If you reference GSRF in academic or technical writing, you can cite the project as:
 
 ```text
-Carl Boon. “GSRF Filter (Gradient‑Stabilized Recursive Filtering)”. https://gsrf-filter.netlify.app/ (accessed YYYY‑MM‑DD).
+Carl Boon. “GSRF Filter (Gradient‑Stabilized Recursive Filtering)”. https://zeroovershoot.com/ (accessed YYYY‑MM‑DD).
 ```
 
 BibTeX:
@@ -77,7 +77,7 @@ BibTeX:
 @misc{boon_gsrf_filter,
   author       = {Carl Boon},
   title        = {GSRF Filter (Gradient-Stabilized Recursive Filtering)},
-  howpublished = {\\url{https://gsrf-filter.netlify.app/}},
+  howpublished = {\\url{https://zeroovershoot.com/}},
   note         = {Accessed: YYYY-MM-DD}
 }
 ```

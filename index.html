@@ -10,13 +10,13 @@
   <meta name="keywords" content="GSRF, gradient stabilized recursive filtering, zero overshoot, deterministic safety, safety-critical systems, bounded recursion, recursive instability, control systems safety, safety filter, runaway optimisation">
   <meta name="robots" content="index, follow">
   <meta name="author" content="BoonMind">
-  <link rel="canonical" href="https://gsrf-filter.netlify.app/">
+  <link rel="canonical" href="https://zeroovershoot.com/">
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./style.css">
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://gsrf-filter.netlify.app/">
+  <meta property="og:url" content="https://zeroovershoot.com/">
   <meta property="og:title" content="GSRF Filter — Demo-First Safety for Runaway Recursion Risk">
   <meta property="og:description" content="Run the GSRF demo: a bounded signal filter that resists runaway amplification in recursive systems.">
   <meta property="og:site_name" content="GSRF">
@@ -33,20 +33,20 @@
     "@graph": [
       {
         "@type": "Organization",
-        "@id": "https://gsrf-filter.netlify.app/#org",
+        "@id": "https://zeroovershoot.com/#org",
         "name": "BoonMind",
         "url": "https://boonmind.io"
       },
       {
         "@type": "WebSite",
-        "@id": "https://gsrf-filter.netlify.app/#website",
-        "url": "https://gsrf-filter.netlify.app/",
+        "@id": "https://zeroovershoot.com/#website",
+        "url": "https://zeroovershoot.com/",
         "name": "GSRF Filter",
-        "publisher": { "@id": "https://gsrf-filter.netlify.app/#org" }
+        "publisher": { "@id": "https://zeroovershoot.com/#org" }
       },
       {
         "@type": "FAQPage",
-        "@id": "https://gsrf-filter.netlify.app/#faq",
+        "@id": "https://zeroovershoot.com/#faq",
         "mainEntity": [
           {
             "@type": "Question",
@@ -305,6 +305,9 @@
         linear-gradient(#000 0 0) content-box,
         linear-gradient(#000 0 0);
       -webkit-mask-composite: xor;
+      mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
       mask-composite: exclude;
       padding: 1px;
       opacity: .35;
@@ -412,7 +415,18 @@
     .contact-form .email-alt { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 14px; color: var(--text-secondary); }
     .contact-form .email-alt a { color: var(--text); }
 
-    .ohnohoney { opacity: 0; position: absolute; top: 0; left: 0; height: 0; width: 0; z-index: -1; }
+    .visually-hidden {
+      position: absolute !important;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+      clip-path: inset(50%);
+    }
 
     footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; }
     footer p { font-size: 14px; color: var(--text-secondary); margin-bottom: 0; line-height: 1.6; }
@@ -467,6 +481,16 @@
       .legacy-header { padding: 40px 0 34px; }
       .contact-form { padding: 20px 16px; }
       .contact-form input[type="text"], .contact-form input[type="email"], .contact-form textarea { font-size: 16px; }
+      .hero .actions { flex-direction: column; align-items: stretch; }
+      .hero .actions .btn { width: 100%; }
+      .industry-card .row { align-items: stretch; }
+      .industry-card .launch { width: 100%; }
+      .topnav a { padding: 10px 12px; }
+      .brandrow { flex-wrap: wrap; }
+    }
+
+    @media (max-width: 420px) {
+      .topnav a { font-size: 12px; }
     }
 
     @media print {
@@ -491,6 +515,7 @@
             <a href="#start">Start here</a>
             <a href="./paper-gsrf-framework.html">Abstracts</a>
             <a href="#papers">Papers</a>
+            <a href="#contact">Contact</a>
             <a class="cta" href="./demo/">Run the Demo</a>
           </nav>
         </div>
@@ -593,7 +618,7 @@
                   <a class="btn primary" href="./demo/">Launch Demo</a>
                   <a class="btn secondary" href="#start">Start here</a>
                 </div>
-                <p class="note" style="margin-top: 10px;">Synthetic-only. This builds intuition; it’s not a certification claim.</p>
+                <p class="note" style="margin-top: 10px;">Synthetic demo signals; filter math unchanged.</p>
               </div>
             </div>
           </div>
@@ -696,7 +721,7 @@
         </details>
       </section>
       
-      <section>
+      <section id="contact">
         <h2>Consulting &amp; Integration</h2>
         <p>GSRF is deployed through tailored system analysis rather than off-the-shelf implementation. Each engagement is structured around the specific stability requirements and failure modes of the target system.</p>
         <p>Typical engagements involve:</p>
@@ -711,9 +736,10 @@
           <p>For technical collaboration or consulting inquiries:</p>
           <form name="gsrf-contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="./thanks/">
             <input type="hidden" name="form-name" value="gsrf-contact">
-            <p class="ohnohoney">
-              <label>Don't fill this out if you're human: <input name="bot-field"></label>
-            </p>
+            <div class="visually-hidden">
+              <label for="bot-field">Bot-field</label>
+              <input id="bot-field" name="bot-field" autocomplete="off">
+            </div>
             
             <label>
               <span>Name</span>

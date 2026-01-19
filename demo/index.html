@@ -8,13 +8,13 @@
   <title>GSRF Demo — Bounded vs Unbounded Recursive Filtering Tool</title>
   <meta name="description" content="Interactive demo comparing bounded GSRF filtering vs EMA on synthetic signals. Adjust noise, target band, and parameters to see overshoot and crossings.">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://gsrf-filter.netlify.app/demo/">
+  <link rel="canonical" href="https://zeroovershoot.com/demo/">
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../style.css">
   
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://gsrf-filter.netlify.app/demo/">
+  <meta property="og:url" content="https://zeroovershoot.com/demo/">
   <meta property="og:title" content="GSRF Demo — Bounded vs Unbounded Recursive Filtering Tool">
   <meta property="og:description" content="Compare bounded GSRF filtering vs EMA on synthetic signals. Adjust noise, target band, and parameters to see overshoot and crossings.">
   <meta property="og:site_name" content="GSRF">
@@ -32,7 +32,7 @@
     "description": "Interactive demo comparing bounded GSRF filtering versus EMA on synthetic signals, highlighting overshoot and band-crossing metrics.",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://gsrf-filter.netlify.app/demo/"
+      "@id": "https://zeroovershoot.com/demo/"
     },
     "author": {
       "@type": "Organization",
@@ -433,8 +433,7 @@
           <li>Use <strong>Max overshoot</strong> and <strong>Band crossings</strong> as a quick boundedness read.</li>
         </ol>
         <p style="margin-top: 12px; margin-bottom: 0; color: var(--muted); font-size: 12px;">
-          Assumptions/limits: <strong>synthetic-only</strong>; boundedness here means <strong>behavior stays within the configured band</strong> for the shown update rule and parameter envelope.
-          This is an intuition tool, not a certification claim.
+          Synthetic, domain-shaped signals (not real-world data). Filter math is unchanged. Read overshoot, crossings, and time-to-stability to compare bounded vs unbounded behavior.
         </p>
         <p style="margin-top: 12px; margin-bottom: 0; color: var(--muted); font-size: 12px;">
           Learn more: <a href="../deterministic-safety-recursive-systems.html">deterministic safety</a>,
@@ -586,8 +585,7 @@
 
   <div class="foot">
     <p>
-      Notes: Synthetic-only. This demonstration visualizes boundedness behaviour and overshoot suppression — it does not claim clinical / industrial efficacy.
-      Parameter envelopes are enforced in code. <a href="../">Return to GSRF overview</a>.
+      Notes: Parameter envelopes are enforced in code. <a href="../">Return to GSRF overview</a>.
     </p>
   </div>
   

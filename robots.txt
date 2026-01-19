@@ -1,6 +1,6 @@
-# robots.txt for gsrf-filter.netlify.app
+# robots.txt for zeroovershoot.com
 User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://gsrf-filter.netlify.app/sitemap.xml
+Sitemap: https://zeroovershoot.com/sitemap.xml

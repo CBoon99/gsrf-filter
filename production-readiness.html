@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zero Overshoot — Production Readiness &amp; Next Steps</title>
+  <meta name="description" content="Production readiness guide for Zero Overshoot: step-by-step path from evaluation to production deployment. Commercial, patent-pending safety filter.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://zeroovershoot.com/production-readiness.html">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+  
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://zeroovershoot.com/production-readiness.html">
+  <meta property="og:title" content="Zero Overshoot — Production Readiness &amp; Next Steps">
+  <meta property="og:description" content="Production readiness guide: step-by-step path from evaluation to production deployment for Zero Overshoot.">
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Zero Overshoot — Production Readiness">
+  <meta name="twitter:description" content="Production readiness guide: step-by-step path from evaluation to production deployment.">
+  <style>
+    /* Page-specific styles */
+    main {
+      padding: 48px 0;
+    }
+    section {
+      margin-bottom: 56px;
+    }
+    h2 {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      color: var(--text);
+      letter-spacing: -0.3px;
+    }
+    h3 {
+      font-size: 18px;
+      font-weight: 800;
+      margin-top: 24px;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    p {
+      margin-bottom: 16px;
+      line-height: 1.7;
+    }
+    ul, ol {
+      margin: 16px 0;
+      padding-left: 24px;
+    }
+    li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+    .step-card {
+      padding: 20px;
+      margin-bottom: 20px;
+      border-left: 3px solid var(--accent);
+    }
+    .step-card .step-number {
+      font-size: 12px;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      margin-bottom: 8px;
+    }
+    .step-card h3 {
+      margin-top: 0;
+      margin-bottom: 12px;
+    }
+    .commercial-notice {
+      padding: 16px;
+      background: rgba(11, 61, 145, 0.05);
+      border-left: 3px solid var(--accent);
+      border-radius: 6px;
+      margin: 24px 0;
+    }
+    .commercial-notice strong {
+      color: var(--text);
+    }
+    .cta-box {
+      padding: 24px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow2);
+      margin: 32px 0;
+      text-align: center;
+    }
+    .cta-box h3 {
+      margin-top: 0;
+    }
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+    .nav-links a {
+      text-decoration: none;
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.5);
+      box-shadow: var(--shadow2);
+      font-size: 14px;
+      color: var(--text);
+    }
+    .nav-links a:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header style="padding: 40px 0 20px;">
+      <h1>Production Readiness &amp; Next Steps</h1>
+      <p class="subtitle" style="font-size: 18px; color: var(--text-secondary); margin-top: 10px;">A guide for teams evaluating or deploying Zero Overshoot in production systems.</p>
+    </header>
+
+    <main>
+      <div class="commercial-notice">
+        <p><strong>Commercial Product:</strong> Zero Overshoot is proprietary, patent-pending technology. Patent applications are in preparation. Production deployment requires a commercial license. This guide assumes you are evaluating or planning production deployment. For licensing inquiries, contact <a href="mailto:info@boonmind.io">info@boonmind.io</a>.</p>
+      </div>
+
+      <section>
+        <h2>Evaluation Phase</h2>
+        <p>Before committing to production deployment, evaluate whether Zero Overshoot addresses your system's stability requirements.</p>
+
+        <div class="step-card card">
+          <div class="step-number">Step 1</div>
+          <h3>Run the Demo</h3>
+          <p>Use the <a href="./demo/">interactive demo</a> to understand Zero Overshoot's behavior on synthetic signals. The demo shows bounded vs unbounded filtering and surfaces overshoot and band-crossing metrics.</p>
+          <p><strong>Note:</strong> The demo is for evaluation only. No rights are granted by demo use.</p>
+        </div>
+
+        <div class="step-card card">
+          <div class="step-number">Step 2</div>
+          <h3>Review Technical Documentation</h3>
+          <p>Read the <a href="./integration-overview.html">Integration Overview</a> to understand:</p>
+          <ul>
+            <li>What Zero Overshoot guarantees and what it does not</li>
+            <li>Where it sits in a system architecture</li>
+            <li>Integration modes and requirements</li>
+            <li>Supported models and system types</li>
+          </ul>
+          <p>Review the <a href="./paper-gsrf-framework.html">technical papers</a> for mathematical foundations and stability guarantees.</p>
+        </div>
+
+        <div class="step-card card">
+          <div class="step-number">Step 3</div>
+          <h3>Assess System Fit</h3>
+          <p>Evaluate whether your system exhibits the recursive or feedback-driven dynamics that Zero Overshoot addresses:</p>
+          <ul>
+            <li>Do outputs feed back into inputs?</li>
+            <li>Are there feedback pathways that could amplify errors?</li>
+            <li>Is deterministic boundedness required (vs probabilistic monitoring)?</li>
+            <li>Are there physical, operational, or regulatory constraints that define stability envelopes?</li>
+          </ul>
+          <p>If your system does not fit these criteria, Zero Overshoot may not be appropriate.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Planning Phase</h2>
+        <p>If evaluation indicates Zero Overshoot is appropriate, plan the integration approach and engagement model.</p>
+
+        <div class="step-card card">
+          <div class="step-number">Step 4</div>
+          <h3>Choose Engagement Model</h3>
+          <p>Select the engagement model that matches your needs:</p>
+          <ul>
+            <li><strong>Design Review:</strong> For teams evaluating runaway feedback risk. Includes system audit, failure-mode analysis, and written assessment.</li>
+            <li><strong>Integration Support:</strong> For teams ready to deploy. Includes reference implementation guidance, parameter selection, and validation support.</li>
+            <li><strong>Licensing:</strong> For organizations embedding Zero Overshoot in products or platforms. Requires commercial license for production use.</li>
+          </ul>
+          <p>See <a href="./integration-overview.html">Integration Overview</a> for detailed descriptions of each mode.</p>
+        </div>
+
+        <div class="step-card card">
+          <div class="step-number">Step 5</div>
+          <h3>Identify Integration Points</h3>
+          <p>Map your system architecture to identify where Zero Overshoot should be integrated:</p>
+          <ul>
+            <li>Feedback pathways: Where do outputs feed back into inputs?</li>
+            <li>Measurement points: Where can stability be measured?</li>
+            <li>Constraint points: Where can updates be filtered before execution?</li>
+            <li>Stability bounds: What are the physical, operational, or regulatory constraints?</li>
+          </ul>
+          <p>This analysis may require system documentation review and architectural discussions.</p>
+        </div>
+
+        <div class="step-card card">
+          <div class="step-number">Step 6</div>
+          <h3>Define Success Criteria</h3>
+          <p>Establish clear criteria for successful integration:</p>
+          <ul>
+            <li>Stability requirements: What boundedness guarantees are required?</li>
+            <li>Performance requirements: What are acceptable trade-offs (speed, efficiency)?</li>
+            <li>Validation requirements: How will you verify the integrated system meets requirements?</li>
+            <li>Operational requirements: What monitoring and maintenance are needed?</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Integration Phase</h2>
+        <p>Once planning is complete, proceed with integration. This phase requires a commercial license for production deployment.</p>
+
+        <div class="step-card card">
+          <div class="step-number">Step 7</div>
+          <h3>Obtain License</h3>
+          <p>Contact <a href="mailto:info@boonmind.io">info@boonmind.io</a> to discuss licensing terms. Include:</p>
+          <ul>
+            <li>System domain and type</li>
+            <li>Intended use (internal tool, customer-facing product, etc.)</li>
+            <li>Deployment timeline</li>
+            <li>Integration interest (design review, integration support, licensing)</li>
+          </ul>
+          <p>See <a href="./commercial-licensing-notes.html">Commercial &amp; Licensing Notes</a> for licensing requirements and restrictions.</p>
+        </div>
+
+        <div class="step-card card">
+          <div class="step-number">Step 8</div>
+          <h3>Configure Bounds</h3>
+          <p>Derive stability bounds specific to your system:</p>
+          <ul>
+            <li>Physical constraints: What are the physical limits of your system?</li>
+            <li>Operational constraints: What are the acceptable operating ranges?</li>
+            <li>Regulatory constraints: Are there regulatory requirements that define bounds?</li>
+            <li>Safety margins: What margins are required for safety-critical applications?</li>
+          </ul>
+          <p>Bound configuration requires system-specific analysis and may require integration support.</p>
+        </div>
+
+        <div class="step-card card">
+          <div class="step-number">Step 9</div>
+          <h3>Implement Integration</h3>
+          <p>Integrate Zero Overshoot into your system architecture:</p>
+          <ul>
+            <li>Place constraint layer at identified integration points</li>
+            <li>Connect measurement points to stability monitoring</li>
+            <li>Configure filter parameters based on derived bounds</li>
+            <li>Implement validation and testing infrastructure</li>
+          </ul>
+          <p>Implementation may require architectural modifications and should be done with integration support if available.</p>
+        </div>
+
+        <div class="step-card card">
+          <div class="step-number">Step 10</div>
+          <h3>Validate and Test</h3>
+          <p>Verify that the integrated system achieves the required stability guarantees:</p>
+          <ul>
+            <li>Unit testing: Verify filter behavior on synthetic signals</li>
+            <li>Integration testing: Verify behavior in system context</li>
+            <li>Stress testing: Verify behavior under extreme conditions</li>
+            <li>Operational testing: Verify behavior under real operational conditions</li>
+          </ul>
+          <p>Validation should demonstrate that the system meets the success criteria defined in planning.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Production Deployment</h2>
+        <p>Once integration and validation are complete, deploy to production with appropriate monitoring and maintenance.</p>
+
+        <div class="step-card card">
+          <div class="step-number">Step 11</div>
+          <h3>Deploy with Monitoring</h3>
+          <p>Deploy the integrated system with monitoring to track:</p>
+          <ul>
+            <li>Stability metrics: Overshoot, band crossings, time to stability</li>
+            <li>Filter behavior: Update magnitudes, constraint activations</li>
+            <li>System performance: Impact on speed, efficiency, and other metrics</li>
+            <li>Operational health: System uptime, error rates, and other operational indicators</li>
+          </ul>
+        </div>
+
+        <div class="step-card card">
+          <div class="step-number">Step 12</div>
+          <h3>Maintain and Adjust</h3>
+          <p>Monitor the deployed system and adjust as needed:</p>
+          <ul>
+            <li>Review stability metrics regularly</li>
+            <li>Adjust bounds if operational conditions change</li>
+            <li>Update integration if system architecture evolves</li>
+            <li>Maintain compliance with licensing terms</li>
+          </ul>
+          <p>Ongoing maintenance may require integration support or license updates.</p>
+        </div>
+      </section>
+
+      <div class="cta-box">
+        <h3>Ready to Get Started?</h3>
+        <p>Contact us to discuss your production requirements and next steps.</p>
+        <p style="margin-top: 16px;">
+          <a href="./#contact" class="btn primary">Contact for Licensing</a>
+          <a href="./integration-overview.html" class="btn secondary" style="margin-left: 12px;">Read Integration Overview</a>
+        </p>
+        <p style="margin-top: 12px; font-size: 14px; color: var(--text-secondary);">
+          Email: <a href="mailto:info@boonmind.io">info@boonmind.io</a>
+        </p>
+      </div>
+
+      <div class="nav-links">
+        <a href="./">Home</a>
+        <a href="./integration-overview.html">Integration Overview</a>
+        <a href="./commercial-licensing-notes.html">Licensing Notes</a>
+        <a href="./#contact">Contact</a>
+        <a href="./demo/">Demo</a>
+      </div>
+    </main>
+
+    <footer style="padding: 40px 0; border-top: 1px solid var(--border); text-align: center;">
+      <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 0; line-height: 1.6;">
+        © 2026 Carl Boon (BoonMind). Zero Overshoot is proprietary, patent-pending technology. Commercial use requires a license. Patent applications are in preparation.<br>
+        Contact: <a href="mailto:info@boonmind.io">info@boonmind.io</a>.
+        <a href="./LICENSE">LICENSE</a> · <a href="./README.md">README</a>
+      </p>
+    </footer>
+  </div>
+</body>
+</html>

@@ -4,7 +4,19 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Zero Overshoot — Integration Overview</title>
+  <meta name="description" content="Integration overview for Zero Overshoot: production context, supported models, integration modes, guarantees, and limits. Commercial, patent-pending safety filter for recursive systems.">
+  <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://zeroovershoot.com/integration-overview.html">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://zeroovershoot.com/integration-overview.html">
+  <meta property="og:title" content="Zero Overshoot — Integration Overview">
+  <meta property="og:description" content="Integration overview: production context, supported models, integration modes, guarantees, and limits for Zero Overshoot.">
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Zero Overshoot — Integration Overview">
+  <meta name="twitter:description" content="Integration overview: production context, supported models, and integration modes for Zero Overshoot.">
   <style>
     @page {
       size: letter;
@@ -143,6 +155,59 @@
     <li>Ongoing support and updates as needed</li>
     <li>Clear boundaries around permitted use and redistribution</li>
   </ul>
+
+  <h2>Production Context</h2>
+  <p>Zero Overshoot is designed for production deployment in safety-critical and recursive systems where deterministic guarantees are required. Production deployment involves:</p>
+  <ul>
+    <li><strong>System analysis:</strong> Identification of feedback pathways, measurement points, and stability requirements specific to your application</li>
+    <li><strong>Bound configuration:</strong> Derivation of stability envelopes that reflect physical, operational, or regulatory constraints</li>
+    <li><strong>Integration architecture:</strong> Placement of the constraint layer within your system's decision pipeline</li>
+    <li><strong>Validation and testing:</strong> Verification that the integrated system achieves the required stability guarantees under operational conditions</li>
+    <li><strong>Ongoing maintenance:</strong> Monitoring and adjustment as system requirements or operational conditions evolve</li>
+  </ul>
+  <p>Production readiness requires a commercial license. Evaluation and research use may be permitted under different terms. Contact <a href="mailto:info@boonmind.io">info@boonmind.io</a> to discuss your production requirements.</p>
+
+  <h2>Supported Models and System Types</h2>
+  <p>Zero Overshoot is designed for systems with recursive or feedback-driven dynamics. Supported models include:</p>
+  
+  <h3>Control Loops</h3>
+  <p>Feedback control systems where sensor readings inform actuator commands, including:</p>
+  <ul>
+    <li>Autonomous vehicle control (yaw, attitude, trajectory tracking)</li>
+    <li>Flight control systems (pitch, roll, altitude stabilization)</li>
+    <li>Industrial process control (temperature, flow, pressure regulation)</li>
+    <li>Robotic control (joint torque, grasp force, motion planning)</li>
+  </ul>
+  
+  <h3>Optimization Engines</h3>
+  <p>Iterative optimization systems where parameter updates feed back into the objective function, including:</p>
+  <ul>
+    <li>Portfolio optimization and position sizing</li>
+    <li>Resource allocation and scheduling</li>
+    <li>Parameter tuning and hyperparameter optimization</li>
+    <li>Gradient-based learning systems</li>
+  </ul>
+  
+  <h3>Autonomous Agents and Decision Systems</h3>
+  <p>Systems where actions affect future state and decision inputs, including:</p>
+  <ul>
+    <li>Reinforcement learning agents</li>
+    <li>Adaptive decision pipelines</li>
+    <li>Multi-agent coordination systems</li>
+    <li>Autonomous planning and execution systems</li>
+  </ul>
+  
+  <h3>Safety-Critical Applications</h3>
+  <p>Systems where failure has immediate physical, financial, or operational consequences, including:</p>
+  <ul>
+    <li>Aerospace and aviation systems</li>
+    <li>Medical devices and life-critical systems</li>
+    <li>Financial trading and risk management</li>
+    <li>Industrial automation and process control</li>
+    <li>Autonomous vehicles and robotics</li>
+  </ul>
+  
+  <p>If your system does not fit these categories but exhibits recursive or feedback-driven dynamics, contact <a href="mailto:info@boonmind.io">info@boonmind.io</a> to discuss applicability.</p>
 
   <h2>Determinism, Safety, and Limits</h2>
   <p>Zero Overshoot provides deterministic safety guarantees, meaning that within the defined envelope and under stated assumptions, the behavior is mathematically guaranteed, not probabilistically likely. This is appropriate for safety-critical systems where statistical guarantees are insufficient.</p>

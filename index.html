@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   <!-- Primary SEO -->
-  <title>GSRF Filter — Demo-First Safety for Runaway Recursion Risk</title>
-  <meta name="description" content="Run the interactive GSRF demo: a bounded filter that resists runaway amplification in recursive systems. Explore applications and read the technical papers.">
+  <title>Zero Overshoot — Commercial Safety Filter for Recursive Systems</title>
+  <meta name="description" content="Zero Overshoot: Proprietary, licensed safety filter for recursive systems. Production deployment requires a commercial license. Run the demo, review integration options, and contact for licensing.">
   <meta name="keywords" content="GSRF, gradient stabilized recursive filtering, zero overshoot, deterministic safety, safety-critical systems, bounded recursion, recursive instability, control systems safety, safety filter, runaway optimisation">
   <meta name="robots" content="index, follow">
   <meta name="author" content="BoonMind">
@@ -17,14 +17,14 @@
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://zeroovershoot.com/">
-  <meta property="og:title" content="GSRF Filter — Demo-First Safety for Runaway Recursion Risk">
-  <meta property="og:description" content="Run the GSRF demo: a bounded signal filter that resists runaway amplification in recursive systems.">
+  <meta property="og:title" content="Zero Overshoot — Commercial Safety Filter for Recursive Systems">
+  <meta property="og:description" content="Proprietary, licensed safety filter for recursive systems. Production deployment requires a commercial license. Run the demo and contact for licensing.">
   <meta property="og:site_name" content="GSRF">
   
   <!-- Twitter -->
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="GSRF Filter">
-  <meta name="twitter:description" content="Demo-first: bounded filtering that resists runaway amplification in recursive systems.">
+  <meta name="twitter:title" content="Zero Overshoot">
+  <meta name="twitter:description" content="Commercial safety filter for recursive systems. Production use requires a license.">
   
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -449,8 +449,27 @@
     .contact-form label { display: block; margin-bottom: 16px; font-size: 15px; color: var(--text-secondary); }
     .contact-form label span { display: block; margin-bottom: 6px; }
     .contact-form label span em { font-weight: normal; font-style: italic; color: var(--muted); }
-    .contact-form input[type="text"], .contact-form input[type="email"], .contact-form textarea { width: 100%; padding: 12px 14px; font-size: 16px; border: 1px solid var(--border); border-radius: 12px; background: rgba(255, 255, 255, 0.6); color: var(--text); -webkit-appearance: none; appearance: none; }
-    .contact-form input[type="text"]:focus, .contact-form input[type="email"]:focus, .contact-form textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(11, 61, 145, 0.12); }
+    .contact-form select,
+    .contact-form .contact-form-select,
+    .contact-form input[type="text"], .contact-form input[type="email"], .contact-form textarea { 
+      width: 100%; 
+      padding: 12px 14px; 
+      font-size: 16px; 
+      border: 1px solid var(--border); 
+      border-radius: 12px; 
+      background: rgba(255, 255, 255, 0.6); 
+      color: var(--text); 
+      -webkit-appearance: none; 
+      appearance: none; 
+      box-sizing: border-box;
+    }
+    .contact-form select:focus,
+    .contact-form .contact-form-select:focus,
+    .contact-form input[type="text"]:focus, .contact-form input[type="email"]:focus, .contact-form textarea:focus { 
+      outline: none; 
+      border-color: var(--accent); 
+      box-shadow: 0 0 0 3px rgba(11, 61, 145, 0.12); 
+    }
     .contact-form textarea { resize: vertical; min-height: 120px; }
     .contact-form fieldset {
       margin: 0 0 16px;
@@ -548,7 +567,7 @@
       .floating-cta { display: none; }
     }
 
-    @media (max-width: 600px) {
+      @media (max-width: 600px) {
       .hero-grid { grid-template-columns: 1fr; padding-top: 14px; }
       .hero .title { font-size: 38px; }
       .stats { grid-template-columns: 1fr; }
@@ -570,6 +589,7 @@
       .engagement-grid { grid-template-columns: 1fr; }
       .topnav a { padding: 10px 12px; }
       .brandrow { flex-wrap: wrap; }
+      section > div[style*="grid-template-columns: 1fr 1fr"] { grid-template-columns: 1fr !important; }
     }
 
     @media (max-width: 420px) {
@@ -598,7 +618,7 @@
             <a href="#start">Start here</a>
             <a href="./paper-gsrf-framework.html">Abstracts</a>
             <a href="#papers">Papers</a>
-            <a href="#contact">Contact</a>
+            <a href="#contact">Licensing</a>
             <a class="cta" href="./demo/">Run the Demo</a>
           </nav>
         </div>
@@ -610,11 +630,14 @@
       <div class="hero-grid">
         <div class="reveal">
           <div class="title">Zero-overshoot safety layer for recursive systems.</div>
-          <p class="tagline">A bounded signal filter designed to resist runaway amplification and keep feedback-driven systems inside deterministic envelopes.</p>
+          <p class="tagline">A proprietary, licensed safety filter designed to resist runaway amplification and keep feedback-driven systems inside deterministic envelopes. Commercial use requires a license.</p>
           <div class="actions">
-            <a class="btn primary" href="./demo/">Run the Demo</a>
-            <a class="btn secondary" href="#papers">Read the papers</a>
+            <a class="btn primary" href="./demo/">Run the Demo (Industry-Preloaded)</a>
+            <a class="btn secondary" href="#contact">Licensing &amp; Integration</a>
           </div>
+          <p class="commercial-notice" style="margin-top: 16px; font-size: 13px; color: var(--text-secondary); padding: 12px; background: rgba(11, 61, 145, 0.05); border-left: 3px solid var(--accent); border-radius: 6px;">
+            <strong>Commercial Product:</strong> Zero Overshoot is proprietary, patent-pending technology. Production use requires a commercial license. Demo use does not grant any rights. See <a href="./commercial-licensing-notes.html" style="color: var(--accent); text-decoration: underline;">Licensing Notes</a> for details.
+          </p>
 
           <section class="industry" aria-label="Choose an industry">
             <h2>Choose an industry (launches the demo with real parameters)</h2>
@@ -702,6 +725,9 @@
                   <a class="btn secondary" href="#start">Start here</a>
                 </div>
                 <p class="note" style="margin-top: 10px;">Synthetic demo signals; filter math unchanged.</p>
+                <p class="commercial-notice" style="margin-top: 12px; font-size: 12px; color: var(--text-secondary); padding: 10px; background: rgba(11, 61, 145, 0.04); border-left: 2px solid var(--accent); border-radius: 4px;">
+                  <strong>Demo Disclaimer:</strong> This demo is for evaluation only. No rights are granted by demo use. Production deployment requires a commercial license. <a href="./commercial-licensing-notes.html" style="color: var(--accent);">Learn more</a>.
+                </p>
               </div>
             </div>
           </div>
@@ -713,6 +739,8 @@
         <a href="./runaway-feedback-loop-prevention.html">Runaway feedback</a>
         <a href="./applications.html">Applications</a>
         <a href="./paper-gsrf-framework.html">Paper abstracts</a>
+        <a href="./integration-overview.html">Integration Overview</a>
+        <a href="./production-readiness.html">Production Readiness</a>
       </nav>
     </header>
     
@@ -755,6 +783,9 @@
             </ul>
           </div>
         </div>
+        <p style="margin-top: 20px; text-align: center;">
+          <a href="./production-readiness.html" class="btn secondary">View Production Readiness Guide →</a>
+        </p>
       </section>
 
       <section id="start" class="start reveal" aria-label="Start here">
@@ -789,6 +820,9 @@
       </header>
 
       <section class="accordion" aria-label="Overview">
+        <p class="commercial-notice" style="margin-bottom: 20px; font-size: 13px; color: var(--text-secondary); padding: 14px; background: rgba(11, 61, 145, 0.05); border-left: 3px solid var(--accent); border-radius: 6px;">
+          <strong>Commercial Product:</strong> Zero Overshoot is proprietary, patent-pending technology. Technical documentation and papers are provided for evaluation purposes. Production use requires a commercial license. See <a href="./commercial-licensing-notes.html" style="color: var(--accent); text-decoration: underline;">Licensing Notes</a> and <a href="./integration-overview.html" style="color: var(--accent); text-decoration: underline;">Integration Overview</a>.
+        </p>
         <details open>
           <summary>What problem this solves</summary>
           <div class="details-body">
@@ -845,8 +879,121 @@
       </section>
       
       <section id="contact">
-        <h2>Consulting &amp; Integration</h2>
-        <p>GSRF is deployed through tailored system analysis rather than off-the-shelf implementation. Each engagement is structured around the specific stability requirements and failure modes of the target system.</p>
+        <h2>Licensing &amp; Integration</h2>
+        <p>Zero Overshoot is a proprietary, patent-pending commercial product. Production deployment requires a commercial license. Each engagement is structured around the specific stability requirements and failure modes of the target system.</p>
+        <p><strong>Commercial Product:</strong> Zero Overshoot is not open source. The framework, algorithms, and implementation patterns are protected intellectual property. Patent applications are in preparation. See <a href="./commercial-licensing-notes.html">Commercial &amp; Licensing Notes</a> for licensing requirements and <a href="./production-readiness.html">Production Readiness</a> for deployment guidance.</p>
+        
+        <h3>Licensing Models</h3>
+        <p>Zero Overshoot is available under three licensing models, each structured for different stages of evaluation and deployment:</p>
+        
+        <div class="engagement-grid" style="margin-top: 20px;">
+          <div class="card engagement-card">
+            <div class="engagement-label">Evaluation License</div>
+            <h4 style="font-size: 16px; font-weight: 800; margin-bottom: 8px;">For Research &amp; Assessment</h4>
+            <p class="engagement-subtitle">Non-commercial evaluation, testing, and academic research.</p>
+            <ul style="margin-top: 12px; padding-left: 20px;">
+              <li>Demo access and technical documentation</li>
+              <li>Paper review and framework evaluation</li>
+              <li>System fit assessment</li>
+              <li>No production deployment rights</li>
+            </ul>
+          </div>
+          
+          <div class="card engagement-card">
+            <div class="engagement-label">Production License</div>
+            <h4 style="font-size: 16px; font-weight: 800; margin-bottom: 8px;">For Operational Systems</h4>
+            <p class="engagement-subtitle">Single-system or product deployment in production.</p>
+            <ul style="margin-top: 12px; padding-left: 20px;">
+              <li>Production deployment rights for specified system</li>
+              <li>Integration support and parameter configuration</li>
+              <li>Validation guidance and testing methodology</li>
+              <li>Ongoing support within license scope</li>
+            </ul>
+          </div>
+          
+          <div class="card engagement-card">
+            <div class="engagement-label">Enterprise License</div>
+            <h4 style="font-size: 16px; font-weight: 800; margin-bottom: 8px;">For Platform &amp; Multi-System</h4>
+            <p class="engagement-subtitle">Multiple systems, products, or platform-wide deployment.</p>
+            <ul style="margin-top: 12px; padding-left: 20px;">
+              <li>Multi-system or platform-wide deployment rights</li>
+              <li>Dedicated integration and support resources</li>
+              <li>Custom bound configuration and validation</li>
+              <li>Redistribution terms as negotiated</li>
+            </ul>
+          </div>
+        </div>
+        
+        <p style="margin-top: 20px; font-size: 14px; color: var(--text-secondary);"><strong>Note:</strong> Licensing terms, scope, and support levels are negotiated on a case-by-case basis. Contact <a href="mailto:info@boonmind.io">info@boonmind.io</a> to discuss your requirements.</p>
+        
+        <h3>Evaluation Process</h3>
+        <p>The path from initial contact to production deployment follows a structured evaluation process:</p>
+        
+        <div class="start" style="margin-top: 20px;">
+          <div class="steps">
+            <div class="card step">
+              <div class="n">Step 1</div>
+              <div class="t">Initial Contact</div>
+              <div class="p">Submit inquiry with system details, intended use, and deployment timeline. We review your requirements and determine fit.</div>
+            </div>
+            <div class="card step">
+              <div class="n">Step 2</div>
+              <div class="t">Technical Evaluation</div>
+              <div class="p">Review demo, technical documentation, and papers. Assess system architecture and feedback pathways. Determine integration feasibility.</div>
+            </div>
+            <div class="card step">
+              <div class="n">Step 3</div>
+              <div class="t">Engagement Model Selection</div>
+              <div class="p">Choose appropriate engagement: Design Review (evaluation), Integration Support (implementation), or Licensing (production).</div>
+            </div>
+            <div class="card step">
+              <div class="n">Step 4</div>
+              <div class="t">License Agreement</div>
+              <div class="p">Negotiate license terms, scope, and support. Execute agreement for production deployment or begin integration support engagement.</div>
+            </div>
+            <div class="card step">
+              <div class="n">Step 5</div>
+              <div class="t">Integration &amp; Validation</div>
+              <div class="p">Configure bounds, integrate framework, and validate against stability requirements. Test under operational conditions.</div>
+            </div>
+            <div class="card step">
+              <div class="n">Step 6</div>
+              <div class="t">Production Deployment</div>
+              <div class="p">Deploy with monitoring, maintain compliance, and adjust as system requirements evolve.</div>
+            </div>
+          </div>
+        </div>
+        
+        <p style="margin-top: 24px;">See <a href="./production-readiness.html">Production Readiness</a> for detailed guidance on each phase.</p>
+        
+        <h3>Who This Is For / Not For</h3>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px;">
+          <div class="card" style="padding: 20px; border-left: 3px solid var(--accent);">
+            <h4 style="font-size: 16px; font-weight: 800; margin-bottom: 12px; color: var(--text);">For</h4>
+            <ul style="margin: 0; padding-left: 20px;">
+              <li>Safety-critical systems requiring deterministic guarantees</li>
+              <li>Recursive or feedback-driven systems with stability requirements</li>
+              <li>Systems where probabilistic monitoring is insufficient</li>
+              <li>Organizations with clear stability bounds and integration capacity</li>
+              <li>Production deployments where failure is not tolerable</li>
+              <li>Systems with identified feedback pathways and measurement points</li>
+            </ul>
+          </div>
+          
+          <div class="card" style="padding: 20px; border-left: 3px solid var(--muted);">
+            <h4 style="font-size: 16px; font-weight: 800; margin-bottom: 12px; color: var(--text);">Not For</h4>
+            <ul style="margin: 0; padding-left: 20px;">
+              <li>Systems without recursive or feedback dynamics</li>
+              <li>Applications where probabilistic guarantees are sufficient</li>
+              <li>Open-source projects or public redistribution</li>
+              <li>Systems without clear stability bounds or constraints</li>
+              <li>Organizations seeking plug-and-play solutions without integration work</li>
+              <li>Use cases requiring general AI alignment or value alignment solutions</li>
+            </ul>
+          </div>
+        </div>
+        
         <p>Typical engagements involve:</p>
         <ul>
           <li><strong>System audit</strong> — analysis of existing architecture, feedback pathways, and potential instability sources</li>
@@ -884,8 +1031,27 @@
             </label>
             
             <label>
-              <span>System domain <em>(optional)</em></span>
-              <input type="text" name="system-domain" autocomplete="organization" placeholder="e.g., autonomous control, robotics, finance">
+              <span>Industry / System domain <em>(optional)</em></span>
+              <select name="industry" class="contact-form-select">
+                <option value="">Select an industry...</option>
+                <option value="autonomous-control">Autonomous control</option>
+                <option value="robotics">Robotics</option>
+                <option value="finance-trading">Finance / Trading systems</option>
+                <option value="industrial-control">Industrial control</option>
+                <option value="other">Other (specify in message)</option>
+              </select>
+            </label>
+            
+            <label>
+              <span>System type <em>(optional)</em></span>
+              <select name="system-type" class="contact-form-select">
+                <option value="">Select system type...</option>
+                <option value="control-loop">Control loop / Feedback system</option>
+                <option value="optimization-engine">Optimization engine</option>
+                <option value="autonomous-agent">Autonomous agent / Decision system</option>
+                <option value="safety-critical">Safety-critical application</option>
+                <option value="other">Other (specify in message)</option>
+              </select>
             </label>
             
             <fieldset>
@@ -906,6 +1072,36 @@
                 <label class="checkbox-label">
                   <input type="checkbox" name="intended-use" value="safety-compliance-driven">
                   <span>Safety / compliance driven</span>
+                </label>
+              </div>
+            </fieldset>
+            
+            <label>
+              <span>Deployment timeline <em>(optional)</em></span>
+              <select name="deployment-timeline" class="contact-form-select">
+                <option value="">Select timeline...</option>
+                <option value="evaluating">Currently evaluating</option>
+                <option value="3-months">Within 3 months</option>
+                <option value="6-months">Within 6 months</option>
+                <option value="12-months">Within 12 months</option>
+                <option value="planning">Planning phase</option>
+              </select>
+            </label>
+            
+            <fieldset>
+              <legend>Integration interest <em>(optional)</em></legend>
+              <div class="checkbox-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" name="integration-interest" value="design-review">
+                  <span>Design Review (evaluation)</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="integration-interest" value="integration-support">
+                  <span>Integration Support (implementation)</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="integration-interest" value="licensing">
+                  <span>Licensing (production deployment)</span>
                 </label>
               </div>
             </fieldset>
@@ -954,24 +1150,61 @@
 
       <section class="faq" aria-label="FAQ">
         <h2>FAQ</h2>
-        <h3>What does the demo show?</h3>
+        
+        <h3>Commercial &amp; Licensing</h3>
+        <h4>Is Zero Overshoot open source?</h4>
+        <p>No. Zero Overshoot is proprietary, patent-pending technology. It is not available under open-source licenses. Production use requires a commercial license.</p>
+        
+        <h4>Can I use the demo for production?</h4>
+        <p>No. The demo is for evaluation only. No rights are granted by demo use. Production deployment requires a commercial license. See <a href="./commercial-licensing-notes.html">Commercial &amp; Licensing Notes</a> for details.</p>
+        
+        <h4>What constitutes commercial use?</h4>
+        <p>Any production deployment, whether customer-facing or internal, that supports business operations or generates value. This includes systems used to make real decisions, control real systems, or provide services to customers. Research use may be permitted under different terms.</p>
+        
+        <h4>How do I get a license?</h4>
+        <p>Contact <a href="mailto:info@boonmind.io">info@boonmind.io</a> with details about your system, intended use, and deployment timeline. Licensing terms are negotiated on a case-by-case basis.</p>
+        
+        <h4>Can I redistribute Zero Overshoot?</h4>
+        <p>No. Resale, redistribution, sublicensing, or offering Zero Overshoot as a service requires explicit written agreement. See <a href="./commercial-licensing-notes.html">Commercial &amp; Licensing Notes</a> for restrictions.</p>
+        
+        <h3>Technical</h3>
+        <h4>What does the demo show?</h4>
         <p>It compares bounded (GSRF) versus unbounded (EMA) recursive filtering on synthetic signals, and surfaces overshoot and band-crossing metrics.</p>
-
-        <h3>Is GSRF a plug-and-play library?</h3>
-        <p>No. It’s a framework that requires system-specific bounds and integration points.</p>
-
-        <h3>Is this claiming industrial efficacy?</h3>
-        <p>No. The demo is synthetic-only and is meant to build intuition; the papers document the framework and assumptions.</p>
+        
+        <h4>Is Zero Overshoot a plug-and-play library?</h4>
+        <p>No. It's a framework that requires system-specific bounds and integration points. Each deployment requires tailored analysis and configuration.</p>
+        
+        <h4>Is this claiming industrial efficacy?</h4>
+        <p>No. The demo is synthetic-only and is meant to build intuition; the papers document the framework and assumptions. Production deployment requires integration work and validation specific to your system.</p>
+        
+        <h4>What systems does Zero Overshoot support?</h4>
+        <p>Zero Overshoot is designed for recursive and feedback-driven systems including control loops, optimization engines, autonomous agents, and safety-critical applications. See <a href="./integration-overview.html">Integration Overview</a> for production context and supported models.</p>
+        
+        <h4>What guarantees does Zero Overshoot provide?</h4>
+        <p>Within the defined envelope and under stated assumptions, Zero Overshoot guarantees bounded update dynamics and prevents exponential error amplification. It does not guarantee performance optimization, protection against all failure modes, or correct behavior if bounds are configured incorrectly. See <a href="./integration-overview.html">Integration Overview</a> for details.</p>
+        
+        <h3>Legal</h3>
+        <h4>What is the patent status?</h4>
+        <p>Zero Overshoot is patent-pending. Patent applications are in preparation.</p>
+        
+        <h4>What happens if I use Zero Overshoot without a license?</h4>
+        <p>Unauthorized production use constitutes a violation of intellectual property rights and may result in legal action. Research and evaluation may be permitted under specific terms—contact <a href="mailto:info@boonmind.io">info@boonmind.io</a> to clarify.</p>
+        
+        <h4>What are the support boundaries?</h4>
+        <p>Support is provided according to your license or engagement agreement. In scope: Zero Overshoot framework integration, parameter configuration, validation methodology. Out of scope: general system architecture, unrelated software development, ongoing operational support. See <a href="./commercial-licensing-notes.html">Commercial &amp; Licensing Notes</a> for details.</p>
       </section>
     </main>
     
     <footer>
       <p style="margin-bottom: 12px; font-size: 13px; color: var(--muted);">
-        © 2026 Carl Boon (BoonMind). Commercial use requires a license. Patent application in preparation.
+        © 2026 Carl Boon (BoonMind). Zero Overshoot is proprietary, patent-pending technology. Commercial use requires a license. Patent applications are in preparation.
         Contact: <a href="mailto:info@boonmind.io">info@boonmind.io</a>.
         <a href="./LICENSE">LICENSE</a> · <a href="./README.md">README</a>
       </p>
-      <p>Built by <a href="https://boonmind.io" rel="noopener noreferrer">BoonMind</a>.<br>Research, safety frameworks, and system architecture.<br>For inquiries: <a href="mailto:info@boonmind.io">info@boonmind.io</a></p>
+      <p style="font-size: 13px; color: var(--muted); margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border);">
+        <strong>Ecosystem Context:</strong> Zero Overshoot originated from research at BoonMind, which focuses on safety frameworks and system architecture. The framework aligns with TVI (Testable Validity Infrastructure) validation philosophy, emphasizing deterministic, testable safety guarantees. Zero Overshoot operates independently as a commercial product and does not require dependency on BoonMind or TVI for deployment.
+      </p>
+      <p style="margin-top: 12px;">Built by <a href="https://boonmind.io" rel="noopener noreferrer">BoonMind</a>.<br>Research, safety frameworks, and system architecture.<br>For inquiries: <a href="mailto:info@boonmind.io">info@boonmind.io</a></p>
     </footer>
   </div>
 

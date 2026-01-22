@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zero Overshoot — Integration Overview</title>
+  <style>
+    @page {
+      size: letter;
+      margin: 1in;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 11pt;
+      line-height: 1.6;
+      color: #1a1a1a;
+      max-width: 8.5in;
+      margin: 0 auto;
+      padding: 1in;
+      background: white;
+    }
+    h1 {
+      font-size: 24pt;
+      font-weight: 900;
+      margin-bottom: 12pt;
+      letter-spacing: -0.5pt;
+      border-bottom: 2px solid #1a1a1a;
+      padding-bottom: 8pt;
+    }
+    h2 {
+      font-size: 14pt;
+      font-weight: 800;
+      margin-top: 20pt;
+      margin-bottom: 10pt;
+      letter-spacing: -0.2pt;
+    }
+    h3 {
+      font-size: 12pt;
+      font-weight: 700;
+      margin-top: 16pt;
+      margin-bottom: 8pt;
+    }
+    p {
+      margin-bottom: 12pt;
+      text-align: justify;
+    }
+    ul, ol {
+      margin: 12pt 0;
+      padding-left: 24pt;
+    }
+    li {
+      margin-bottom: 6pt;
+    }
+    strong {
+      font-weight: 700;
+    }
+    em {
+      font-style: italic;
+    }
+    .contact {
+      margin-top: 24pt;
+      padding-top: 16pt;
+      border-top: 1px solid #ccc;
+      font-size: 10pt;
+      color: #666;
+    }
+    @media print {
+      body {
+        padding: 0;
+      }
+      .no-print {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Zero Overshoot — Integration Overview</h1>
+
+  <h2>What Zero Overshoot Is</h2>
+  <p>Zero Overshoot is a deterministic safety filter for recursive and feedback-driven systems. It enforces bounded update dynamics to prevent runaway amplification in systems where outputs feed back into inputs. The framework constrains gradient magnitudes and recursion depth structurally, rather than relying on late-stage failure detection.</p>
+  <p>Zero Overshoot operates on mathematical guarantees: stability bounds are derived analytically and provide deterministic constraints within a defined envelope, bounded-by-construction under stated assumptions. This distinguishes it from probabilistic monitoring systems that provide statistical guarantees on average.</p>
+
+  <h2>What It Is NOT</h2>
+  <p>Zero Overshoot is not a plug-and-play library. It requires system-specific analysis to configure stability bounds and integration points. There is no generic "install and run" implementation.</p>
+  <p>Zero Overshoot is not a SaaS product. It is deployed through tailored engineering work, not a hosted service.</p>
+  <p>Zero Overshoot is not a general AI alignment solution. It addresses recursive stability, not value alignment, goal specification, or intent interpretation. These are separate problems.</p>
+  <p>Zero Overshoot is not probabilistic or heuristic-based. The guarantees it provides are deterministic. If probabilistic monitoring is sufficient for your application, Zero Overshoot may be more rigorous than necessary.</p>
+
+  <h2>Where It Sits in a System</h2>
+  <p>Zero Overshoot acts as a pre-decision constraint layer. It sits between the system's decision-making or optimization logic and the actuators or outputs that affect system state. When a proposed update is generated, Zero Overshoot evaluates it against stability bounds before it is committed.</p>
+  <p>In a control loop, Zero Overshoot filters the control signal before it reaches the actuator. In an optimization engine, it bounds the parameter update step before it is applied. In an autonomous agent, it constrains action selection before execution.</p>
+  <p>The filter does not replace the underlying control or optimization logic. Instead, it enforces deterministic envelopes around the update dynamics, ensuring that even if the core logic would produce an unbounded update, the filtered output remains within safe bounds.</p>
+  <p>Integration requires identifying the feedback pathways in your system and establishing measurement points where Zero Overshoot can intercept and filter updates. The framework must be configured with system-specific bounds that reflect the physical or operational constraints of your application domain.</p>
+
+  <h2>What It Guarantees</h2>
+  <p>Zero Overshoot guarantees that update magnitudes remain within predefined envelopes under recursion. It prevents exponential error amplification by bounding gradient steps and limiting recursion depth.</p>
+  <p>The framework guarantees deterministic behavior: within the defined envelope and under stated assumptions, the system cannot produce unbounded updates because the update mechanism itself is bounded. This is a structural guarantee, not a statistical one.</p>
+  <p>Zero Overshoot guarantees pre-execution constraint enforcement. Proposed updates that would violate stability bounds are rejected or modified before they affect system state, not after anomalous behavior is detected.</p>
+  <p>These guarantees hold for the specific system configuration and bounds that were established during integration. They are not universal guarantees for arbitrary systems or configurations.</p>
+
+  <h2>What It Explicitly Does Not Guarantee</h2>
+  <p>Zero Overshoot does not guarantee that your system will meet all performance objectives. It constrains updates to remain within bounds, but it does not optimize for speed, efficiency, or other non-safety criteria. A bounded system may be slower or less efficient than an unbounded one.</p>
+  <p>Zero Overshoot does not guarantee correct behavior if the bounds are configured incorrectly. If the stability envelope is set too loosely or does not account for all feedback pathways, the system may still exhibit instability outside the defined bounds.</p>
+  <p>Zero Overshoot does not guarantee protection against all failure modes. It addresses recursive instability and runaway amplification. It does not prevent failures from external inputs, hardware faults, logic errors, or other classes of system failure.</p>
+  <p>Zero Overshoot does not guarantee immediate deployment without integration work. Successful deployment requires system analysis, bound configuration, and validation specific to your application.</p>
+  <p>Zero Overshoot does not guarantee compatibility with arbitrary system architectures. Some systems may require architectural modifications to accommodate the constraint layer effectively.</p>
+
+  <h2>Integration Modes</h2>
+
+  <h3>Advisory (Design Review)</h3>
+  <p>For teams evaluating runaway feedback risk in an existing system. Zero Overshoot can be applied as an analytical framework to assess potential instability sources without full deployment.</p>
+  <p>This mode involves:</p>
+  <ul>
+    <li>Review of signal → actuator loop architecture</li>
+    <li>Identification of instability and overshoot risk points</li>
+    <li>Written assessment and recommendation</li>
+    <li>Evaluation of whether Zero Overshoot would provide meaningful safety guarantees for the system</li>
+  </ul>
+
+  <h3>Assisted Integration</h3>
+  <p>For teams ready to deploy Zero Overshoot in a real system. This mode includes hands-on support for implementation and validation.</p>
+  <p>This mode involves:</p>
+  <ul>
+    <li>Reference implementation guidance tailored to your system architecture</li>
+    <li>Parameter selection and constraint configuration</li>
+    <li>Validation and testing support</li>
+    <li>Code review and integration assistance</li>
+  </ul>
+
+  <h3>Licensed Embedding</h3>
+  <p>For organisations embedding Zero Overshoot in a product or platform for production use. This mode requires a commercial license.</p>
+  <p>This mode involves:</p>
+  <ul>
+    <li>Access to deterministic filter logic and implementation patterns</li>
+    <li>License for production deployment</li>
+    <li>Ongoing support and updates as needed</li>
+    <li>Clear boundaries around permitted use and redistribution</li>
+  </ul>
+
+  <h2>Determinism, Safety, and Limits</h2>
+  <p>Zero Overshoot provides deterministic safety guarantees, meaning that within the defined envelope and under stated assumptions, the behavior is mathematically guaranteed, not probabilistically likely. This is appropriate for safety-critical systems where statistical guarantees are insufficient.</p>
+  <p>The safety guarantees are bounded by the scope of the configuration. Zero Overshoot can guarantee boundedness within the defined envelope, but it cannot guarantee safety beyond the scope of what was analyzed and configured. If new feedback pathways are introduced or operational conditions change beyond the analyzed envelope, the guarantees may no longer apply.</p>
+  <p>The limits of Zero Overshoot are architectural and analytical. It cannot protect against failures that occur outside the constraint layer, such as sensor failures, hardware faults, or logic errors in the underlying system. It also cannot protect against failures that result from incorrect bound configuration or incomplete system analysis.</p>
+  <p>Deterministic guarantees require deterministic assumptions. If your system operates under conditions that violate the stated assumptions—for example, if feedback pathways change dynamically in ways not accounted for in the configuration—the guarantees may not hold.</p>
+
+  <h2>Patent-Pending and Licensing Notice</h2>
+  <p>Zero Overshoot is patent-pending technology. The framework, algorithms, and implementation patterns are protected intellectual property.</p>
+  <p>Commercial use in production systems requires a license. Research, evaluation, and non-commercial testing may be permitted under specific terms. Redistribution, resale, or offering Zero Overshoot as a service without explicit agreement is prohibited.</p>
+  <p>For licensing inquiries, contact: <a href="mailto:info@boonmind.io">info@boonmind.io</a></p>
+  <p>See the separate <em>Commercial &amp; Licensing Notes</em> document for detailed terms and boundaries.</p>
+
+  <div class="contact">
+    <h2>Contact / Next Steps</h2>
+    <p><strong>Email:</strong> <a href="mailto:info@boonmind.io">info@boonmind.io</a></p>
+    <p><strong>Website:</strong> <a href="https://zeroovershoot.com">https://zeroovershoot.com</a></p>
+    <p>When contacting, please include:</p>
+    <ul>
+      <li>System domain and intended use</li>
+      <li>Current stage (evaluation, integration, production)</li>
+      <li>Specific questions or concerns about integration</li>
+    </ul>
+  </div>
+</body>
+</html>

@@ -590,6 +590,7 @@
       .topnav a { padding: 10px 12px; }
       .brandrow { flex-wrap: wrap; }
       section > div[style*="grid-template-columns: 1fr 1fr"] { grid-template-columns: 1fr !important; }
+      section[aria-label*="What Zero Overshoot Is"] > div { grid-template-columns: 1fr !important; }
     }
 
     @media (max-width: 420px) {
@@ -629,8 +630,9 @@
     <header class="hero" aria-label="Hero">
       <div class="hero-grid">
         <div class="reveal">
-          <div class="title">Zero-overshoot safety layer for recursive systems.</div>
-          <p class="tagline">A proprietary, licensed safety filter designed to resist runaway amplification and keep feedback-driven systems inside deterministic envelopes. Commercial use requires a license.</p>
+          <div class="title">Zero Overshoot</div>
+          <p class="tagline" style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">A deterministic stability layer for safety-critical systems<br>where seconds matter more than milliseconds</p>
+          <p class="tagline" style="font-size: 16px; font-weight: normal; margin-top: 12px;">Designed to prevent over-reaction, oscillation, and runaway behaviour<br>in flight stabilisation and engineering control systems.</p>
           <div class="actions">
             <a class="btn primary" href="./demo/">Run the Demo (Industry-Preloaded)</a>
             <a class="btn secondary" href="#contact">Licensing &amp; Integration</a>
@@ -638,15 +640,67 @@
           <p class="commercial-notice" style="margin-top: 16px; font-size: 13px; color: var(--text-secondary); padding: 12px; background: rgba(11, 61, 145, 0.05); border-left: 3px solid var(--accent); border-radius: 6px;">
             <strong>Commercial Product:</strong> Zero Overshoot is proprietary, patent-pending technology. Production use requires a commercial license. Demo use does not grant any rights. See <a href="./commercial-licensing-notes.html" style="color: var(--accent); text-decoration: underline;">Licensing Notes</a> for details.
           </p>
+        </div>
+      </div>
+    </header>
 
-          <section class="industry" aria-label="Choose an industry">
+    <main id="main">
+      <section class="reveal" aria-label="What Zero Overshoot Is and Is Not" style="margin: 48px 0;">
+        <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 24px; color: var(--text);">What Zero Overshoot Is (and Is Not)</h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 20px;">
+          <div class="card" style="padding: 24px; border-left: 3px solid var(--accent);">
+            <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 16px; color: var(--text);">What it is</h3>
+            <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
+              <li>A deterministic, non-learning stability bounding layer</li>
+              <li>Operates outside existing control loops</li>
+              <li>Enforces conservative, rate-limited behaviour over time</li>
+              <li>Designed to do nothing unless instability emerges</li>
+            </ul>
+          </div>
+          
+          <div class="card" style="padding: 24px; border-left: 3px solid var(--muted);">
+            <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 16px; color: var(--text);">What it is not</h3>
+            <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
+              <li>❌ Not a flight control system</li>
+              <li>❌ Not AI or machine learning</li>
+              <li>❌ Not real-time millisecond actuation</li>
+              <li>❌ Not a replacement for certified logic</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="reveal" aria-label="Where It Sits in a System" style="margin: 48px 0;">
+        <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 24px; color: var(--text);">Where It Sits in a System</h2>
+        <div class="card" style="padding: 32px; background: rgba(255, 255, 255, 0.8);">
+          <pre style="font-family: 'Monaco', 'Menlo', 'Courier New', monospace; font-size: 14px; line-height: 1.8; color: var(--text); margin: 0; white-space: pre-wrap; background: transparent; border: none; padding: 0;">Sensors → Existing Control System → Actuators
+                 ↑
+          Zero Overshoot
+     (stability bounding only)</pre>
+          <p style="margin-top: 20px; font-size: 15px; color: var(--text-secondary); line-height: 1.6;">
+            Zero Overshoot observes system behaviour over time and prevents unstable correction from propagating. It does not issue control commands.
+          </p>
+        </div>
+      </section>
+
+      <section class="reveal" aria-label="Relevant Engineering Contexts" style="margin: 48px 0;">
+        <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 24px; color: var(--text);">Relevant Engineering Contexts</h2>
+        <ul style="margin: 0; padding-left: 20px; line-height: 2; font-size: 16px;">
+          <li>Flight stabilisation systems where over-sensitivity increases pilot workload</li>
+          <li>Hybrid legacy / modern control architectures</li>
+          <li>Manufacturing systems where feedback amplification causes drift or scrap</li>
+          <li>Safety-critical environments where conservative behaviour is preferred over speed</li>
+        </ul>
+      </section>
+
+      <section class="industry reveal" aria-label="Choose an industry">
             <h2>Choose an industry (launches the demo with real parameters)</h2>
             <p class="sub">Each launch loads an industry preset: dataset scale, axis labels, and metric wording. Figures below are examples.</p>
             <div class="industry-grid">
               <div class="card industry-card" data-industry="autonomous">
                 <div class="k">Autonomous control</div>
                 <div class="t">Vehicle yaw / flight attitude stabilization</div>
-                <div class="p">A controller optimizes tracking error and settling time. Runaway updates show up as oscillation and overshoot beyond safe bounds.</div>
+                <div class="p">A controller optimizes tracking error and settling time. Oscillation and feedback amplification show up as overshoot beyond safe bounds.</div>
                 <div class="ex"><strong>Examples:</strong> 0.6° peak overshoot; 0.18 s time-to-stability (example)</div>
                 <div class="row">
                   <a class="btn primary launch" href="./demo/?industry=autonomous">Launch demo</a>
@@ -666,7 +720,7 @@
               <div class="card industry-card" data-industry="finance">
                 <div class="k">Finance / Trading systems</div>
                 <div class="t">Recursive signal + position sizing loop</div>
-                <div class="p">An optimizer targets return vs risk. Runaway recursion shows as amplified exposure changes and unstable signal chasing.</div>
+                <div class="p">An optimizer targets return vs risk. Oscillation and feedback amplification shows as amplified exposure changes and unstable signal chasing.</div>
                 <div class="ex"><strong>Examples:</strong> 2.5× peak amplitude; 6 band crossings (example)</div>
                 <div class="row">
                   <a class="btn primary launch" href="./demo/?industry=finance">Launch demo</a>
@@ -676,7 +730,7 @@
               <div class="card industry-card" data-industry="industrial">
                 <div class="k">Industrial control</div>
                 <div class="t">Process control / PLC loop (temperature, flow)</div>
-                <div class="p">A loop optimizes stability and constraint compliance. Runaway updates show as slow drift, saturation, and delayed divergence.</div>
+                <div class="p">A loop optimizes stability and constraint compliance. Oscillation and feedback amplification show as slow drift, saturation, and delayed divergence.</div>
                 <div class="ex"><strong>Examples:</strong> 3.0% overshoot; 0.9 s settling (example)</div>
                 <div class="row">
                   <a class="btn primary launch" href="./demo/?industry=industrial">Launch demo</a>
@@ -742,9 +796,7 @@
         <a href="./integration-overview.html">Integration Overview</a>
         <a href="./production-readiness.html">Production Readiness</a>
       </nav>
-    </header>
-    
-    <main id="main">
+
       <section class="reveal" aria-label="How Zero Overshoot Is Used">
         <h2>How Zero Overshoot Is Used</h2>
         <p class="note" style="margin-bottom: 24px;">Three engagement paths for teams evaluating or deploying Zero Overshoot.</p>

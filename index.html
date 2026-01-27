@@ -388,6 +388,7 @@
     summary::-webkit-details-marker { display: none; }
     summary::after { content: "+"; flex: 0 0 auto; height: 28px; width: 28px; display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; border: 1px solid var(--border); color: var(--text-secondary); background: rgba(255, 255, 255, 0.3); }
     details[open] summary::after { content: "–"; }
+    details[open] .accordion-arrow { transform: rotate(90deg); }
     .details-body { padding: 0 16px 14px; border-top: 1px solid var(--border); }
     .details-body p:first-child { margin-top: 14px; }
 
@@ -528,6 +529,13 @@
       border: 0;
       clip-path: inset(50%);
     }
+    .honeypot {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
 
     footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; }
     footer p { font-size: 14px; color: var(--text-secondary); margin-bottom: 0; line-height: 1.6; }
@@ -591,6 +599,8 @@
       .brandrow { flex-wrap: wrap; }
       section > div[style*="grid-template-columns: 1fr 1fr"] { grid-template-columns: 1fr !important; }
       section[aria-label*="What Zero Overshoot Is"] > div { grid-template-columns: 1fr !important; }
+      section[aria-label*="Stability Demonstrations"] > div[style*="grid-template-columns: 1fr"] { grid-template-columns: 1fr !important; }
+      section[aria-label*="Stability Demonstrations"] .card > div[style*="grid-template-columns: 1fr 1fr"] { grid-template-columns: 1fr !important; }
     }
 
     @media (max-width: 420px) {
@@ -611,9 +621,9 @@
     <div class="topbar" id="topbar">
       <div class="container">
         <div class="brandrow">
-          <a class="brand" href="./" aria-label="GSRF Filter home">
+          <a class="brand" href="./" aria-label="Zero Overshoot home">
             <span class="dot" aria-hidden="true"></span>
-            GSRF Filter
+            Zero Overshoot (GSRF)
           </a>
           <nav class="topnav" aria-label="Top">
             <a href="#start">Start here</a>
@@ -631,8 +641,12 @@
       <div class="hero-grid">
         <div class="reveal">
           <div class="title">Zero Overshoot</div>
-          <p class="tagline" style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">A deterministic stability layer for safety-critical systems<br>where seconds matter more than milliseconds</p>
+          <!-- Option 1: "A deterministic stability layer for safety-critical control where bounded behaviour is mandatory." -->
+          <!-- Option 2: "A deterministic stability layer enforcing bounded behaviour in safety-critical control systems." -->
+          <!-- Option 3: "A deterministic stability layer for safety-critical systems requiring bounded, rate-limited behaviour." -->
+          <p class="tagline" style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">A deterministic stability layer for safety-critical control where bounded behaviour is mandatory.</p>
           <p class="tagline" style="font-size: 16px; font-weight: normal; margin-top: 12px;">Designed to prevent over-reaction, oscillation, and runaway behaviour<br>in flight stabilisation and engineering control systems.</p>
+          <p class="tagline" style="font-size: 15px; font-weight: normal; margin-top: 12px; color: var(--text-secondary);">Deterministic boundedness within a configured envelope and stated assumptions (see papers).</p>
           <div class="actions">
             <a class="btn primary" href="./demo/">Run the Demo (Industry-Preloaded)</a>
             <a class="btn secondary" href="#contact">Licensing &amp; Integration</a>
@@ -670,6 +684,142 @@
         </div>
       </section>
 
+      <section class="reveal" aria-label="Stability Demonstrations Interactive" style="margin: 48px 0;">
+        <details style="margin-top: 24px;">
+          <summary style="font-size: 24px; font-weight: 800; margin-bottom: 24px; color: var(--text); cursor: pointer; list-style: none; padding: 12px 0; border-bottom: 1px solid var(--border); user-select: none;">
+            <span style="display: inline-flex; align-items: center; gap: 8px;">
+              <span class="accordion-arrow" style="font-size: 18px; transition: transform 0.2s; display: inline-block;">▶</span>
+              See it in action (interactive demonstrations)
+            </span>
+          </summary>
+          <div style="margin-top: 24px;">
+            <p style="margin-bottom: 32px; color: var(--text-secondary);">Simplified demonstrations for intuition. These are illustrative control-loop behaviours, not proofs or guarantees.</p>
+            
+            <div style="display: grid; grid-template-columns: 1fr; gap: 32px; margin-top: 24px;">
+          
+          <!-- Card 1: Pilot-Induced Oscillation (PIO) -->
+          <div class="card" style="padding: 24px;">
+            <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 12px; color: var(--text);">Pilot-Induced Oscillation (PIO)</h3>
+            <p style="margin-bottom: 20px; color: var(--text-secondary); font-size: 15px;">Models pilot overcorrection in a simple second-order system.</p>
+            
+            <div style="margin-bottom: 20px;">
+              <label style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                <input type="radio" name="pio-mode" value="baseline" checked style="margin: 0;">
+                <span>Baseline</span>
+              </label>
+              <label style="display: flex; align-items: center; gap: 12px;">
+                <input type="radio" name="pio-mode" value="zero-overshoot" style="margin: 0;">
+                <span>With Zero Overshoot</span>
+              </label>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+              <div>
+                <label style="display: block; margin-bottom: 6px; font-size: 14px; font-weight: 600;">Gain (K): <span id="pio-gain-val">1.5</span></label>
+                <input type="range" id="pio-gain" min="0.5" max="3.0" step="0.1" value="1.5" style="width: 100%;">
+              </div>
+              <div>
+                <label style="display: block; margin-bottom: 6px; font-size: 14px; font-weight: 600;">Damping (ζ): <span id="pio-damping-val">0.5</span></label>
+                <input type="range" id="pio-damping" min="0.1" max="1.5" step="0.1" value="0.5" style="width: 100%;">
+              </div>
+              <div>
+                <label style="display: block; margin-bottom: 6px; font-size: 14px; font-weight: 600;">Delay (s): <span id="pio-delay-val">0.1</span></label>
+                <input type="range" id="pio-delay" min="0" max="0.5" step="0.05" value="0.1" style="width: 100%;">
+              </div>
+              <div>
+                <label style="display: block; margin-bottom: 6px; font-size: 14px; font-weight: 600;">Duration (s): <span id="pio-duration-val">5.0</span></label>
+                <input type="range" id="pio-duration" min="2" max="10" step="0.5" value="5.0" style="width: 100%;">
+              </div>
+            </div>
+            
+            <div style="display: flex; gap: 12px; margin-bottom: 20px;">
+              <button class="btn primary" id="pio-run" style="min-width: 100px;">Run</button>
+              <button class="btn" id="pio-reset" style="min-width: 100px;">Reset</button>
+            </div>
+            
+            <canvas id="pio-canvas" width="600" height="300" style="width: 100%; max-width: 600px; height: auto; border: 1px solid var(--border); border-radius: 8px; background: rgba(255, 255, 255, 0.9);"></canvas>
+            
+            <div style="display: flex; gap: 16px; margin-top: 16px; flex-wrap: wrap;">
+              <div style="padding: 8px 12px; background: rgba(11, 61, 145, 0.08); border-radius: 6px; font-size: 13px;">
+                <strong>Overshoot:</strong> <span id="pio-overshoot">—</span>%
+              </div>
+              <div style="padding: 8px 12px; background: rgba(11, 61, 145, 0.08); border-radius: 6px; font-size: 13px;">
+                <strong>Settling time:</strong> <span id="pio-settling">—</span>s
+              </div>
+              <div style="padding: 8px 12px; background: rgba(11, 61, 145, 0.08); border-radius: 6px; font-size: 13px;">
+                <strong>Oscillations:</strong> <span id="pio-oscillations">—</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Card 2: Actuator Saturation -->
+          <div class="card" style="padding: 24px;">
+            <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 12px; color: var(--text);">Actuator Saturation</h3>
+            <p style="margin-bottom: 20px; color: var(--text-secondary); font-size: 15px;">Models step response with magnitude and rate limits.</p>
+            
+            <div style="margin-bottom: 20px;">
+              <label style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                <input type="radio" name="sat-mode" value="baseline" checked style="margin: 0;">
+                <span>Baseline</span>
+              </label>
+              <label style="display: flex; align-items: center; gap: 12px;">
+                <input type="radio" name="sat-mode" value="zero-overshoot" style="margin: 0;">
+                <span>With Zero Overshoot</span>
+              </label>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+              <div>
+                <label style="display: block; margin-bottom: 6px; font-size: 14px; font-weight: 600;">Saturation limit: <span id="sat-limit-val">2.0</span></label>
+                <input type="range" id="sat-limit" min="1.0" max="5.0" step="0.1" value="2.0" style="width: 100%;">
+              </div>
+              <div>
+                <label style="display: block; margin-bottom: 6px; font-size: 14px; font-weight: 600;">Rate limit: <span id="sat-rate-val">1.0</span></label>
+                <input type="range" id="sat-rate" min="0.1" max="3.0" step="0.1" value="1.0" style="width: 100%;">
+              </div>
+              <div>
+                <label style="display: block; margin-bottom: 6px; font-size: 14px; font-weight: 600;">PID Kp: <span id="sat-kp-val">2.0</span></label>
+                <input type="range" id="sat-kp" min="0.5" max="5.0" step="0.1" value="2.0" style="width: 100%;">
+              </div>
+              <div>
+                <label style="display: block; margin-bottom: 6px; font-size: 14px; font-weight: 600;">Duration (s): <span id="sat-duration-val">5.0</span></label>
+                <input type="range" id="sat-duration" min="2" max="10" step="0.5" value="5.0" style="width: 100%;">
+              </div>
+            </div>
+            
+            <div style="display: flex; gap: 12px; margin-bottom: 20px;">
+              <button class="btn primary" id="sat-run" style="min-width: 100px;">Run</button>
+              <button class="btn" id="sat-reset" style="min-width: 100px;">Reset</button>
+            </div>
+            
+            <canvas id="sat-canvas" width="600" height="300" style="width: 100%; max-width: 600px; height: auto; border: 1px solid var(--border); border-radius: 8px; background: rgba(255, 255, 255, 0.9);"></canvas>
+            
+            <div style="display: flex; gap: 16px; margin-top: 16px; flex-wrap: wrap;">
+              <div style="padding: 8px 12px; background: rgba(11, 61, 145, 0.08); border-radius: 6px; font-size: 13px;">
+                <strong>Overshoot:</strong> <span id="sat-overshoot">—</span>%
+              </div>
+              <div style="padding: 8px 12px; background: rgba(11, 61, 145, 0.08); border-radius: 6px; font-size: 13px;">
+                <strong>Settling time:</strong> <span id="sat-settling">—</span>s
+              </div>
+              <div style="padding: 8px 12px; background: rgba(11, 61, 145, 0.08); border-radius: 6px; font-size: 13px;">
+                <strong>Oscillations:</strong> <span id="sat-oscillations">—</span>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+        <p style="margin-top: 32px; padding: 16px; background: rgba(11, 61, 145, 0.05); border-left: 3px solid var(--accent); border-radius: 6px; font-size: 14px; color: var(--text-secondary);">
+          <strong>Disclaimer:</strong> These are simplified demonstrations for intuition. Demo uses synthetic signals; production systems require custom integration, validation, and domain modelling.
+        </p>
+        
+            <div style="margin-top: 24px;">
+              <a class="btn secondary" href="./demo/">Explore full demo →</a>
+            </div>
+          </div>
+        </details>
+      </section>
+
       <section class="reveal" aria-label="Where It Sits in a System" style="margin: 48px 0;">
         <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 24px; color: var(--text);">Where It Sits in a System</h2>
         <div class="card" style="padding: 32px; background: rgba(255, 255, 255, 0.8);">
@@ -691,6 +841,21 @@
           <li>Manufacturing systems where feedback amplification causes drift or scrap</li>
           <li>Safety-critical environments where conservative behaviour is preferred over speed</li>
         </ul>
+      </section>
+
+      <section class="reveal" aria-label="Flight Stabilisation Quick Brief" style="margin: 48px 0;">
+        <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 24px; color: var(--text);">Flight Stabilisation Quick Brief</h2>
+        <ul style="margin: 0; padding-left: 20px; line-height: 2; font-size: 16px;">
+          <li>Prevents over-correction and oscillation in attitude control systems</li>
+          <li>Operates as an observer layer, not a control command generator</li>
+          <li>Enforces rate-limited, conservative behaviour over seconds-scale timeframes</li>
+          <li>Designed for hybrid systems combining legacy and modern control architectures</li>
+          <li>Reduces pilot workload by preventing unstable feedback amplification</li>
+          <li>Provides deterministic bounds within configured stability envelopes</li>
+        </ul>
+        <div style="margin-top: 24px;">
+          <a class="btn primary" href="#contact">Request the MoD engineering brief</a>
+        </div>
       </section>
 
       <section class="industry reveal" aria-label="Choose an industry">
@@ -1065,7 +1230,7 @@
           >
             <input type="hidden" name="form-name" value="contact">
 
-            <div class="visually-hidden">
+            <div class="honeypot">
               <label>
                 Don't fill this out:
                 <input name="bot-field">
@@ -1308,6 +1473,397 @@
           if (el) el.classList.add('selected');
         }
       } catch (_) {}
+    })();
+
+    // Stability Demonstrations Simulation Logic
+    (function() {
+      const dt = 0.02; // Fixed timestep (seconds)
+      
+      // PIO Demo
+      const pioCanvas = document.getElementById('pio-canvas');
+      const pioCtx = pioCanvas ? pioCanvas.getContext('2d') : null;
+      let pioRunning = false;
+      let pioData = [];
+      
+      // Update slider value displays
+      function updateSliderDisplay(id, valueId) {
+        const slider = document.getElementById(id);
+        const display = document.getElementById(valueId);
+        if (slider && display) {
+          slider.addEventListener('input', function() {
+            display.textContent = parseFloat(this.value).toFixed(1);
+          });
+        }
+      }
+      
+      updateSliderDisplay('pio-gain', 'pio-gain-val');
+      updateSliderDisplay('pio-damping', 'pio-damping-val');
+      updateSliderDisplay('pio-delay', 'pio-delay-val');
+      updateSliderDisplay('pio-duration', 'pio-duration-val');
+      updateSliderDisplay('sat-limit', 'sat-limit-val');
+      updateSliderDisplay('sat-rate', 'sat-rate-val');
+      updateSliderDisplay('sat-kp', 'sat-kp-val');
+      updateSliderDisplay('sat-duration', 'sat-duration-val');
+      
+      // PIO Simulation: Second-order system y'' + 2ζω y' + ω² y = ω² u
+      function runPIOSim() {
+        if (!pioCtx || pioRunning) return;
+        pioRunning = true;
+        
+        const gain = parseFloat(document.getElementById('pio-gain').value);
+        const damping = parseFloat(document.getElementById('pio-damping').value);
+        const delay = parseFloat(document.getElementById('pio-delay').value);
+        const duration = parseFloat(document.getElementById('pio-duration').value);
+        const useZeroOvershoot = document.querySelector('input[name="pio-mode"]:checked').value === 'zero-overshoot';
+        
+        const omega = 2.0; // Fixed natural frequency
+        const target = 1.0;
+        const maxDeltaU = 0.5; // Rate limit for Zero Overshoot
+        const uMax = 3.0; // Magnitude limit
+        
+        // State: [y, y_dot, u, u_prev]
+        let state = [0, 0, 0, 0];
+        const delayBuffer = [];
+        const delaySteps = Math.max(1, Math.round(delay / dt));
+        
+        pioData = [];
+        const steps = Math.round(duration / dt);
+        
+        for (let i = 0; i < steps; i++) {
+          const t = i * dt;
+          const error = target - state[0];
+          
+          // Apply delay to error signal
+          delayBuffer.push(error);
+          if (delayBuffer.length > delaySteps) delayBuffer.shift();
+          const errorDelayed = delayBuffer.length > 0 ? delayBuffer[0] : error;
+          
+          // Pilot controller: u = K * error_delayed
+          let uCommand = gain * errorDelayed;
+          
+          // Zero Overshoot: bounded update
+          if (useZeroOvershoot) {
+            const deltaU = uCommand - state[2];
+            const clampedDelta = Math.max(-maxDeltaU, Math.min(maxDeltaU, deltaU));
+            uCommand = state[2] + clampedDelta;
+            uCommand = Math.max(-uMax, Math.min(uMax, uCommand));
+          }
+          
+          // Second-order plant: y'' + 2ζω y' + ω² y = ω² u
+          const y_ddot = omega * omega * (uCommand - state[0]) - 2 * damping * omega * state[1];
+          state[1] += y_ddot * dt; // y_dot
+          state[0] += state[1] * dt; // y
+          state[2] = uCommand;
+          
+          pioData.push({ t, y: state[0], target, u: uCommand });
+        }
+        
+        drawPIOCanvas();
+        calculatePIOMetrics();
+        pioRunning = false;
+      }
+      
+      function drawPIOCanvas() {
+        if (!pioCtx || pioData.length === 0) return;
+        
+        const w = pioCanvas.width;
+        const h = pioCanvas.height;
+        const padding = 40;
+        const plotW = w - 2 * padding;
+        const plotH = h - 2 * padding;
+        
+        pioCtx.clearRect(0, 0, w, h);
+        
+        // Grid
+        pioCtx.strokeStyle = '#e0e0e0';
+        pioCtx.lineWidth = 1;
+        for (let i = 0; i <= 5; i++) {
+          const y = padding + (plotH / 5) * i;
+          pioCtx.beginPath();
+          pioCtx.moveTo(padding, y);
+          pioCtx.lineTo(w - padding, y);
+          pioCtx.stroke();
+        }
+        
+        // Target line
+        const targetY = padding + plotH * 0.5;
+        pioCtx.strokeStyle = '#666';
+        pioCtx.lineWidth = 2;
+        pioCtx.setLineDash([5, 5]);
+        pioCtx.beginPath();
+        pioCtx.moveTo(padding, targetY);
+        pioCtx.lineTo(w - padding, targetY);
+        pioCtx.stroke();
+        pioCtx.setLineDash([]);
+        
+        // Response curve
+        pioCtx.strokeStyle = '#0b3d91';
+        pioCtx.lineWidth = 2;
+        pioCtx.beginPath();
+        const maxY = Math.max(...pioData.map(d => Math.abs(d.y - d.target))) * 1.2 || 1;
+        const yScale = plotH / (2 * maxY);
+        
+        pioData.forEach((d, i) => {
+          const x = padding + (d.t / pioData[pioData.length - 1].t) * plotW;
+          const y = targetY - (d.y - d.target) * yScale;
+          if (i === 0) pioCtx.moveTo(x, y);
+          else pioCtx.lineTo(x, y);
+        });
+        pioCtx.stroke();
+        
+        // Labels
+        pioCtx.fillStyle = '#333';
+        pioCtx.font = '12px sans-serif';
+        pioCtx.fillText('Time (s)', w / 2 - 30, h - 10);
+        pioCtx.save();
+        pioCtx.translate(15, h / 2);
+        pioCtx.rotate(-Math.PI / 2);
+        pioCtx.fillText('Error', 0, 0);
+        pioCtx.restore();
+      }
+      
+      function calculatePIOMetrics() {
+        if (pioData.length === 0) return;
+        const target = pioData[0].target;
+        
+        // Overshoot %
+        const maxY = Math.max(...pioData.map(d => d.y));
+        const overshoot = target > 0 ? ((maxY - target) / target) * 100 : 0;
+        document.getElementById('pio-overshoot').textContent = overshoot.toFixed(1);
+        
+        // Settling time (first time |y-target| <= 0.02*target for remainder)
+        const threshold = 0.02 * target;
+        let settlingTime = pioData[pioData.length - 1].t;
+        for (let i = 0; i < pioData.length; i++) {
+          const settled = pioData.slice(i).every(d => Math.abs(d.y - target) <= threshold);
+          if (settled) {
+            settlingTime = pioData[i].t;
+            break;
+          }
+        }
+        document.getElementById('pio-settling').textContent = settlingTime.toFixed(2);
+        
+        // Oscillation count (sign changes of error after first crossing)
+        let firstCross = -1;
+        for (let i = 1; i < pioData.length; i++) {
+          if ((pioData[i-1].y < target && pioData[i].y >= target) ||
+              (pioData[i-1].y > target && pioData[i].y <= target)) {
+            firstCross = i;
+            break;
+          }
+        }
+        if (firstCross > 0) {
+          let oscillations = 0;
+          for (let i = firstCross + 1; i < pioData.length; i++) {
+            const prevErr = pioData[i-1].y - target;
+            const currErr = pioData[i].y - target;
+            if ((prevErr > 0 && currErr < 0) || (prevErr < 0 && currErr > 0)) {
+              oscillations++;
+            }
+          }
+          document.getElementById('pio-oscillations').textContent = Math.floor(oscillations / 2);
+        } else {
+          document.getElementById('pio-oscillations').textContent = '0';
+        }
+      }
+      
+      // Actuator Saturation Demo
+      const satCanvas = document.getElementById('sat-canvas');
+      const satCtx = satCanvas ? satCanvas.getContext('2d') : null;
+      let satRunning = false;
+      let satData = [];
+      
+      function runSatSim() {
+        if (!satCtx || satRunning) return;
+        satRunning = true;
+        
+        const limit = parseFloat(document.getElementById('sat-limit').value);
+        const rateLimit = parseFloat(document.getElementById('sat-rate').value);
+        const kp = parseFloat(document.getElementById('sat-kp').value);
+        const duration = parseFloat(document.getElementById('sat-duration').value);
+        const useZeroOvershoot = document.querySelector('input[name="sat-mode"]:checked').value === 'zero-overshoot';
+        
+        const target = 1.0;
+        const omega = 2.0;
+        const damping = 0.7;
+        const maxDeltaU = 0.3; // Rate limit for Zero Overshoot
+        
+        // State: [y, y_dot, u, u_prev, integral]
+        let state = [0, 0, 0, 0, 0];
+        satData = [];
+        const steps = Math.round(duration / dt);
+        
+        for (let i = 0; i < steps; i++) {
+          const t = i * dt;
+          const error = target - state[0];
+          
+          // PID-like controller (P only for simplicity)
+          let uCommand = kp * error;
+          
+          // Zero Overshoot: bounded update + anti-windup
+          if (useZeroOvershoot) {
+            const deltaU = uCommand - state[2];
+            const clampedDelta = Math.max(-maxDeltaU, Math.min(maxDeltaU, deltaU));
+            uCommand = state[2] + clampedDelta;
+          }
+          
+          // Actuator saturation and rate limiting
+          if (Math.abs(uCommand) > limit) {
+            uCommand = uCommand > 0 ? limit : -limit;
+          }
+          const deltaU = uCommand - state[2];
+          if (Math.abs(deltaU) > rateLimit * dt) {
+            uCommand = state[2] + (deltaU > 0 ? 1 : -1) * rateLimit * dt;
+          }
+          
+          // Second-order plant
+          const y_ddot = omega * omega * (uCommand - state[0]) - 2 * damping * omega * state[1];
+          state[1] += y_ddot * dt;
+          state[0] += state[1] * dt;
+          state[2] = uCommand;
+          
+          satData.push({ t, y: state[0], target, u: uCommand });
+        }
+        
+        drawSatCanvas();
+        calculateSatMetrics();
+        satRunning = false;
+      }
+      
+      function drawSatCanvas() {
+        if (!satCtx || satData.length === 0) return;
+        
+        const w = satCanvas.width;
+        const h = satCanvas.height;
+        const padding = 40;
+        const plotW = w - 2 * padding;
+        const plotH = h - 2 * padding;
+        
+        satCtx.clearRect(0, 0, w, h);
+        
+        // Grid
+        satCtx.strokeStyle = '#e0e0e0';
+        satCtx.lineWidth = 1;
+        for (let i = 0; i <= 5; i++) {
+          const y = padding + (plotH / 5) * i;
+          satCtx.beginPath();
+          satCtx.moveTo(padding, y);
+          satCtx.lineTo(w - padding, y);
+          satCtx.stroke();
+        }
+        
+        // Target line
+        const targetY = padding + plotH * 0.5;
+        satCtx.strokeStyle = '#666';
+        satCtx.lineWidth = 2;
+        satCtx.setLineDash([5, 5]);
+        satCtx.beginPath();
+        satCtx.moveTo(padding, targetY);
+        satCtx.lineTo(w - padding, targetY);
+        satCtx.stroke();
+        satCtx.setLineDash([]);
+        
+        // Response curve
+        satCtx.strokeStyle = '#0b3d91';
+        satCtx.lineWidth = 2;
+        satCtx.beginPath();
+        const maxY = Math.max(...satData.map(d => Math.abs(d.y - d.target))) * 1.2 || 1;
+        const yScale = plotH / (2 * maxY);
+        
+        satData.forEach((d, i) => {
+          const x = padding + (d.t / satData[satData.length - 1].t) * plotW;
+          const y = targetY - (d.y - d.target) * yScale;
+          if (i === 0) satCtx.moveTo(x, y);
+          else satCtx.lineTo(x, y);
+        });
+        satCtx.stroke();
+        
+        // Labels
+        satCtx.fillStyle = '#333';
+        satCtx.font = '12px sans-serif';
+        satCtx.fillText('Time (s)', w / 2 - 30, h - 10);
+        satCtx.save();
+        satCtx.translate(15, h / 2);
+        satCtx.rotate(-Math.PI / 2);
+        satCtx.fillText('Error', 0, 0);
+        satCtx.restore();
+      }
+      
+      function calculateSatMetrics() {
+        if (satData.length === 0) return;
+        const target = satData[0].target;
+        
+        // Overshoot %
+        const maxY = Math.max(...satData.map(d => d.y));
+        const overshoot = target > 0 ? ((maxY - target) / target) * 100 : 0;
+        document.getElementById('sat-overshoot').textContent = overshoot.toFixed(1);
+        
+        // Settling time
+        const threshold = 0.02 * target;
+        let settlingTime = satData[satData.length - 1].t;
+        for (let i = 0; i < satData.length; i++) {
+          const settled = satData.slice(i).every(d => Math.abs(d.y - target) <= threshold);
+          if (settled) {
+            settlingTime = satData[i].t;
+            break;
+          }
+        }
+        document.getElementById('sat-settling').textContent = settlingTime.toFixed(2);
+        
+        // Oscillation count
+        let firstCross = -1;
+        for (let i = 1; i < satData.length; i++) {
+          if ((satData[i-1].y < target && satData[i].y >= target) ||
+              (satData[i-1].y > target && satData[i].y <= target)) {
+            firstCross = i;
+            break;
+          }
+        }
+        if (firstCross > 0) {
+          let oscillations = 0;
+          for (let i = firstCross + 1; i < satData.length; i++) {
+            const prevErr = satData[i-1].y - target;
+            const currErr = satData[i].y - target;
+            if ((prevErr > 0 && currErr < 0) || (prevErr < 0 && currErr > 0)) {
+              oscillations++;
+            }
+          }
+          document.getElementById('sat-oscillations').textContent = Math.floor(oscillations / 2);
+        } else {
+          document.getElementById('sat-oscillations').textContent = '0';
+        }
+      }
+      
+      // Event listeners
+      if (document.getElementById('pio-run')) {
+        document.getElementById('pio-run').addEventListener('click', runPIOSim);
+      }
+      if (document.getElementById('pio-reset')) {
+        document.getElementById('pio-reset').addEventListener('click', function() {
+          pioData = [];
+          if (pioCtx) {
+            pioCtx.clearRect(0, 0, pioCanvas.width, pioCanvas.height);
+          }
+          document.getElementById('pio-overshoot').textContent = '—';
+          document.getElementById('pio-settling').textContent = '—';
+          document.getElementById('pio-oscillations').textContent = '—';
+        });
+      }
+      
+      if (document.getElementById('sat-run')) {
+        document.getElementById('sat-run').addEventListener('click', runSatSim);
+      }
+      if (document.getElementById('sat-reset')) {
+        document.getElementById('sat-reset').addEventListener('click', function() {
+          satData = [];
+          if (satCtx) {
+            satCtx.clearRect(0, 0, satCanvas.width, satCanvas.height);
+          }
+          document.getElementById('sat-overshoot').textContent = '—';
+          document.getElementById('sat-settling').textContent = '—';
+          document.getElementById('sat-oscillations').textContent = '—';
+        });
+      }
     })();
   </script>
 </body>

@@ -49,7 +49,7 @@ Abstract pages (HTML):
 
 ## Commercial licensing (important)
 
-Zero Overshoot is **proprietary, patent-pending technology**. This repo is licensed under **BSL 1.1** (see `LICENSE` and `LICENSE-NOTICE.md`).
+Zero Overshoot is **proprietary technology**. Patent applications are in preparation. This repo is licensed under **BSL 1.1** (see `LICENSE` and `LICENSE-NOTICE.md`).
 
 - **Non‑commercial evaluation/research use is allowed.**
 - **Commercial or production use requires a separate commercial license.**
@@ -62,7 +62,7 @@ To discuss commercial licensing:
 
 ## Patent status
 
-**Zero Overshoot is patent-pending technology. Patent applications are in preparation.** The framework, algorithms, and implementation patterns are protected intellectual property. Commercial use requires a license.
+**Zero Overshoot is proprietary technology. Patent applications are in preparation.** The framework, algorithms, and implementation patterns are protected intellectual property. Commercial use requires a license.
 
 ## Cite this work
 

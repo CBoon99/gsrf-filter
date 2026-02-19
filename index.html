@@ -652,7 +652,7 @@
             <a class="btn secondary" href="#contact">Licensing &amp; Integration</a>
           </div>
           <p class="commercial-notice" style="margin-top: 16px; font-size: 13px; color: var(--text-secondary); padding: 12px; background: rgba(11, 61, 145, 0.05); border-left: 3px solid var(--accent); border-radius: 6px;">
-            <strong>Commercial Product:</strong> Zero Overshoot is proprietary, patent-pending technology. Production use requires a commercial license. Demo use does not grant any rights. See <a href="./commercial-licensing-notes.html" style="color: var(--accent); text-decoration: underline;">Licensing Notes</a> for details.
+            <strong>Commercial Product:</strong> Zero Overshoot is proprietary technology. Patent applications are in preparation. Production use requires a commercial license. Demo use does not grant any rights. See <a href="./commercial-licensing-notes.html" style="color: var(--accent); text-decoration: underline;">Licensing Notes</a> for details.
           </p>
         </div>
       </div>
@@ -854,7 +854,7 @@
           <li>Provides deterministic bounds within configured stability envelopes</li>
         </ul>
         <div style="margin-top: 24px;">
-          <a class="btn primary" href="#contact">Request the MoD engineering brief</a>
+          <a class="btn primary" href="#contact">Request the engineering brief (PDF)</a>
         </div>
       </section>
 
@@ -995,7 +995,7 @@
             <p class="engagement-subtitle">For organisations embedding Zero Overshoot in a product or platform.</p>
             <ul>
               <li>Deterministic filter logic</li>
-              <li>Patent-pending system</li>
+              <li>Patent applications are in preparation</li>
               <li>Commercial license required for production use</li>
             </ul>
           </div>
@@ -1038,7 +1038,7 @@
 
       <section class="accordion" aria-label="Overview">
         <p class="commercial-notice" style="margin-bottom: 20px; font-size: 13px; color: var(--text-secondary); padding: 14px; background: rgba(11, 61, 145, 0.05); border-left: 3px solid var(--accent); border-radius: 6px;">
-          <strong>Commercial Product:</strong> Zero Overshoot is proprietary, patent-pending technology. Technical documentation and papers are provided for evaluation purposes. Production use requires a commercial license. See <a href="./commercial-licensing-notes.html" style="color: var(--accent); text-decoration: underline;">Licensing Notes</a> and <a href="./integration-overview.html" style="color: var(--accent); text-decoration: underline;">Integration Overview</a>.
+          <strong>Commercial Product:</strong> Zero Overshoot is proprietary technology. Patent applications are in preparation. Technical documentation and papers are provided for evaluation purposes. Production use requires a commercial license. See <a href="./commercial-licensing-notes.html" style="color: var(--accent); text-decoration: underline;">Licensing Notes</a> and <a href="./integration-overview.html" style="color: var(--accent); text-decoration: underline;">Integration Overview</a>.
         </p>
         <details open>
           <summary>What problem this solves</summary>
@@ -1048,7 +1048,7 @@
             <p><strong>Recursive amplification</strong> compounds errors across iterations. A 1% deviation in iteration <em>n</em> can become a 50% deviation by iteration <em>n+10</em> if the system lacks inherent stability constraints. This is why systems that "usually work" fail catastrophically under pressure.</p>
             <p><strong>Delayed failure detection</strong> is endemic to recursive architectures. By the time monitoring systems register anomalous behaviour, the underlying state may already be irrecoverable. Probabilistic safeguards, which trigger on statistical anomalies, often activate too late or not at all when the system drifts gradually rather than failing abruptly.</p>
             <p><strong>Optimisation loops</strong> in safety-critical systems present a specific risk: they are designed to seek extrema, but without deterministic constraints, they cannot distinguish between beneficial optimisation and runaway optimisation toward destructive states. Alignment—ensuring a system pursues intended goals—is necessary but insufficient. A well-aligned system can still exhibit recursive instability if its underlying dynamics are unbounded.</p>
-            <p>In safety-critical systems, probabilistic safeguards provide statistical guarantees that hold on average. But averages do not prevent the single catastrophic failure that destroys a turbine, crashes an aircraft, or corrupts a financial system. Deterministic constraints that guarantee zero overshoot behaviour, by contrast, provide guarantees that hold in every execution, without exception.</p>
+            <p>In safety-critical systems, probabilistic safeguards provide statistical guarantees that hold on average. But averages do not prevent the single catastrophic failure that destroys a turbine, crashes an aircraft, or corrupts a financial system. Deterministic constraints designed to enforce bounded behaviour, by contrast, can be configured to provide deterministic boundedness criteria within a defined envelope under stated assumptions.</p>
           </div>
         </details>
 
@@ -1056,7 +1056,7 @@
           <summary>How GSRF works (high level)</summary>
           <div class="details-body">
             <p>GSRF is a zero-overshoot safety filter for recursive and safety-critical systems. It enforces deterministic constraints before execution, not after failure detection. The framework is designed to maintain stability with zero overshoot under recursion.</p>
-            <p><strong>Gradient bounding</strong> ensures that update magnitudes remain within predefined envelopes. Rather than allowing gradients to grow without limit and then attempting to detect runaway states, GSRF constrains the rate of change structurally. The system cannot produce unbounded updates because the update mechanism itself is bounded.</p>
+            <p><strong>Gradient bounding</strong> is designed to enforce that update magnitudes remain within predefined envelopes. Rather than allowing gradients to grow without limit and then attempting to detect runaway states, GSRF constrains the rate of change structurally. Within the configured envelope and under stated assumptions, the system cannot produce unbounded updates because the update mechanism itself is bounded.</p>
             <p><strong>Recursive depth constraints</strong> limit how far feedback can propagate through the system before encountering a stabilising checkpoint. This prevents the exponential error amplification that characterises unconstrained recursion.</p>
             <p><strong>Stability enforcement prior to execution</strong> means that GSRF validates system state and proposed actions against stability criteria before they are committed. GSRF acts as a deterministic, zero-overshoot safety filter: actions that would violate stability constraints are rejected or modified before they affect system state.</p>
             <p><strong>Prevention of uncontrolled system divergence</strong> follows from the above. By bounding gradients, limiting recursion depth, and filtering decisions prior to execution, GSRF eliminates the pathways through which recursive systems typically fail.</p>
@@ -1097,7 +1097,7 @@
       
       <section id="contact">
         <h2>Licensing &amp; Integration</h2>
-        <p>Zero Overshoot is a proprietary, patent-pending commercial product. Production deployment requires a commercial license. Each engagement is structured around the specific stability requirements and failure modes of the target system.</p>
+        <p>Zero Overshoot is a proprietary commercial product. Patent applications are in preparation. Production deployment requires a commercial license. Each engagement is structured around the specific stability requirements and failure modes of the target system.</p>
         <p><strong>Commercial Product:</strong> Zero Overshoot is not open source. The framework, algorithms, and implementation patterns are protected intellectual property. Patent applications are in preparation. See <a href="./commercial-licensing-notes.html">Commercial &amp; Licensing Notes</a> for licensing requirements and <a href="./production-readiness.html">Production Readiness</a> for deployment guidance.</p>
         
         <h3>Licensing Models</h3>
@@ -1370,7 +1370,7 @@
         
         <h3>Commercial &amp; Licensing</h3>
         <h4>Is Zero Overshoot open source?</h4>
-        <p>No. Zero Overshoot is proprietary, patent-pending technology. It is not available under open-source licenses. Production use requires a commercial license.</p>
+        <p>No. Zero Overshoot is proprietary technology. Patent applications are in preparation. It is not available under open-source licenses. Production use requires a commercial license.</p>
         
         <h4>Can I use the demo for production?</h4>
         <p>No. The demo is for evaluation only. No rights are granted by demo use. Production deployment requires a commercial license. See <a href="./commercial-licensing-notes.html">Commercial &amp; Licensing Notes</a> for details.</p>
@@ -1402,7 +1402,7 @@
         
         <h3>Legal</h3>
         <h4>What is the patent status?</h4>
-        <p>Zero Overshoot is patent-pending. Patent applications are in preparation.</p>
+        <p>Zero Overshoot is proprietary technology. Patent applications are in preparation.</p>
         
         <h4>What happens if I use Zero Overshoot without a license?</h4>
         <p>Unauthorized production use constitutes a violation of intellectual property rights and may result in legal action. Research and evaluation may be permitted under specific terms—contact <a href="mailto:info@boonmind.io">info@boonmind.io</a> to clarify.</p>
@@ -1414,7 +1414,7 @@
     
     <footer>
       <p style="margin-bottom: 12px; font-size: 13px; color: var(--muted);">
-        © 2026 Carl Boon (BoonMind). Zero Overshoot is proprietary, patent-pending technology. Commercial use requires a license. Patent applications are in preparation.
+        © 2026 Carl Boon (BoonMind). Zero Overshoot is proprietary technology. Patent applications are in preparation. Commercial use requires a license.
         Contact: <a href="mailto:info@boonmind.io">info@boonmind.io</a>.
         <a href="./LICENSE">LICENSE</a> · <a href="./README.md">README</a>
       </p>

@@ -1048,7 +1048,7 @@
             <p><strong>Recursive amplification</strong> compounds errors across iterations. A 1% deviation in iteration <em>n</em> can become a 50% deviation by iteration <em>n+10</em> if the system lacks inherent stability constraints. This is why systems that "usually work" fail catastrophically under pressure.</p>
             <p><strong>Delayed failure detection</strong> is endemic to recursive architectures. By the time monitoring systems register anomalous behaviour, the underlying state may already be irrecoverable. Probabilistic safeguards, which trigger on statistical anomalies, often activate too late or not at all when the system drifts gradually rather than failing abruptly.</p>
             <p><strong>Optimisation loops</strong> in safety-critical systems present a specific risk: they are designed to seek extrema, but without deterministic constraints, they cannot distinguish between beneficial optimisation and runaway optimisation toward destructive states. Alignment—ensuring a system pursues intended goals—is necessary but insufficient. A well-aligned system can still exhibit recursive instability if its underlying dynamics are unbounded.</p>
-            <p>In safety-critical systems, probabilistic safeguards provide statistical guarantees that hold on average. But averages do not prevent the single catastrophic failure that destroys a turbine, crashes an aircraft, or corrupts a financial system. Deterministic constraints designed to enforce bounded behaviour, by contrast, can be configured to provide deterministic boundedness criteria within a defined envelope under stated assumptions.</p>
+            <p>In safety-critical systems, probabilistic safeguards provide statistical guarantees that hold on average. But averages do not prevent the single catastrophic failure that destroys a turbine, crashes an aircraft, or corrupts a financial system. Zero Overshoot is designed to enforce bounded behaviour within a defined envelope under stated assumptions. When correctly configured, it can provide deterministic boundedness criteria relative to declared system constraints and update limits.</p>
           </div>
         </details>
 
@@ -1230,11 +1230,9 @@
           >
             <input type="hidden" name="form-name" value="contact">
 
-            <div class="honeypot">
-              <label>
-                Don't fill this out:
-                <input name="bot-field">
-              </label>
+            <div class="visually-hidden">
+              <label for="bot-field">Leave this field empty</label>
+              <input name="bot-field" id="bot-field">
             </div>
             
             <label>

@@ -8,15 +8,20 @@
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://zeroovershoot.com/integration-overview.html">
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#0b3d91" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#070b14" media="(prefers-color-scheme: dark)">
   
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://zeroovershoot.com/integration-overview.html">
   <meta property="og:title" content="Zero Overshoot — Integration Overview">
   <meta property="og:description" content="Integration overview: production context, supported models, integration modes, guarantees, and limits for Zero Overshoot.">
+  <meta property="og:image" content="https://zeroovershoot.com/favicon.svg">
+  <meta property="og:image:alt" content="Zero Overshoot — Integration Overview">
   
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Zero Overshoot — Integration Overview">
   <meta name="twitter:description" content="Integration overview: production context, supported models, and integration modes for Zero Overshoot.">
+  <meta name="twitter:image" content="https://zeroovershoot.com/favicon.svg">
   <style>
     @page {
       size: letter;
@@ -97,13 +102,13 @@
 
   <h2>What Zero Overshoot Is</h2>
   <p>Zero Overshoot is a deterministic safety filter for recursive and feedback-driven systems. It enforces bounded update dynamics to prevent runaway amplification in systems where outputs feed back into inputs. The framework constrains gradient magnitudes and recursion depth structurally, rather than relying on late-stage failure detection.</p>
-  <p>Zero Overshoot operates on mathematical guarantees: stability bounds are derived analytically and provide deterministic constraints within a defined envelope, bounded-by-construction under stated assumptions. This distinguishes it from probabilistic monitoring systems that provide statistical guarantees on average.</p>
+  <p>Zero Overshoot operates on mathematical foundations: stability bounds are derived analytically and are designed to provide deterministic constraints within a defined envelope, bounded-by-construction under stated assumptions. This distinguishes it from probabilistic monitoring systems that provide statistical guarantees on average.</p>
 
   <h2>What It Is NOT</h2>
   <p>Zero Overshoot is not a plug-and-play library. It requires system-specific analysis to configure stability bounds and integration points. There is no generic "install and run" implementation.</p>
   <p>Zero Overshoot is not a SaaS product. It is deployed through tailored engineering work, not a hosted service.</p>
   <p>Zero Overshoot is not a general AI alignment solution. It addresses recursive stability, not value alignment, goal specification, or intent interpretation. These are separate problems.</p>
-  <p>Zero Overshoot is not probabilistic or heuristic-based. The guarantees it provides are deterministic. If probabilistic monitoring is sufficient for your application, Zero Overshoot may be more rigorous than necessary.</p>
+  <p>Zero Overshoot is not probabilistic or heuristic-based. The boundedness criteria it is designed to provide are deterministic. If probabilistic monitoring is sufficient for your application, Zero Overshoot may be more rigorous than necessary.</p>
 
   <h2>Where It Sits in a System</h2>
   <p>Zero Overshoot acts as a pre-decision constraint layer. It sits between the system's decision-making or optimization logic and the actuators or outputs that affect system state. When a proposed update is generated, Zero Overshoot evaluates it against stability bounds before it is committed.</p>
@@ -112,10 +117,10 @@
   <p>Integration requires identifying the feedback pathways in your system and establishing measurement points where Zero Overshoot can intercept and filter updates. The framework must be configured with system-specific bounds that reflect the physical or operational constraints of your application domain.</p>
 
   <h2>What It Guarantees</h2>
-  <p>Zero Overshoot guarantees that update magnitudes remain within predefined envelopes under recursion. It prevents exponential error amplification by bounding gradient steps and limiting recursion depth.</p>
-  <p>The framework guarantees deterministic behavior: within the defined envelope and under stated assumptions, the system cannot produce unbounded updates because the update mechanism itself is bounded. This is a structural guarantee, not a statistical one.</p>
-  <p>Zero Overshoot guarantees pre-execution constraint enforcement. Proposed updates that would violate stability bounds are rejected or modified before they affect system state, not after anomalous behavior is detected.</p>
-  <p>These guarantees hold for the specific system configuration and bounds that were established during integration. They are not universal guarantees for arbitrary systems or configurations.</p>
+  <p>Zero Overshoot is designed to enforce that update magnitudes remain within predefined envelopes under recursion when correctly configured. It is designed to prevent exponential error amplification by bounding gradient steps and limiting recursion depth.</p>
+  <p>The framework is designed to provide deterministic behavior: within the defined envelope and under stated assumptions, the system is designed to prevent unbounded updates because the update mechanism itself is bounded. This is a structural design goal, not a statistical one.</p>
+  <p>Zero Overshoot is designed to enforce pre-execution constraint enforcement. Proposed updates that would violate stability bounds are rejected or modified before they affect system state, not after anomalous behavior is detected.</p>
+  <p>These boundedness criteria apply to the specific system configuration and bounds established during integration. They are not universal guarantees for arbitrary systems or configurations.</p>
 
   <h2>What It Explicitly Does Not Guarantee</h2>
   <p>Zero Overshoot does not guarantee that your system will meet all performance objectives. It constrains updates to remain within bounds, but it does not optimize for speed, efficiency, or other non-safety criteria. A bounded system may be slower or less efficient than an unbounded one.</p>
@@ -133,7 +138,7 @@
     <li>Review of signal → actuator loop architecture</li>
     <li>Identification of instability and overshoot risk points</li>
     <li>Written assessment and recommendation</li>
-    <li>Evaluation of whether Zero Overshoot would provide meaningful safety guarantees for the system</li>
+    <li>Evaluation of whether Zero Overshoot would provide meaningful safety criteria for the system</li>
   </ul>
 
   <h3>Assisted Integration</h3>
@@ -162,7 +167,7 @@
     <li><strong>System analysis:</strong> Identification of feedback pathways, measurement points, and stability requirements specific to your application</li>
     <li><strong>Bound configuration:</strong> Derivation of stability envelopes that reflect physical, operational, or regulatory constraints</li>
     <li><strong>Integration architecture:</strong> Placement of the constraint layer within your system's decision pipeline</li>
-    <li><strong>Validation and testing:</strong> Verification that the integrated system achieves the required stability guarantees under operational conditions</li>
+    <li><strong>Validation and testing:</strong> Verification that the integrated system achieves the required stability criteria under operational conditions</li>
     <li><strong>Ongoing maintenance:</strong> Monitoring and adjustment as system requirements or operational conditions evolve</li>
   </ul>
   <p>Production readiness requires a commercial license. Evaluation and research use may be permitted under different terms. Contact <a href="mailto:info@boonmind.io">info@boonmind.io</a> to discuss your production requirements.</p>
@@ -210,10 +215,10 @@
   <p>If your system does not fit these categories but exhibits recursive or feedback-driven dynamics, contact <a href="mailto:info@boonmind.io">info@boonmind.io</a> to discuss applicability.</p>
 
   <h2>Determinism, Safety, and Limits</h2>
-  <p>Zero Overshoot provides deterministic safety guarantees, meaning that within the defined envelope and under stated assumptions, the behavior is mathematically guaranteed, not probabilistically likely. This is appropriate for safety-critical systems where statistical guarantees are insufficient.</p>
-  <p>The safety guarantees are bounded by the scope of the configuration. Zero Overshoot can guarantee boundedness within the defined envelope, but it cannot guarantee safety beyond the scope of what was analyzed and configured. If new feedback pathways are introduced or operational conditions change beyond the analyzed envelope, the guarantees may no longer apply.</p>
+  <p>Zero Overshoot is designed to provide deterministic safety criteria, meaning that within the defined envelope and under stated assumptions, the behavior is designed to be mathematically bounded, not probabilistically likely. This is appropriate for safety-critical systems where statistical guarantees are insufficient.</p>
+  <p>The safety criteria are bounded by the scope of the configuration. Zero Overshoot can be configured to provide boundedness within the defined envelope, but it cannot guarantee safety beyond the scope of what was analyzed and configured. If new feedback pathways are introduced or operational conditions change beyond the analyzed envelope, the boundedness criteria may no longer apply.</p>
   <p>The limits of Zero Overshoot are architectural and analytical. It cannot protect against failures that occur outside the constraint layer, such as sensor failures, hardware faults, or logic errors in the underlying system. It also cannot protect against failures that result from incorrect bound configuration or incomplete system analysis.</p>
-  <p>Deterministic guarantees require deterministic assumptions. If your system operates under conditions that violate the stated assumptions—for example, if feedback pathways change dynamically in ways not accounted for in the configuration—the guarantees may not hold.</p>
+  <p>Deterministic boundedness criteria require deterministic assumptions. If your system operates under conditions that violate the stated assumptions—for example, if feedback pathways change dynamically in ways not accounted for in the configuration—the boundedness criteria may not hold.</p>
 
   <h2>Patent-Pending and Licensing Notice</h2>
   <p>Zero Overshoot is proprietary technology. Patent applications are in preparation. The framework, algorithms, and implementation patterns are protected intellectual property.</p>

@@ -13,6 +13,8 @@
   <link rel="canonical" href="https://zeroovershoot.com/">
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./style.css">
+  <meta name="theme-color" content="#0b3d91" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#070b14" media="(prefers-color-scheme: dark)">
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
@@ -20,11 +22,14 @@
   <meta property="og:title" content="Zero Overshoot — Commercial Safety Filter for Recursive Systems">
   <meta property="og:description" content="Proprietary, licensed safety filter for recursive systems. Production deployment requires a commercial license. Run the demo and contact for licensing.">
   <meta property="og:site_name" content="GSRF">
+  <meta property="og:image" content="https://zeroovershoot.com/favicon.svg">
+  <meta property="og:image:alt" content="Zero Overshoot (GSRF)">
   
   <!-- Twitter -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Zero Overshoot">
   <meta name="twitter:description" content="Commercial safety filter for recursive systems. Production use requires a license.">
+  <meta name="twitter:image" content="https://zeroovershoot.com/favicon.svg">
   
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -1060,7 +1065,7 @@
             <p><strong>Recursive depth constraints</strong> limit how far feedback can propagate through the system before encountering a stabilising checkpoint. This prevents the exponential error amplification that characterises unconstrained recursion.</p>
             <p><strong>Stability enforcement prior to execution</strong> means that GSRF validates system state and proposed actions against stability criteria before they are committed. GSRF acts as a deterministic, zero-overshoot safety filter: actions that would violate stability constraints are rejected or modified before they affect system state.</p>
             <p><strong>Prevention of uncontrolled system divergence</strong> follows from the above. By bounding gradients, limiting recursion depth, and filtering decisions prior to execution, GSRF eliminates the pathways through which recursive systems typically fail.</p>
-            <p>The framework operates on mathematical guarantees rather than empirical heuristics. The stability bounds are derived analytically and provide deterministic bounds within the defined envelope, bounded-by-construction under stated assumptions. This is what distinguishes a deterministic safety layer from probabilistic monitoring.</p>
+            <p>The framework operates on mathematical foundations. The stability bounds are derived analytically and are designed to provide deterministic bounds within the defined envelope, bounded-by-construction under stated assumptions. This is what distinguishes a deterministic safety layer from probabilistic monitoring.</p>
             <p>An <a href="./demo/">interactive demonstration</a> compares bounded (GSRF) versus unbounded (EMA) filtering on synthetic signals.</p>
           </div>
         </details>
@@ -1073,7 +1078,7 @@
               <li><strong>Not a plug-and-play library.</strong> GSRF requires system-specific analysis to configure stability bounds and integration points. There is no generic "install and run" implementation.</li>
               <li><strong>Not a SaaS product.</strong> GSRF is a framework deployed through tailored engineering work, not a hosted service.</li>
               <li><strong>Not a general AI alignment solution.</strong> GSRF addresses recursive stability, not value alignment, goal specification, or intent interpretation. These are separate problems.</li>
-              <li><strong>Not probabilistic or heuristic-based.</strong> The guarantees GSRF provides are deterministic. If probabilistic monitoring is sufficient for your application, GSRF may be more rigorous than necessary.</li>
+              <li><strong>Not probabilistic or heuristic-based.</strong> The boundedness criteria GSRF is designed to provide are deterministic. If probabilistic monitoring is sufficient for your application, GSRF may be more rigorous than necessary.</li>
             </ul>
           </div>
         </details>
@@ -1089,7 +1094,7 @@
               <li><strong>Reinforcement learning pipelines</strong> — where reward-seeking behaviour must be bounded to prevent unsafe policy development</li>
               <li><strong>Industrial automation</strong> — control systems governing physical processes where instability has immediate physical consequences</li>
               <li><strong>Financial or operational decision systems</strong> — automated trading, resource allocation, or scheduling systems where recursive optimisation must be bounded</li>
-              <li><strong>Safety-critical software environments</strong> — any context where deterministic guarantees are required by regulation, liability, or operational necessity</li>
+              <li><strong>Safety-critical software environments</strong> — any context where deterministic boundedness criteria are required by regulation, liability, or operational necessity</li>
             </ul>
           </div>
         </details>
@@ -1216,7 +1221,7 @@
           <li><strong>System audit</strong> — analysis of existing architecture, feedback pathways, and potential instability sources</li>
           <li><strong>Failure-mode analysis</strong> — identification of conditions under which the system could exhibit runaway behaviour or recursive instability</li>
           <li><strong>Constraint design</strong> — derivation of stability bounds and integration architecture specific to the system</li>
-          <li><strong>Validation guidance</strong> — methodology for verifying that implemented constraints achieve the required stability guarantees</li>
+          <li><strong>Validation guidance</strong> — methodology for verifying that implemented constraints achieve the required stability criteria</li>
         </ul>
         
         <div class="contact-form">
@@ -1396,7 +1401,7 @@
         <p>Zero Overshoot is designed for recursive and feedback-driven systems including control loops, optimization engines, autonomous agents, and safety-critical applications. See <a href="./integration-overview.html">Integration Overview</a> for production context and supported models.</p>
         
         <h4>What guarantees does Zero Overshoot provide?</h4>
-        <p>Within the defined envelope and under stated assumptions, Zero Overshoot guarantees bounded update dynamics and prevents exponential error amplification. It does not guarantee performance optimization, protection against all failure modes, or correct behavior if bounds are configured incorrectly. See <a href="./integration-overview.html">Integration Overview</a> for details.</p>
+        <p>Within the defined envelope and under stated assumptions, Zero Overshoot is designed to enforce bounded update dynamics and can prevent exponential error amplification when correctly configured. It does not guarantee performance optimization, protection against all failure modes, or correct behavior if bounds are configured incorrectly. See <a href="./integration-overview.html">Integration Overview</a> for details.</p>
         
         <h3>Legal</h3>
         <h4>What is the patent status?</h4>

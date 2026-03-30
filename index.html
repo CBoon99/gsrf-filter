@@ -406,6 +406,12 @@
     li { margin-bottom: 8px; }
     .note { font-size: 15px; color: var(--text-secondary); }
 
+    pre {
+      max-width: 100%;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
     .paper { padding: 16px; margin-bottom: 12px; }
     .paper p { margin-bottom: 10px; font-size: 16px; color: var(--text-secondary); }
     .paper a { font-size: 15px; }
@@ -560,6 +566,12 @@
       .js .reveal { transition: none; transform: none; }
     }
 
+    /* Keep long lay paragraphs readable */
+    section[aria-label="How current approaches are done and why it fails"] p,
+    section[aria-label="Outcome translation"] p {
+      max-width: 78ch;
+    }
+
     /* Mobile floating CTA */
     .floating-cta {
       position: fixed;
@@ -602,10 +614,15 @@
       .engagement-grid { grid-template-columns: 1fr; }
       .topnav a { padding: 10px 12px; }
       .brandrow { flex-wrap: wrap; }
+      section { margin-bottom: 44px; }
+      h2 { margin-bottom: 14px; }
       section > div[style*="grid-template-columns: 1fr 1fr"] { grid-template-columns: 1fr !important; }
       section[aria-label*="What Zero Overshoot Is"] > div { grid-template-columns: 1fr !important; }
       section[aria-label*="Stability Demonstrations"] > div[style*="grid-template-columns: 1fr"] { grid-template-columns: 1fr !important; }
       section[aria-label*="Stability Demonstrations"] .card > div[style*="grid-template-columns: 1fr 1fr"] { grid-template-columns: 1fr !important; }
+      .paper p { font-size: 15px; }
+      details .details-body { padding: 0 12px 12px; }
+      .details-body p:first-child { margin-top: 12px; }
     }
 
     @media (max-width: 420px) {
@@ -617,6 +634,116 @@
       .contact-form { display: none; }
       a { color: black; text-decoration: none; }
       a[href]:after { content: " (" attr(href) ")"; font-size: 10pt; }
+    }
+
+    /* Old way vs GSRF comparison matrix */
+    .comparison-table-wrap{
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+    }
+    .comparison-table{
+      width: 100%;
+      min-width: 980px;
+      border-collapse: collapse;
+    }
+    .comparison-table th,
+    .comparison-table td{
+      border-bottom: 1px solid var(--border);
+      padding: 10px 10px;
+      vertical-align: top;
+      font-size: 12px;
+      line-height: 1.35;
+      color: var(--text-secondary);
+    }
+    .comparison-table thead th{
+      border-bottom: 2px solid var(--border);
+      font-weight: 950;
+      color: var(--text);
+      background: rgba(11, 61, 145, 0.04);
+      white-space: nowrap;
+    }
+    .comparison-dim{
+      text-align: left;
+      font-weight: 900;
+      color: var(--text);
+      min-width: 210px;
+      width: 210px;
+    }
+    .comparison-gsrf-col{
+      background: rgba(255,255,255,0.98);
+    }
+    .comparison-gsrf-head{
+      background: rgba(255,255,255,0.98) !important;
+      border-left: 2px solid rgba(11, 61, 145, 0.45);
+    }
+
+    /* Freeze (stick) the Dimension column and the GSRF column (both on the left) */
+    .comparison-table th.comparison-dim{
+      position: sticky;
+      left: 0;
+      z-index: 5;
+      background: rgba(255,255,255,0.98);
+      box-shadow: inset -2px 0 0 rgba(11, 61, 145, 0.18);
+    }
+    .comparison-table thead th.comparison-dim{
+      z-index: 7;
+      background: rgba(255,255,255,0.98);
+    }
+    .comparison-table th.comparison-gsrf-head,
+    .comparison-table td.comparison-gsrf-col{
+      position: sticky;
+      left: 210px;
+      z-index: 5;
+      background: rgba(255,255,255,0.98);
+    }
+    .comparison-table thead th.comparison-gsrf-head{
+      z-index: 6;
+      box-shadow: inset 2px 0 0 rgba(11, 61, 145, 0.45);
+    }
+    .comparison-table td.comparison-gsrf-col{
+      box-shadow: inset 2px 0 0 rgba(11, 61, 145, 0.28);
+    }
+    .marker{
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 950;
+      letter-spacing: -0.2px;
+      white-space: nowrap;
+    }
+    .marker-ok{
+      background: rgba(46, 204, 113, 0.12);
+      border-color: rgba(46, 204, 113, 0.35);
+      color: var(--text);
+    }
+    .marker-partial{
+      background: rgba(245, 158, 11, 0.14);
+      border-color: rgba(245, 158, 11, 0.35);
+      color: var(--text);
+    }
+    .marker-bad{
+      background: rgba(231, 76, 60, 0.12);
+      border-color: rgba(231, 76, 60, 0.35);
+      color: var(--text);
+    }
+    .marker-muted{
+      background: rgba(255,255,255,0.03);
+      border-color: var(--border);
+      color: var(--text-secondary);
+    }
+    @media (max-width: 600px){
+      .comparison-table{ min-width: 880px; }
+      .comparison-table th, .comparison-table td{ padding: 9px 8px; font-size: 11px; }
+      .comparison-dim{ min-width: 180px; width: 180px; }
+      .comparison-table th.comparison-gsrf-head,
+      .comparison-table td.comparison-gsrf-col{
+        left: 180px;
+      }
+      .comparison-table-wrap{ margin-left: -12px; margin-right: -12px; }
     }
   </style>
 </head>
@@ -631,7 +758,7 @@
             Zero Overshoot (GSRF)
           </a>
           <nav class="topnav" aria-label="Top">
-            <a href="#start">Start here</a>
+            <a href="#comparison">Start here</a>
             <a href="./paper-gsrf-framework.html">Abstracts</a>
             <a href="#papers">Papers</a>
             <a href="#contact">Licensing</a>
@@ -645,13 +772,21 @@
     <header class="hero" aria-label="Hero">
       <div class="hero-grid">
         <div class="reveal">
-          <div class="title">Zero Overshoot</div>
+          <div class="title">Zero Overshoot (GSRF)</div>
           <!-- Option 1: "A deterministic stability layer for safety-critical control where bounded behaviour is mandatory." -->
           <!-- Option 2: "A deterministic stability layer enforcing bounded behaviour in safety-critical control systems." -->
           <!-- Option 3: "A deterministic stability layer for safety-critical systems requiring bounded, rate-limited behaviour." -->
-          <p class="tagline" style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">A deterministic stability layer for safety-critical control where bounded behaviour is mandatory.</p>
-          <p class="tagline" style="font-size: 16px; font-weight: normal; margin-top: 12px;">Designed to prevent over-reaction, oscillation, and runaway behaviour<br>in flight stabilisation and engineering control systems.</p>
-          <p class="tagline" style="font-size: 15px; font-weight: normal; margin-top: 12px; color: var(--text-secondary);">Deterministic boundedness within a configured envelope and stated assumptions (see papers).</p>
+          <p class="tagline" style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">A proprietary deterministic safety layer for recursive and feedback-driven systems.</p>
+          <p class="tagline" style="font-size: 16px; font-weight: normal; margin-top: 12px;">
+            Recursive systems can overreact, oscillate, drift, and amplify small errors.<br>
+            Zero Overshoot separates risk enforcement from your system’s own decision logic—so the system does not get to behave unsafely just because it wanted to.
+          </p>
+          <p class="tagline" style="font-size: 15px; font-weight: normal; margin-top: 12px; color: var(--text-secondary);">
+            Structurally constrains allowed behavior within a configured envelope under stated assumptions (see papers).
+          </p>
+          <p style="margin-top: 16px; padding: 14px 14px; background: rgba(11, 61, 145, 0.06); border-left: 4px solid var(--accent); border-radius: 8px; font-size: 16px; font-weight: 900; line-height: 1.6; color: var(--text);">
+            Zero Overshoot separates risk from behavior and enforces it structurally—so the system does not get to behave unsafely just because the internal logic wanted to.
+          </p>
           <div class="actions">
             <a class="btn primary" href="./demo/">Run the Demo (Industry-Preloaded)</a>
             <a class="btn secondary" href="#contact">Licensing &amp; Integration</a>
@@ -670,23 +805,221 @@
           <div class="card" style="padding: 24px; border-left: 3px solid var(--accent);">
             <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 16px; color: var(--text);">What it is</h3>
             <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
-              <li>A deterministic, non-learning stability bounding layer</li>
-              <li>Operates outside existing control loops</li>
-              <li>Enforces conservative, rate-limited behaviour over time</li>
-              <li>Designed to do nothing unless instability emerges</li>
+              <li>A deterministic, bounded-by-design enforcement layer</li>
+              <li>Separates risk from behavior in recursive / feedback-driven systems</li>
+              <li>Constrains proposed updates before they reach actuators or outputs</li>
+              <li>Targets unsafe propagation (overshoot / instability), not just noise</li>
             </ul>
           </div>
           
           <div class="card" style="padding: 24px; border-left: 3px solid var(--muted);">
             <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 16px; color: var(--text);">What it is not</h3>
             <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
-              <li>❌ Not a flight control system</li>
-              <li>❌ Not AI or machine learning</li>
-              <li>❌ Not real-time millisecond actuation</li>
-              <li>❌ Not a replacement for certified logic</li>
+              <li>❌ Not another smoother / Kalman / EMA-style estimator</li>
+              <li>❌ Not a reactive kill-switch that only acts after damage begins</li>
+              <li>❌ Not “risk logic” entangled inside the strategy you’re trying to control</li>
             </ul>
           </div>
         </div>
+      </section>
+
+      <section class="reveal" aria-label="How current approaches are done and why they fail" style="margin: 48px 0;">
+        <div style="font-size: 12px; text-transform: uppercase; letter-spacing: .14em; font-weight: 900; color: var(--text-secondary); margin-bottom: 10px;">
+          Current options (old way) vs deterministic enforcement (Zero Overshoot)
+        </div>
+        <h2 style="font-size: 28px; font-weight: 950; margin-bottom: 18px; color: var(--text); letter-spacing: -0.4px;">How teams usually handle recursive risk (and why it fails)</h2>
+        <p style="margin-bottom: 22px; color: var(--text-secondary); line-height: 1.7;">
+          In recursive systems, “risk” often ends up being reactive: teams tune, estimate, monitor, and shut down after the unsafe behavior has already started propagating.
+          The result is fragmented responsibility, probabilistic or delayed enforcement, and debugging that’s harder because risk and behavior are entangled.
+          Zero Overshoot becomes obvious once you separate risk from behavior and enforce allowed updates structurally—before unsafe propagation spreads.
+        </p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 20px;">
+          <div class="card" style="padding: 20px;">
+            <h3 style="font-size: 18px; font-weight: 950; margin-bottom: 12px; color: var(--text); padding: 10px 12px; background: rgba(11, 61, 145, 0.06); border-left: 4px solid var(--accent); border-radius: 10px; letter-spacing: -0.2px;">Noise filtering / smoothing</h3>
+            <p><strong>What it is:</strong> Reduce jitter by filtering measured signals before they affect control or decisions.</p>
+            <p><strong>Why teams use it:</strong> It can improve average tracking and feels “safe enough” in normal conditions.</p>
+            <p><strong>Downside:</strong> It is reactive (responds to what you already measured), and it cannot prevent the loop from amplifying unsafe internal behavior.</p>
+          </div>
+          <div class="card" style="padding: 20px;">
+            <h3 style="font-size: 18px; font-weight: 950; margin-bottom: 12px; color: var(--text); padding: 10px 12px; background: rgba(11, 61, 145, 0.06); border-left: 4px solid var(--accent); border-radius: 10px; letter-spacing: -0.2px;">Kalman / EMA / estimation filters</h3>
+            <p><strong>What it is:</strong> Estimate system state with probabilistic or gain-based update rules (e.g., Kalman, EMA).</p>
+            <p><strong>Why teams use it:</strong> It gives a clean state estimate and stable-looking signals for downstream logic.</p>
+            <p><strong>Downside:</strong> Risk is probabilistic or approximate, enforcement is delayed, and debugging gets harder because “alpha/behavior” and “risk” are mixed.</p>
+          </div>
+          <div class="card" style="padding: 20px;">
+            <h3 style="font-size: 18px; font-weight: 950; margin-bottom: 12px; color: var(--text); padding: 10px 12px; background: rgba(11, 61, 145, 0.06); border-left: 4px solid var(--accent); border-radius: 10px; letter-spacing: -0.2px;">Stop-loss / kill-switch / hard shutdown</h3>
+            <p><strong>What it is:</strong> Shut down, throttle, or bail out when an unsafe condition is detected.</p>
+            <p><strong>Why teams use it:</strong> It offers a clear last line of defense when things go wrong.</p>
+            <p><strong>Downside:</strong> It is prevention-by-termination. The unsafe behavior may already be underway, and graceful recovery is limited.</p>
+          </div>
+          <div class="card" style="padding: 20px;">
+            <h3 style="font-size: 18px; font-weight: 950; margin-bottom: 12px; color: var(--text); padding: 10px 12px; background: rgba(11, 61, 145, 0.06); border-left: 4px solid var(--accent); border-radius: 10px; letter-spacing: -0.2px;">Hard caps / portfolio limits / last-line controls</h3>
+            <p><strong>What it is:</strong> Enforce coarse bounds (limits, caps, stop rules) on outputs, exposure, or parameters.</p>
+            <p><strong>Why teams use it:</strong> It is simple to explain and easy to implement.</p>
+            <p><strong>Downside:</strong> Coarse caps can be bypassed by feedback structure, misconfigured when models drift, and they often act after damage has started.</p>
+          </div>
+          <div class="card" style="padding: 20px;">
+            <h3 style="font-size: 18px; font-weight: 950; margin-bottom: 12px; color: var(--text); padding: 10px 12px; background: rgba(11, 61, 145, 0.06); border-left: 4px solid var(--accent); border-radius: 10px; letter-spacing: -0.2px;">Baking risk logic into the algorithm/system</h3>
+            <p><strong>What it is:</strong> Put risk constraints directly inside the strategy or update mechanism you’re trying to control.</p>
+            <p><strong>Why teams use it:</strong> It seems “integrated” and simplifies governance by putting everything in one place.</p>
+            <p><strong>Downside:</strong> Risk and behavior are entangled. You can’t cleanly isolate whether failure came from the strategy or the risk rule—and it’s harder to audit and debug.</p>
+          </div>
+          <div class="card" style="padding: 20px;">
+            <h3 style="font-size: 18px; font-weight: 950; margin-bottom: 12px; color: var(--text); padding: 10px 12px; background: rgba(11, 61, 145, 0.06); border-left: 4px solid var(--accent); border-radius: 10px; letter-spacing: -0.2px;">Monitoring / alarms / reactive supervision</h3>
+            <p><strong>What it is:</strong> Watch for anomalies and trigger alerts or interventions when thresholds are crossed.</p>
+            <p><strong>Why teams use it:</strong> It supports oversight and compliance workflows.</p>
+            <p><strong>Downside:</strong> It is reactive. In recursive systems, monitoring frequently detects after drift has already propagated—so “risk” arrives too late to prevent unsafe propagation.</p>
+          </div>
+        </div>
+        <div style="margin-top: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 16px; background: rgba(11, 61, 145, 0.03); border-left: 3px solid var(--accent); border-radius: 6px;">
+          <div style="padding: 14px; background: rgba(255, 255, 255, 0.35); border: 1px solid var(--border); border-radius: 6px;">
+            <div style="font-size: 12px; text-transform: uppercase; letter-spacing: .14em; font-weight: 900; color: var(--text-secondary); margin-bottom: 8px;">
+              Old way (inside the system)
+            </div>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.7;">
+              Tune, smooth, estimate, monitor, or shut down—then try to recover.
+              In recursive systems, that’s often reactive and coarse, so risk arrives after unsafe propagation has already spread.
+            </p>
+          </div>
+          <div style="padding: 14px; background: rgba(11, 61, 145, 0.04); border: 1px solid rgba(11, 61, 145, 0.18); border-radius: 6px;">
+            <div style="font-size: 12px; text-transform: uppercase; letter-spacing: .14em; font-weight: 900; color: var(--text-secondary); margin-bottom: 8px;">
+              Zero Overshoot (separate enforcement)
+            </div>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.7;">
+              Separate risk from behavior and enforce allowed updates structurally—before unsafe propagation spreads.
+              Separation enables explainable boundaries, clearer debugging, enforceability, and measurable cost-of-safety tradeoffs.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="comparison" class="reveal" aria-label="Old way vs structural enforcement comparison matrix" style="margin: 12px 0 48px;">
+        <h2 style="font-size: 24px; font-weight: 950; margin-bottom: 12px; color: var(--text); letter-spacing: -0.3px;">Current approaches vs Zero Overshoot (GSRF)</h2>
+        <p style="margin-bottom: 16px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
+          This comparison matrix makes the key shift explicit: most methods reduce symptoms, but only Zero Overshoot applies bounded, structural enforcement as a separate layer.
+        </p>
+        <div class="comparison-table-wrap" role="region" aria-label="Comparison matrix: old approaches vs Zero Overshoot">
+          <table class="comparison-table" role="table">
+            <thead>
+              <tr>
+                <th class="comparison-dim" scope="col">Dimension (what changes in practice)</th>
+                <th class="comparison-gsrf-head" scope="col">Zero Overshoot (GSRF)</th>
+                <th scope="col">Noise filtering / smoothing</th>
+                <th scope="col">Kalman / EMA / estimation filters</th>
+                <th scope="col">Stop-loss / kill-switch / shutdown</th>
+                <th scope="col">Hard caps / last-line controls</th>
+                <th scope="col">Risk embedded in algorithm/system</th>
+                <th scope="col">Monitoring / alarms / reactive supervision</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th class="comparison-dim" scope="row">Bounded-by-design structural enforcement</th>
+                <td class="comparison-gsrf-col"><span class="marker marker-ok">Yes (deterministic)</span></td>
+                <td><span class="marker marker-bad">No</span></td>
+                <td><span class="marker marker-bad">No</span></td>
+                <td><span class="marker marker-partial">Limited</span></td>
+                <td><span class="marker marker-partial">Limited / coarse</span></td>
+                <td><span class="marker marker-partial">Partial</span></td>
+                <td><span class="marker marker-bad">No</span></td>
+              </tr>
+              <tr>
+                <th class="comparison-dim" scope="row">Separation of risk from behavior</th>
+                <td class="comparison-gsrf-col"><span class="marker marker-ok">Separated by design</span></td>
+                <td><span class="marker marker-bad">Entangled</span></td>
+                <td><span class="marker marker-bad">Entangled</span></td>
+                <td><span class="marker marker-partial">Mostly reactive</span></td>
+                <td><span class="marker marker-partial">Often entangled</span></td>
+                <td><span class="marker marker-bad">Risk is inside</span></td>
+                <td><span class="marker marker-bad">Reactive oversight</span></td>
+              </tr>
+              <tr>
+                <th class="comparison-dim" scope="row">Explainability (clear boundaries)</th>
+                <td class="comparison-gsrf-col"><span class="marker marker-ok">High (envelope-based)</span></td>
+                <td><span class="marker marker-partial">Partial</span></td>
+                <td><span class="marker marker-partial">Partial</span></td>
+                <td><span class="marker marker-partial">Partial (thresholds)</span></td>
+                <td><span class="marker marker-ok">Simple</span></td>
+                <td><span class="marker marker-partial">Hard to attribute</span></td>
+                <td><span class="marker marker-partial">Partial (alerts)</span></td>
+              </tr>
+              <tr>
+                <th class="comparison-dim" scope="row">Debuggability (isolate failure source)</th>
+                <td class="comparison-gsrf-col"><span class="marker marker-ok">Clean isolation</span></td>
+                <td><span class="marker marker-partial">Some isolation</span></td>
+                <td><span class="marker marker-partial">State mixing</span></td>
+                <td><span class="marker marker-partial">Trigger-based</span></td>
+                <td><span class="marker marker-partial">Coarse signals</span></td>
+                <td><span class="marker marker-bad">Low (entangled)</span></td>
+                <td><span class="marker marker-partial">Late evidence</span></td>
+              </tr>
+              <tr>
+                <th class="comparison-dim" scope="row">Unsafe propagation can still occur?</th>
+                <td class="comparison-gsrf-col"><span class="marker marker-ok">No (within bounds)</span></td>
+                <td><span class="marker marker-bad">Yes (possible)</span></td>
+                <td><span class="marker marker-bad">Yes (possible)</span></td>
+                <td><span class="marker marker-partial">Partial (late)</span></td>
+                <td><span class="marker marker-partial">Partial (coarse/late)</span></td>
+                <td><span class="marker marker-partial">Partial</span></td>
+                <td><span class="marker marker-bad">Yes (after drift)</span></td>
+              </tr>
+              <tr>
+                <th class="comparison-dim" scope="row">Reactive vs preventative</th>
+                <td class="comparison-gsrf-col"><span class="marker marker-ok">Preventative</span></td>
+                <td><span class="marker marker-bad">Reactive</span></td>
+                <td><span class="marker marker-bad">Reactive / delayed</span></td>
+                <td><span class="marker marker-bad">Reactive (last resort)</span></td>
+                <td><span class="marker marker-bad">Reactive (coarse)</span></td>
+                <td><span class="marker marker-partial">Mixed</span></td>
+                <td><span class="marker marker-bad">Reactive</span></td>
+              </tr>
+              <tr>
+                <th class="comparison-dim" scope="row">Coarse vs fine-grained control</th>
+                <td class="comparison-gsrf-col"><span class="marker marker-ok">Fine-grained (envelope)</span></td>
+                <td><span class="marker marker-bad">Coarse / approximate</span></td>
+                <td><span class="marker marker-bad">Approximate</span></td>
+                <td><span class="marker marker-bad">Coarse</span></td>
+                <td><span class="marker marker-bad">Coarse</span></td>
+                <td><span class="marker marker-partial">Variable</span></td>
+                <td><span class="marker marker-bad">Coarse</span></td>
+              </tr>
+              <tr>
+                <th class="comparison-dim" scope="row">Depends on model correctness?</th>
+                <td class="comparison-gsrf-col"><span class="marker marker-ok">Low dependence</span></td>
+                <td><span class="marker marker-partial">Some assumptions</span></td>
+                <td><span class="marker marker-bad">High</span></td>
+                <td><span class="marker marker-partial">Less (threshold-driven)</span></td>
+                <td><span class="marker marker-partial">Needs correct bounds</span></td>
+                <td><span class="marker marker-bad">Often high</span></td>
+                <td><span class="marker marker-partial">Tuning-dependent</span></td>
+              </tr>
+              <tr>
+                <th class="comparison-dim" scope="row">Can it fail late (after spread begins)?</th>
+                <td class="comparison-gsrf-col"><span class="marker marker-ok">No (fail-closed)</span></td>
+                <td><span class="marker marker-bad">Yes</span></td>
+                <td><span class="marker marker-bad">Yes</span></td>
+                <td><span class="marker marker-bad">Yes (may be underway)</span></td>
+                <td><span class="marker marker-bad">Yes (coarse)</span></td>
+                <td><span class="marker marker-bad">Yes (entangled)</span></td>
+                <td><span class="marker marker-bad">Yes</span></td>
+              </tr>
+              <tr>
+                <th class="comparison-dim" scope="row">Measurable cost-of-safety tradeoffs</th>
+                <td class="comparison-gsrf-col"><span class="marker marker-ok">Yes (structured)</span></td>
+                <td><span class="marker marker-partial">Limited</span></td>
+                <td><span class="marker marker-partial">Limited</span></td>
+                <td><span class="marker marker-partial">Partial</span></td>
+                <td><span class="marker marker-partial">Partial</span></td>
+                <td><span class="marker marker-bad">Hard to attribute</span></td>
+                <td><span class="marker marker-partial">Partial (incidents)</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p style="margin-top: 14px; padding: 14px 16px; background: rgba(11, 61, 145, 0.03); border-left: 4px solid var(--accent); border-radius: 8px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
+          <strong>This is the key shift:</strong> Zero Overshoot (GSRF) is not another estimator, smoother, or shutdown rule. It is a separate deterministic enforcement layer that applies boundedness before unsafe propagation spreads.
+        </p>
       </section>
 
       <section class="reveal" aria-label="Stability Demonstrations Interactive" style="margin: 48px 0;">
@@ -698,7 +1031,10 @@
             </span>
           </summary>
           <div style="margin-top: 24px;">
-            <p style="margin-bottom: 32px; color: var(--text-secondary);">Simplified demonstrations for intuition. These are illustrative control-loop behaviours, not proofs or guarantees.</p>
+            <p style="margin-bottom: 32px; color: var(--text-secondary);">
+              Synthetic feedback scenarios that illustrate what happens when recursive updates are allowed versus structurally bounded.
+              These are illustrative examples, not proofs or guarantees.
+            </p>
             
             <div style="display: grid; grid-template-columns: 1fr; gap: 32px; margin-top: 24px;">
           
@@ -815,7 +1151,7 @@
         </div>
         
         <p style="margin-top: 32px; padding: 16px; background: rgba(11, 61, 145, 0.05); border-left: 3px solid var(--accent); border-radius: 6px; font-size: 14px; color: var(--text-secondary);">
-          <strong>Disclaimer:</strong> These are simplified demonstrations for intuition. Demo uses synthetic signals; production systems require custom integration, validation, and domain modelling.
+          <strong>Demo note:</strong> Synthetic evaluation only (illustrative). Production deployment requires custom integration, validation, and domain modelling.
         </p>
         
             <div style="margin-top: 24px;">
@@ -864,14 +1200,18 @@
       </section>
 
       <section class="industry reveal" aria-label="Choose an industry">
-            <h2>Choose an industry (launches the demo with real parameters)</h2>
-            <p class="sub">Each launch loads an industry preset: dataset scale, axis labels, and metric wording. Figures below are examples.</p>
+            <h2>Choose an industry (launches the demo with industry framing)</h2>
+            <p class="sub">Each launch loads a domain-shaped synthetic preset and industry-tuned KPI wording for max overshoot (envelope violation), band crossings, and time-to-stability. Figures below are synthetic demo KPIs (illustrative), not validated performance claims.</p>
             <div class="industry-grid">
               <div class="card industry-card" data-industry="autonomous">
                 <div class="k">Autonomous control</div>
-                <div class="t">Vehicle yaw / flight attitude stabilization</div>
-                <div class="p">A controller optimizes tracking error and settling time. Oscillation and feedback amplification show up as overshoot beyond safe bounds.</div>
-                <div class="ex"><strong>Examples:</strong> 0.6° peak overshoot; 0.18 s time-to-stability (example)</div>
+                <div class="t">Vehicle control (including drones; future drone swarms)</div>
+                <div class="p">
+                  Recursive perception + feedback can overreact: small estimation errors amplify into oscillation and envelope-excursion corrections.
+                  Zero Overshoot separates risk enforcement from the system’s own logic and constrains updates structurally, so the system does not get to propagate unsafe behavior just because it wanted to.
+                  Business benefit that matters: reduced operator / pilot interventions and fewer unsafe excursion patterns (translated into cost-of-safety outcomes below).
+                </div>
+                <div class="ex"><strong>Synthetic demo KPI (illustrative):</strong> 0.6° peak envelope violation; 0.18 s time-to-stability (example)</div>
                 <div class="row">
                   <a class="btn primary launch" href="./demo/?industry=autonomous">Launch demo</a>
                 </div>
@@ -879,31 +1219,57 @@
 
               <div class="card industry-card" data-industry="robotics">
                 <div class="k">Robotics</div>
-                <div class="t">Adaptive grasp / learned torque control</div>
-                <div class="p">A policy optimizes task success and smoothness. Feedback amplification shows as drift in torque commands and unstable corrections.</div>
-                <div class="ex"><strong>Examples:</strong> 12% peak deviation; 35 steps to stability window (example)</div>
+                <div class="t">Control with actuator commands (and future drones / drone swarms)</div>
+                <div class="p">
+                  Adaptive or learned control can create recursive command loops where drift and unstable corrections amplify into actuator stress and continuous retuning.
+                  Zero Overshoot acts as a separate deterministic enforcement layer: it bounds the allowed update dynamics before actuators receive commands.
+                  Business benefit that matters: fewer instability-driven tuning / validation cycles and reduced wear-and-downtime from oscillatory correction.
+                </div>
+                <div class="ex"><strong>Synthetic demo KPI (illustrative):</strong> 12% peak deviation; 35 steps to stability window (example)</div>
                 <div class="row">
                   <a class="btn primary launch" href="./demo/?industry=robotics">Launch demo</a>
                 </div>
               </div>
 
+              <div class="card industry-card" data-industry="industrial">
+                <div class="k">Industrial control</div>
+                <div class="t">Process / PLC feedback (temperature, flow, pressure)</div>
+                <div class="p">
+                  Dead time, saturation, and recursive feedback can turn “small drift” into delayed divergence—showing up as out-of-tolerance operation, scrap, and instability-driven maintenance.
+                  Zero Overshoot constrains the update behavior structurally within configured tolerance envelopes, reducing unsafe propagation into the physical process.
+                  Business benefit that matters: less scrap / rework and fewer downtime events tied to instability patterns.
+                </div>
+                <div class="ex"><strong>Synthetic demo KPI (illustrative):</strong> 3.0% overshoot (envelope violation); 0.9 s time-to-stability (example)</div>
+                <div class="row">
+                  <a class="btn primary launch" href="./demo/?industry=industrial">Launch demo</a>
+                </div>
+              </div>
+
               <div class="card industry-card" data-industry="finance">
-                <div class="k">Finance / Trading systems</div>
-                <div class="t">Recursive signal + position sizing loop</div>
-                <div class="p">An optimizer targets return vs risk. Oscillation and feedback amplification shows as amplified exposure changes and unstable signal chasing.</div>
-                <div class="ex"><strong>Examples:</strong> 2.5× peak amplitude; 6 band crossings (example)</div>
+                <div class="k">Finance / trading</div>
+                <div class="t">Iterative signal + position sizing loop</div>
+                <div class="p">
+                  Recursive optimization can amplify estimation error into oscillatory exposure changes and unstable signal chasing.
+                  Zero Overshoot separates risk from strategy by enforcing bounded-by-design update dynamics, preventing unsafe propagation toward destructive states outside the configured envelope.
+                  Business benefit that matters: reduced drawdown pressure and fewer incident-style risk breaches that consume engineering time.
+                </div>
+                <div class="ex"><strong>Synthetic demo KPI (illustrative):</strong> 2.5× peak envelope violation; 6 band crossings (example)</div>
                 <div class="row">
                   <a class="btn primary launch" href="./demo/?industry=finance">Launch demo</a>
                 </div>
               </div>
 
-              <div class="card industry-card" data-industry="industrial">
-                <div class="k">Industrial control</div>
-                <div class="t">Process control / PLC loop (temperature, flow)</div>
-                <div class="p">A loop optimizes stability and constraint compliance. Oscillation and feedback amplification show as slow drift, saturation, and delayed divergence.</div>
-                <div class="ex"><strong>Examples:</strong> 3.0% overshoot; 0.9 s settling (example)</div>
+              <div class="card industry-card" data-industry="medical">
+                <div class="k">Medical / life-critical monitoring</div>
+                <div class="t">Closed-loop monitoring and life-critical deviation control</div>
+                <div class="p">
+                  Recursive estimation/control pipelines can produce unstable deviation updates—leading to alert churn and unsafe corrective behavior when risk enforcement is entangled with behavior.
+                  Zero Overshoot provides a separate deterministic enforcement layer: it constrains proposed updates to remain within a configured envelope so unsafe behavior cannot propagate.
+                  Business benefit that matters: reduced false alarm burden and fewer high-intervention events that cost time and attention (illustrative translation).
+                </div>
+                <div class="ex"><strong>Synthetic demo KPI (illustrative):</strong> band ±0.15; 2 band crossings; stability window reached within the demo horizon (example)</div>
                 <div class="row">
-                  <a class="btn primary launch" href="./demo/?industry=industrial">Launch demo</a>
+                  <a class="btn primary launch" href="./demo/?industry=medical">Launch demo</a>
                 </div>
               </div>
             </div>
@@ -912,21 +1278,55 @@
           <div class="stats" aria-label="Key claims">
             <div class="stat">
               <div class="k">Deterministic bounds</div>
-              <div class="v">Bounded-by-design</div>
-              <div class="d">Constrains update dynamics structurally rather than relying on late detection.</div>
+              <div class="v">Bounded-by-enforcement</div>
+              <div class="d">Constrain allowed update behavior structurally—so unsafe propagation can’t “finish” inside the loop.</div>
             </div>
             <div class="stat">
-              <div class="k">Runaway recursion prevention</div>
-              <div class="v">Stops amplification paths</div>
-              <div class="d">Designed to prevent compounding error growth in feedback loops.</div>
+              <div class="k">Stops unsafe propagation</div>
+              <div class="v">Fail-closed where it matters</div>
+              <div class="d">Acts before execution: it evaluates proposed updates against stability bounds before they reach actuators or outputs.</div>
             </div>
             <div class="stat">
-              <div class="k">Zero-overshoot goal</div>
-              <div class="v">Targeted behavior</div>
-              <div class="d">Aims to stay within a configured band under stated assumptions (see demo + papers).</div>
+              <div class="k">Risk separated by design</div>
+              <div class="v">Enforcement outside the strategy</div>
+              <div class="d">Keeps risk enforcement separate from the system’s own decision logic for explainability, auditing, and clearer debugging.</div>
             </div>
           </div>
         </div>
+
+        <section class="reveal" aria-label="Outcome translation" style="margin: 48px 0;">
+          <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 24px; color: var(--text);">Buyer outcomes you can map from boundedness</h2>
+          <p style="margin-bottom: 24px; color: var(--text-secondary); line-height: 1.7;">
+            The demo uses synthetic signals, but the boundedness concept is designed to translate into measurable operational tradeoffs.
+            Below is a clear separation between synthetic demo KPIs, illustrative business examples, and validated deployment figures (not yet published).
+          </p>
+          <div class="stats" aria-label="Outcome translation blocks">
+            <div class="stat">
+              <div class="k">Synthetic demo KPI</div>
+              <div class="v">A stability readout</div>
+              <div class="d">
+                Max overshoot (envelope violation), band crossings (churn proxy), and time-to-stability (steps until staying within the configured band for the stability window).
+                These are synthetic demo values only.
+              </div>
+            </div>
+            <div class="stat">
+              <div class="k">Illustrative example</div>
+              <div class="v">Cost-of-safety translation</div>
+              <div class="d">
+                Example template (illustrative only): if instability-related downtime is <strong>12 hours/quarter</strong> and risk-bounded behavior reduces instability episodes by <strong>30%</strong>, that translates to about <strong>3.6 hours/quarter</strong> saved.
+                Similar mappings apply to scrap / rework reduction, reduced false-alarm burden, reduced tuning / validation hours, reduced actuator wear / maintenance burden, reduced operator / pilot / engineer interventions, and reduced drawdown / capital protection.
+              </div>
+            </div>
+            <div class="stat">
+              <div class="k">Validated deployments</div>
+              <div class="v">Evidence pending</div>
+              <div class="d">
+                Validated deployment figures will be published only when customer evidence is available.
+                Placeholder: (to be added after validation).
+              </div>
+            </div>
+          </div>
+        </section>
 
         <section class="preview reveal" aria-label="Demo Preview">
           <div class="card">
@@ -941,16 +1341,16 @@
                 <h2>What you’ll see in 10 seconds</h2>
                 <ul>
                   <li><strong>Step/ramp/sine inputs</strong> with controllable noise</li>
-                  <li><strong>GSRF vs EMA</strong> side-by-side behavior under identical inputs</li>
+                  <li><strong>Zero Overshoot vs EMA</strong> side-by-side behavior under identical inputs</li>
                   <li><strong>Overshoot + crossings</strong> metrics as a fast boundedness read</li>
                 </ul>
                 <div class="actions">
                   <a class="btn primary" href="./demo/">Launch Demo</a>
-                  <a class="btn secondary" href="#start">Start here</a>
+                  <a class="btn secondary" href="#comparison">Start here</a>
                 </div>
                 <p class="note" style="margin-top: 10px;">Synthetic demo signals; filter math unchanged.</p>
                 <p class="commercial-notice" style="margin-top: 12px; font-size: 12px; color: var(--text-secondary); padding: 10px; background: rgba(11, 61, 145, 0.04); border-left: 2px solid var(--accent); border-radius: 4px;">
-                  <strong>Demo Disclaimer:</strong> This demo is for evaluation only. No rights are granted by demo use. Production deployment requires a commercial license. <a href="./commercial-licensing-notes.html" style="color: var(--accent);">Learn more</a>.
+                  <strong>Demo note:</strong> Synthetic evaluation only (no proofs/guarantees). Production deployment requires a commercial license. <a href="./commercial-licensing-notes.html" style="color: var(--accent);">Learn more</a>.
                 </p>
               </div>
             </div>
@@ -975,7 +1375,7 @@
           <div class="card engagement-card">
             <div class="engagement-label">Option A</div>
             <h3>Design Review</h3>
-            <p class="engagement-subtitle">For teams evaluating runaway feedback risk in an existing system.</p>
+            <p class="engagement-subtitle">For teams evaluating runaway feedback risk and deciding where enforcement needs to live as a separate layer.</p>
             <ul>
               <li>Review of signal → actuator loop</li>
               <li>Identification of instability / overshoot points</li>
@@ -986,7 +1386,7 @@
           <div class="card engagement-card">
             <div class="engagement-label">Option B</div>
             <h3>Integration Support</h3>
-            <p class="engagement-subtitle">For teams ready to deploy Zero Overshoot in a real system.</p>
+            <p class="engagement-subtitle">For teams integrating deterministic bounds so unsafe updates are rejected or constrained before execution.</p>
             <ul>
               <li>Reference implementation guidance</li>
               <li>Parameter selection + constraints</li>
@@ -997,7 +1397,7 @@
           <div class="card engagement-card">
             <div class="engagement-label">Option C</div>
             <h3>Licensing</h3>
-            <p class="engagement-subtitle">For organisations embedding Zero Overshoot in a product or platform.</p>
+            <p class="engagement-subtitle">For organisations deploying Zero Overshoot as a proprietary enforcement layer under commercial license.</p>
             <ul>
               <li>Deterministic filter logic</li>
               <li>Patent applications are in preparation</li>
@@ -1043,7 +1443,7 @@
 
       <section class="accordion" aria-label="Overview">
         <p class="commercial-notice" style="margin-bottom: 20px; font-size: 13px; color: var(--text-secondary); padding: 14px; background: rgba(11, 61, 145, 0.05); border-left: 3px solid var(--accent); border-radius: 6px;">
-          <strong>Commercial Product:</strong> Zero Overshoot is proprietary technology. Patent applications are in preparation. Technical documentation and papers are provided for evaluation purposes. Production use requires a commercial license. See <a href="./commercial-licensing-notes.html" style="color: var(--accent); text-decoration: underline;">Licensing Notes</a> and <a href="./integration-overview.html" style="color: var(--accent); text-decoration: underline;">Integration Overview</a>.
+          <strong>Commercial Product:</strong> Zero Overshoot is proprietary technology. Production use requires a commercial license. See <a href="./commercial-licensing-notes.html" style="color: var(--accent); text-decoration: underline;">Commercial &amp; Licensing Notes</a>.
         </p>
         <details open>
           <summary>What problem this solves</summary>

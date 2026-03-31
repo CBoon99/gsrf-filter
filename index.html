@@ -776,10 +776,17 @@
           <!-- Option 1: "A deterministic stability layer for safety-critical control where bounded behaviour is mandatory." -->
           <!-- Option 2: "A deterministic stability layer enforcing bounded behaviour in safety-critical control systems." -->
           <!-- Option 3: "A deterministic stability layer for safety-critical systems requiring bounded, rate-limited behaviour." -->
-          <p class="tagline" style="font-size: 20px; font-weight: 800; margin-bottom: 8px;">Separate risk from behaviour and enforce stability structurally.</p>
-          <p class="tagline" style="font-size: 16px; font-weight: normal; margin-top: 12px;">
-            Recursive systems can amplify small errors into unstable behaviour.<br>
-            Zero Overshoot enforces bounded update dynamics before unsafe propagation spreads.
+          <p class="tagline" style="font-size: 16px; font-weight: normal; margin-top: 8px;">
+            Recursive systems amplify small errors into instability.<br>
+            Zero Overshoot enforces bounded updates before unsafe propagation spreads.
+          </p>
+          <ul style="margin: 14px 0 0; padding-left: 20px; line-height: 1.7; color: var(--text-secondary); font-size: 14px;">
+            <li>Prevents runaway feedback amplification</li>
+            <li>Constrains updates before execution</li>
+            <li>Separates risk from behaviour</li>
+          </ul>
+          <p style="margin-top: 10px; font-size: 14px; color: var(--text-secondary);">
+            Deploy in audit, shadow, or live enforcement modes.
           </p>
           <div class="actions">
             <a class="btn primary" href="./demo/">Run Demo</a>
@@ -793,23 +800,8 @@
     </header>
 
     <main id="main">
-      <section class="reveal" aria-label="Why Recursive Systems Fail" style="margin: 48px 0;">
-        <h2 style="font-size: 24px; font-weight: 950; margin-bottom: 12px; color: var(--text); letter-spacing: -0.3px;">Why Recursive Systems Fail</h2>
-        <p style="margin-bottom: 16px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
-          Recursive and feedback-driven systems can amplify small errors into unstable behaviour. When state updates feed back into the next update, drift and overcorrection can compound.
-        </p>
-        <ul style="margin: 0; padding-left: 20px; line-height: 1.8; max-width: 78ch; color: var(--text-secondary);">
-          <li>Feedback loops amplify small errors</li>
-          <li>Monitoring often detects problems too late</li>
-          <li>Probabilistic safeguards cannot prevent structural instability</li>
-        </ul>
-        <p style="margin-top: 16px; padding: 14px 16px; background: rgba(11, 61, 145, 0.03); border-left: 4px solid var(--accent); border-radius: 8px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
-          <strong>Most current safeguards detect instability after propagation has begun.</strong>
-        </p>
-      </section>
-
       <section class="reveal" aria-label="Three Ways Teams Use Zero Overshoot" style="margin: 48px 0;">
-        <h2 style="font-size: 24px; font-weight: 950; margin-bottom: 12px; color: var(--text); letter-spacing: -0.3px;">Three Ways Teams Use Zero Overshoot</h2>
+        <h2 style="font-size: 24px; font-weight: 950; margin-bottom: 12px; color: var(--text); letter-spacing: -0.3px;">Three Ways Teams Deploy Zero Overshoot</h2>
         <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 16px;">
           <div class="card" style="padding: 20px;">
             <h3 style="font-size: 16px; font-weight: 950; margin-bottom: 10px; color: var(--text);">Mode 1 — System Audit</h3>
@@ -829,6 +821,21 @@
             <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;">Unsafe updates are constrained before reaching outputs.</p>
           </div>
         </div>
+      </section>
+
+      <section class="reveal" aria-label="Why Recursive Systems Fail" style="margin: 48px 0;">
+        <h2 style="font-size: 24px; font-weight: 950; margin-bottom: 12px; color: var(--text); letter-spacing: -0.3px;">Why Recursive Systems Fail</h2>
+        <p style="margin-bottom: 16px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
+          Recursive and feedback-driven systems can amplify small errors into unstable behaviour. When state updates feed back into the next update, drift and overcorrection can compound.
+        </p>
+        <ul style="margin: 0; padding-left: 20px; line-height: 1.8; max-width: 78ch; color: var(--text-secondary);">
+          <li>Feedback loops amplify small errors</li>
+          <li>Monitoring often detects problems too late</li>
+          <li>Probabilistic safeguards cannot prevent structural instability</li>
+        </ul>
+        <p style="margin-top: 16px; padding: 14px 16px; background: rgba(11, 61, 145, 0.03); border-left: 4px solid var(--accent); border-radius: 8px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
+          <strong>Most current safeguards detect instability after propagation has begun.</strong>
+        </p>
       </section>
 
       <section class="reveal" aria-label="Why Structural Stability Matters" style="margin: 48px 0;">
@@ -851,7 +858,7 @@
       <section class="reveal" aria-label="How Zero Overshoot Works" style="margin: 48px 0;">
         <h2 style="font-size: 24px; font-weight: 950; margin-bottom: 12px; color: var(--text); letter-spacing: -0.3px;">How Zero Overshoot Works</h2>
         <p style="margin-bottom: 16px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
-          Zero Overshoot observes proposed updates from a recursive system, evaluates whether an update violates configured stability bounds, and constrains unsafe updates before they reach actuators or outputs.
+          Zero Overshoot evaluates proposed updates against configured stability bounds and constrains unsafe updates before they reach actuators or outputs.
           It is designed as a separate enforcement layer—risk is not embedded inside the system’s behaviour logic.
         </p>
         <div class="card" style="padding: 20px; background: rgba(255, 255, 255, 0.8); max-width: 78ch;">
@@ -1244,12 +1251,12 @@
             <p class="sub">Each launch loads a domain-shaped synthetic preset and industry-tuned KPI wording for max overshoot (envelope violation), band crossings, and time-to-stability. Figures below are synthetic demo KPIs (illustrative), not validated performance claims.</p>
             <div class="industry-grid">
               <div class="card industry-card" data-industry="autonomous">
-                <div class="k">Autonomous control</div>
-                <div class="t">Vehicle control (including drones; future drone swarms)</div>
+                <div class="k">Autonomous systems</div>
+                <div class="t">Vehicle and flight control (including drones)</div>
                 <div class="p">
-                  Recursive perception + feedback can overreact: small estimation errors amplify into oscillation and envelope-excursion corrections.
-                  Zero Overshoot separates risk enforcement from the system’s own logic and constrains updates structurally, so the system does not get to propagate unsafe behavior just because it wanted to.
-                  Business benefit that matters: reduced operator / pilot interventions and fewer unsafe excursion patterns (translated into cost-of-safety outcomes below).
+                  Recursive perception and control loops can amplify small estimation errors into oscillatory corrections.
+                  Zero Overshoot constrains update dynamics before commands propagate.
+                  <strong>Potential benefits:</strong> reduced operator intervention, fewer oscillation patterns, fewer validation cycles.
                 </div>
                 <div class="ex"><strong>Synthetic demo KPI (illustrative):</strong> 0.6° peak envelope violation; 0.18 s time-to-stability (example)</div>
                 <div class="row">
@@ -1261,9 +1268,9 @@
                 <div class="k">Robotics</div>
                 <div class="t">Control with actuator commands (and future drones / drone swarms)</div>
                 <div class="p">
-                  Adaptive or learned control can create recursive command loops where drift and unstable corrections amplify into actuator stress and continuous retuning.
-                  Zero Overshoot acts as a separate deterministic enforcement layer: it bounds the allowed update dynamics before actuators receive commands.
-                  Business benefit that matters: fewer instability-driven tuning / validation cycles and reduced wear-and-downtime from oscillatory correction.
+                  Adaptive or learned control can create recursive command loops where drift and unstable corrections amplify into actuator stress.
+                  Zero Overshoot bounds update dynamics before actuators receive commands.
+                  <strong>Potential benefits:</strong> fewer tuning cycles, reduced wear, less instability-driven downtime.
                 </div>
                 <div class="ex"><strong>Synthetic demo KPI (illustrative):</strong> 12% peak deviation; 35 steps to stability window (example)</div>
                 <div class="row">
@@ -1275,9 +1282,9 @@
                 <div class="k">Industrial control</div>
                 <div class="t">Process / PLC feedback (temperature, flow, pressure)</div>
                 <div class="p">
-                  Dead time, saturation, and recursive feedback can turn “small drift” into delayed divergence—showing up as out-of-tolerance operation, scrap, and instability-driven maintenance.
-                  Zero Overshoot constrains the update behavior structurally within configured tolerance envelopes, reducing unsafe propagation into the physical process.
-                  Business benefit that matters: less scrap / rework and fewer downtime events tied to instability patterns.
+                  Dead time, saturation, and recursive feedback can turn small drift into delayed divergence in process variables.
+                  Zero Overshoot constrains update behaviour within configured tolerance bands.
+                  <strong>Potential benefits:</strong> less scrap and rework, fewer instability-driven downtime events.
                 </div>
                 <div class="ex"><strong>Synthetic demo KPI (illustrative):</strong> 3.0% overshoot (envelope violation); 0.9 s time-to-stability (example)</div>
                 <div class="row">
@@ -1289,9 +1296,9 @@
                 <div class="k">Finance / trading</div>
                 <div class="t">Iterative signal + position sizing loop</div>
                 <div class="p">
-                  Recursive optimization can amplify estimation error into oscillatory exposure changes and unstable signal chasing.
-                  Zero Overshoot separates risk from strategy by enforcing bounded-by-design update dynamics, preventing unsafe propagation toward destructive states outside the configured envelope.
-                  Business benefit that matters: reduced drawdown pressure and fewer incident-style risk breaches that consume engineering time.
+                  Recursive optimisation can amplify estimation error into oscillatory exposure changes and unstable signal chasing.
+                  Zero Overshoot enforces bounded-by-design update dynamics outside the trading strategy.
+                  <strong>Potential benefits:</strong> reduced incident-style risk breaches, less drawdown pressure, fewer fire-drill interventions.
                 </div>
                 <div class="ex"><strong>Synthetic demo KPI (illustrative):</strong> 2.5× peak envelope violation; 6 band crossings (example)</div>
                 <div class="row">
@@ -1303,9 +1310,9 @@
                 <div class="k">Medical / life-critical monitoring</div>
                 <div class="t">Closed-loop monitoring and life-critical deviation control</div>
                 <div class="p">
-                  Recursive estimation/control pipelines can produce unstable deviation updates—leading to alert churn and unsafe corrective behavior when risk enforcement is entangled with behavior.
-                  Zero Overshoot provides a separate deterministic enforcement layer: it constrains proposed updates to remain within a configured envelope so unsafe behavior cannot propagate.
-                  Business benefit that matters: reduced false alarm burden and fewer high-intervention events that cost time and attention (illustrative translation).
+                  Recursive estimation/control pipelines can produce unstable deviation updates that contribute to alarm churn and unsafe corrective behaviour.
+                  Zero Overshoot constrains proposed updates to remain within a configured envelope.
+                  <strong>Potential benefits:</strong> reduced false-alarm burden, fewer high-intervention events.
                 </div>
                 <div class="ex"><strong>Synthetic demo KPI (illustrative):</strong> band ±0.15; 2 band crossings; stability window reached within the demo horizon (example)</div>
                 <div class="row">
@@ -1313,6 +1320,20 @@
                 </div>
               </div>
             </div>
+
+              <div class="card industry-card" data-industry="agents">
+                <div class="k">AI / autonomous agents</div>
+                <div class="t">Recursive decision and action pipelines</div>
+                <div class="p">
+                  Recursive decision loops in AI agents can amplify errors and unstable updates.
+                  Zero Overshoot can enforce bounded update dynamics externally, allowing safe auditing and enforcement without modifying the agent’s internal logic.
+                  <strong>Potential benefits:</strong> agent decision auditing, bounded recursive behaviour, independent risk enforcement.
+                </div>
+                <div class="ex"><strong>Synthetic demo KPI (illustrative):</strong> example risk-drift detection ahead of threshold crossing (see simulated benchmarks).</div>
+                <div class="row">
+                  <a class="btn primary launch" href="./demo/?industry=finance">Launch demo</a>
+                </div>
+              </div>
           </section>
 
           <div class="stats" aria-label="Key claims">
@@ -1452,6 +1473,21 @@
           <p style="margin-top: 14px; font-size: 13px; color: var(--text-secondary); max-width: 78ch;">
             Real-world validation is in progress with industrial partner data (expected Q3 2026). Simulated benchmarks demonstrate GSRF's structural advantages.
           </p>
+        </section>
+
+        <section class="reveal" aria-label="Agent and AI System Auditing" style="margin: 48px 0;">
+          <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 16px; color: var(--text);">Agent and AI System Auditing</h2>
+          <p style="margin-bottom: 12px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
+            Recursive decision loops are becoming common in AI agents and automated decision systems. Small policy or scoring errors can be amplified into unstable updates and unsafe behaviour.
+          </p>
+          <p style="margin-bottom: 12px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
+            Zero Overshoot can operate as an external auditing and enforcement layer that constrains update dynamics independently from the agent’s internal logic.
+          </p>
+          <ul style="margin: 0; padding-left: 20px; line-height: 1.8; max-width: 78ch; color: var(--text-secondary);">
+            <li>Agent decision auditing</li>
+            <li>Bounded recursive behaviour</li>
+            <li>Independent risk enforcement</li>
+          </ul>
         </section>
 
         <section class="reveal" aria-label="Stability Demonstrations Interactive" style="margin: 48px 0;">
@@ -1606,7 +1642,7 @@
                 </div>
               </div>
               <div>
-                <h2>What you’ll see in 10 seconds</h2>
+                <h2>See Bounded vs Unbounded Behaviour in 10 Seconds</h2>
                 <ul>
                   <li><strong>Step/ramp/sine inputs</strong> with controllable noise</li>
                   <li><strong>Zero Overshoot vs EMA</strong> side-by-side behavior under identical inputs</li>

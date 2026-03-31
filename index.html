@@ -1409,7 +1409,7 @@
               </table>
             </div>
             <p style="margin-top: 10px; font-size: 13px; color: var(--text-secondary);">
-              Note: Simulated dataset of 10,000 ICU monitor minutes with 5% true arrhythmia events. GSRF parameters: β = 0.2, mem = 0.1, k_return = 1.5.
+              Note: Simulated dataset of 10,000 ICU monitor minutes with 5% true arrhythmia events. GSRF parameters: β = 0.2, mem = 0.1, k_return = 1.5. Simulation parameters available upon request.
             </p>
           </div>
 
@@ -1793,7 +1793,7 @@ class GSRFilter:
             <pre style="font-family: 'Monaco', 'Menlo', 'Courier New', monospace; font-size: 13px; line-height: 1.6; color: var(--text); overflow-x: auto; padding: 12px; background: rgba(0,0,0,0.04); border-radius: 6px;"><code>{
   "filtered_risk": 0.32,
   "alert_level": "green",
-  "thresholds": { "green": [0,0.4), "yellow": [0.4,0.7), "red": [0.7,1.0] }
+  "thresholds": { "green": "0.0–0.4", "yellow": "0.4–0.7", "red": "0.7–1.0" }
 }</code></pre>
 
             <h4>Stateless alternative (client sends previous filtered value)</h4>
@@ -1804,7 +1804,7 @@ class GSRFilter:
   "timestamp": "..."
 }</code></pre>
             <p style="margin-top: 8px; color: var(--text-secondary); line-height: 1.7;">
-              In this mode the server returns the new filtered value and the client stores per-agent state.
+              In this mode the server returns the new filtered value and the client stores per-agent state. For trust and provenance guarantees in agent workflows, see the <a href="https://embassy-trust-protocol.netlify.app" target="_blank" rel="noopener noreferrer">Embassy Trust Protocol</a>.
             </p>
           </div>
         </details>

@@ -772,24 +772,18 @@
     <header class="hero" aria-label="Hero">
       <div class="hero-grid">
         <div class="reveal">
-          <div class="title">Zero Overshoot (GSRF)</div>
+          <div class="title">Deterministic Safety Enforcement for Recursive Systems</div>
           <!-- Option 1: "A deterministic stability layer for safety-critical control where bounded behaviour is mandatory." -->
           <!-- Option 2: "A deterministic stability layer enforcing bounded behaviour in safety-critical control systems." -->
           <!-- Option 3: "A deterministic stability layer for safety-critical systems requiring bounded, rate-limited behaviour." -->
-          <p class="tagline" style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">A proprietary deterministic safety layer for recursive and feedback-driven systems.</p>
+          <p class="tagline" style="font-size: 20px; font-weight: 800; margin-bottom: 8px;">Separate risk from behaviour and enforce stability structurally.</p>
           <p class="tagline" style="font-size: 16px; font-weight: normal; margin-top: 12px;">
-            Recursive systems can overreact, oscillate, drift, and amplify small errors.<br>
-            Zero Overshoot separates risk enforcement from your system’s own decision logic—so the system does not get to behave unsafely just because it wanted to.
-          </p>
-          <p class="tagline" style="font-size: 15px; font-weight: normal; margin-top: 12px; color: var(--text-secondary);">
-            Structurally constrains allowed behavior within a configured envelope under stated assumptions (see papers).
-          </p>
-          <p style="margin-top: 16px; padding: 14px 14px; background: rgba(11, 61, 145, 0.06); border-left: 4px solid var(--accent); border-radius: 8px; font-size: 16px; font-weight: 900; line-height: 1.6; color: var(--text);">
-            Zero Overshoot separates risk from behavior and enforces it structurally—so the system does not get to behave unsafely just because the internal logic wanted to.
+            Recursive systems can amplify small errors into unstable behaviour.<br>
+            Zero Overshoot enforces bounded update dynamics before unsafe propagation spreads.
           </p>
           <div class="actions">
-            <a class="btn primary" href="./demo/">Run the Demo (Industry-Preloaded)</a>
-            <a class="btn secondary" href="#contact">Licensing &amp; Integration</a>
+            <a class="btn primary" href="./demo/">Run Demo</a>
+            <a class="btn secondary" href="mailto:info@boonmind.io?subject=Request%20Engineering%20Brief">Request Engineering Brief</a>
           </div>
           <p class="commercial-notice" style="margin-top: 16px; font-size: 13px; color: var(--text-secondary); padding: 12px; background: rgba(11, 61, 145, 0.05); border-left: 3px solid var(--accent); border-radius: 6px;">
             <strong>Commercial Product:</strong> Zero Overshoot is proprietary technology. Patent applications are in preparation. Production use requires a commercial license. Demo use does not grant any rights. See <a href="./commercial-licensing-notes.html" style="color: var(--accent); text-decoration: underline;">Licensing Notes</a> for details.
@@ -799,28 +793,73 @@
     </header>
 
     <main id="main">
-      <section class="reveal" aria-label="What Zero Overshoot Is and Is Not" style="margin: 48px 0;">
-        <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 24px; color: var(--text);">What Zero Overshoot Is (and Is Not)</h2>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 20px;">
-          <div class="card" style="padding: 24px; border-left: 3px solid var(--accent);">
-            <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 16px; color: var(--text);">What it is</h3>
-            <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
-              <li>A deterministic, bounded-by-design enforcement layer</li>
-              <li>Separates risk from behavior in recursive / feedback-driven systems</li>
-              <li>Constrains proposed updates before they reach actuators or outputs</li>
-              <li>Targets unsafe propagation (overshoot / instability), not just noise</li>
-            </ul>
+      <section class="reveal" aria-label="Why Recursive Systems Fail" style="margin: 48px 0;">
+        <h2 style="font-size: 24px; font-weight: 950; margin-bottom: 12px; color: var(--text); letter-spacing: -0.3px;">Why Recursive Systems Fail</h2>
+        <p style="margin-bottom: 16px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
+          Recursive and feedback-driven systems can amplify small errors into unstable behaviour. When state updates feed back into the next update, drift and overcorrection can compound.
+        </p>
+        <ul style="margin: 0; padding-left: 20px; line-height: 1.8; max-width: 78ch; color: var(--text-secondary);">
+          <li>Feedback loops amplify small errors</li>
+          <li>Monitoring often detects problems too late</li>
+          <li>Probabilistic safeguards cannot prevent structural instability</li>
+        </ul>
+        <p style="margin-top: 16px; padding: 14px 16px; background: rgba(11, 61, 145, 0.03); border-left: 4px solid var(--accent); border-radius: 8px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
+          <strong>Most current safeguards detect instability after propagation has begun.</strong>
+        </p>
+      </section>
+
+      <section class="reveal" aria-label="Three Ways Teams Use Zero Overshoot" style="margin: 48px 0;">
+        <h2 style="font-size: 24px; font-weight: 950; margin-bottom: 12px; color: var(--text); letter-spacing: -0.3px;">Three Ways Teams Use Zero Overshoot</h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 16px;">
+          <div class="card" style="padding: 20px;">
+            <h3 style="font-size: 16px; font-weight: 950; margin-bottom: 10px; color: var(--text);">Mode 1 — System Audit</h3>
+            <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 10px;">Analyze historical system data. Identify instability patterns and overshoot conditions.</p>
+            <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;">Useful for post-incident analysis and stability diagnostics.</p>
           </div>
-          
-          <div class="card" style="padding: 24px; border-left: 3px solid var(--muted);">
-            <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 16px; color: var(--text);">What it is not</h3>
-            <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
-              <li>❌ Not another smoother / Kalman / EMA-style estimator</li>
-              <li>❌ Not a reactive kill-switch that only acts after damage begins</li>
-              <li>❌ Not “risk logic” entangled inside the strategy you’re trying to control</li>
-            </ul>
+          <div class="card" style="padding: 20px;">
+            <h3 style="font-size: 16px; font-weight: 950; margin-bottom: 10px; color: var(--text);">Mode 2 — Shadow Deployment</h3>
+            <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 10px;">Run Zero Overshoot alongside the existing system. Observe bounded vs unbounded behaviour.</p>
+            <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;">No changes to live operations.</p>
+          </div>
+          <div class="card" style="padding: 20px; border-left: 3px solid var(--accent);">
+            <h3 style="font-size: 16px; font-weight: 950; margin-bottom: 10px; color: var(--text);">Mode 3 — Live Enforcement Layer</h3>
+            <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 10px;">
+              <strong>Architecture:</strong> Controller → Zero Overshoot → Actuator
+            </p>
+            <p style="color: var(--text-secondary); line-height: 1.7; margin: 0;">Unsafe updates are constrained before reaching outputs.</p>
           </div>
         </div>
+      </section>
+
+      <section class="reveal" aria-label="Why Structural Stability Matters" style="margin: 48px 0;">
+        <h2 style="font-size: 24px; font-weight: 950; margin-bottom: 12px; color: var(--text); letter-spacing: -0.3px;">Why Structural Stability Matters</h2>
+        <p style="margin-bottom: 12px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
+          Structural boundedness is designed to translate into practical operational outcomes when instability and overshoot create real cost.
+        </p>
+        <ul style="margin: 0; padding-left: 20px; line-height: 1.8; max-width: 78ch; color: var(--text-secondary);">
+          <li>Fewer instability-driven shutdowns</li>
+          <li>Reduced alarm burden in monitoring systems</li>
+          <li>Less scrap and rework from control oscillation</li>
+          <li>Reduced engineering time spent tuning unstable loops</li>
+          <li>Reduced actuator wear caused by oscillatory corrections</li>
+        </ul>
+        <p class="note" style="margin-top: 12px; max-width: 78ch;">
+          Outcomes are system-dependent and require domain modelling, integration, and validation.
+        </p>
+      </section>
+
+      <section class="reveal" aria-label="How Zero Overshoot Works" style="margin: 48px 0;">
+        <h2 style="font-size: 24px; font-weight: 950; margin-bottom: 12px; color: var(--text); letter-spacing: -0.3px;">How Zero Overshoot Works</h2>
+        <p style="margin-bottom: 16px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
+          Zero Overshoot observes proposed updates from a recursive system, evaluates whether an update violates configured stability bounds, and constrains unsafe updates before they reach actuators or outputs.
+          It is designed as a separate enforcement layer—risk is not embedded inside the system’s behaviour logic.
+        </p>
+        <div class="card" style="padding: 20px; background: rgba(255, 255, 255, 0.8); max-width: 78ch;">
+          <pre style="font-family: 'Monaco', 'Menlo', 'Courier New', monospace; font-size: 14px; line-height: 1.8; color: var(--text); margin: 0; white-space: pre-wrap; background: transparent; border: none; padding: 0;">Sensors → Control System → Zero Overshoot → Actuators</pre>
+        </div>
+        <p style="margin-top: 14px;">
+          <a class="btn secondary" href="#technical">Read the full technical explanation →</a>
+        </p>
       </section>
 
       <section class="reveal" aria-label="How current approaches are done and why they fail" style="margin: 48px 0;">
@@ -896,6 +935,7 @@
       <section id="comparison" class="reveal" aria-label="Old way vs structural enforcement comparison matrix" style="margin: 12px 0 48px;">
         <h2 style="font-size: 24px; font-weight: 950; margin-bottom: 12px; color: var(--text); letter-spacing: -0.3px;">Current approaches vs Zero Overshoot (GSRF)</h2>
         <p style="margin-bottom: 16px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
+          Most current approaches reduce symptoms of instability. Zero Overshoot enforces bounded behaviour structurally.
           This comparison matrix makes the key shift explicit: most methods reduce symptoms, but only Zero Overshoot applies bounded, structural enforcement as a separate layer.
         </p>
         <div class="comparison-table-wrap" role="region" aria-label="Comparison matrix: old approaches vs Zero Overshoot">
@@ -1022,7 +1062,7 @@
         </p>
       </section>
 
-      <section class="reveal" aria-label="Stability Demonstrations Interactive" style="margin: 48px 0;">
+      <section class="reveal" aria-label="Stability Demonstrations Interactive" style="display: none; margin: 48px 0;">
         <details style="margin-top: 24px;">
           <summary style="font-size: 24px; font-weight: 800; margin-bottom: 24px; color: var(--text); cursor: pointer; list-style: none; padding: 12px 0; border-bottom: 1px solid var(--border); user-select: none;">
             <span style="display: inline-flex; align-items: center; gap: 8px;">
@@ -1328,6 +1368,148 @@
           </div>
         </section>
 
+        <section class="reveal" aria-label="Stability Demonstrations Interactive" style="margin: 48px 0;">
+          <p style="margin-bottom: 16px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
+            The demo illustrates bounded versus unbounded recursive behaviour using synthetic signals.
+          </p>
+          <details style="margin-top: 24px;">
+            <summary style="font-size: 24px; font-weight: 800; margin-bottom: 24px; color: var(--text); cursor: pointer; list-style: none; padding: 12px 0; border-bottom: 1px solid var(--border); user-select: none;">
+              <span style="display: inline-flex; align-items: center; gap: 8px;">
+                <span class="accordion-arrow" style="font-size: 18px; transition: transform 0.2s; display: inline-block;">▶</span>
+                See it in action (interactive demonstrations)
+              </span>
+            </summary>
+            <div style="margin-top: 24px;">
+              <p style="margin-bottom: 32px; color: var(--text-secondary);">
+                Synthetic feedback scenarios that illustrate what happens when recursive updates are allowed versus structurally bounded.
+                These are illustrative examples, not proofs or guarantees.
+              </p>
+              
+              <div style="display: grid; grid-template-columns: 1fr; gap: 32px; margin-top: 24px;">
+            
+            <!-- Card 1: Pilot-Induced Oscillation (PIO) -->
+            <div class="card" style="padding: 24px;">
+              <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 12px; color: var(--text);">Pilot-Induced Oscillation (PIO)</h3>
+              <p style="margin-bottom: 20px; color: var(--text-secondary); font-size: 15px;">Models pilot overcorrection in a simple second-order system.</p>
+              
+              <div style="margin-bottom: 20px;">
+                <label style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                  <input type="radio" name="pio-mode" value="baseline" checked style="margin: 0;">
+                  <span>Baseline</span>
+                </label>
+                <label style="display: flex; align-items: center; gap: 12px;">
+                  <input type="radio" name="pio-mode" value="zero-overshoot" style="margin: 0;">
+                  <span>With Zero Overshoot</span>
+                </label>
+              </div>
+              
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+                <div>
+                  <label style="display: block; margin-bottom: 6px; font-size: 14px; font-weight: 600;">Gain (K): <span id="pio-gain-val">1.5</span></label>
+                  <input type="range" id="pio-gain" min="0.5" max="3.0" step="0.1" value="1.5" style="width: 100%;">
+                </div>
+                <div>
+                  <label style="display: block; margin-bottom: 6px; font-size: 14px; font-weight: 600;">Damping (ζ): <span id="pio-damping-val">0.5</span></label>
+                  <input type="range" id="pio-damping" min="0.1" max="1.5" step="0.1" value="0.5" style="width: 100%;">
+                </div>
+                <div>
+                  <label style="display: block; margin-bottom: 6px; font-size: 14px; font-weight: 600;">Delay (s): <span id="pio-delay-val">0.1</span></label>
+                  <input type="range" id="pio-delay" min="0" max="0.5" step="0.05" value="0.1" style="width: 100%;">
+                </div>
+                <div>
+                  <label style="display: block; margin-bottom: 6px; font-size: 14px; font-weight: 600;">Duration (s): <span id="pio-duration-val">5.0</span></label>
+                  <input type="range" id="pio-duration" min="2" max="10" step="0.5" value="5.0" style="width: 100%;">
+                </div>
+              </div>
+              
+              <div style="display: flex; gap: 12px; margin-bottom: 20px;">
+                <button class="btn primary" id="pio-run" style="min-width: 100px;">Run</button>
+                <button class="btn" id="pio-reset" style="min-width: 100px;">Reset</button>
+              </div>
+              
+              <canvas id="pio-canvas" width="600" height="300" style="width: 100%; max-width: 600px; height: auto; border: 1px solid var(--border); border-radius: 8px; background: rgba(255, 255, 255, 0.9);"></canvas>
+              
+              <div style="display: flex; gap: 16px; margin-top: 16px; flex-wrap: wrap;">
+                <div style="padding: 8px 12px; background: rgba(11, 61, 145, 0.08); border-radius: 6px; font-size: 13px;">
+                  <strong>Overshoot:</strong> <span id="pio-overshoot">—</span>%
+                </div>
+                <div style="padding: 8px 12px; background: rgba(11, 61, 145, 0.08); border-radius: 6px; font-size: 13px;">
+                  <strong>Settling time:</strong> <span id="pio-settling">—</span>s
+                </div>
+                <div style="padding: 8px 12px; background: rgba(11, 61, 145, 0.08); border-radius: 6px; font-size: 13px;">
+                  <strong>Oscillations:</strong> <span id="pio-oscillations">—</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Card 2: Actuator Saturation -->
+            <div class="card" style="padding: 24px;">
+              <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 12px; color: var(--text);">Actuator Saturation</h3>
+              <p style="margin-bottom: 20px; color: var(--text-secondary); font-size: 15px;">Models step response with magnitude and rate limits.</p>
+              
+              <div style="margin-bottom: 20px;">
+                <label style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                  <input type="radio" name="sat-mode" value="baseline" checked style="margin: 0;">
+                  <span>Baseline</span>
+                </label>
+                <label style="display: flex; align-items: center; gap: 12px;">
+                  <input type="radio" name="sat-mode" value="zero-overshoot" style="margin: 0;">
+                  <span>With Zero Overshoot</span>
+                </label>
+              </div>
+              
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+                <div>
+                  <label style="display: block; margin-bottom: 6px; font-size: 14px; font-weight: 600;">Saturation limit: <span id="sat-limit-val">2.0</span></label>
+                  <input type="range" id="sat-limit" min="1.0" max="5.0" step="0.1" value="2.0" style="width: 100%;">
+                </div>
+                <div>
+                  <label style="display: block; margin-bottom: 6px; font-size: 14px; font-weight: 600;">Rate limit: <span id="sat-rate-val">1.0</span></label>
+                  <input type="range" id="sat-rate" min="0.1" max="3.0" step="0.1" value="1.0" style="width: 100%;">
+                </div>
+                <div>
+                  <label style="display: block; margin-bottom: 6px; font-size: 14px; font-weight: 600;">PID Kp: <span id="sat-kp-val">2.0</span></label>
+                  <input type="range" id="sat-kp" min="0.5" max="5.0" step="0.1" value="2.0" style="width: 100%;">
+                </div>
+                <div>
+                  <label style="display: block; margin-bottom: 6px; font-size: 14px; font-weight: 600;">Duration (s): <span id="sat-duration-val">5.0</span></label>
+                  <input type="range" id="sat-duration" min="2" max="10" step="0.5" value="5.0" style="width: 100%;">
+                </div>
+              </div>
+              
+              <div style="display: flex; gap: 12px; margin-bottom: 20px;">
+                <button class="btn primary" id="sat-run" style="min-width: 100px;">Run</button>
+                <button class="btn" id="sat-reset" style="min-width: 100px;">Reset</button>
+              </div>
+              
+              <canvas id="sat-canvas" width="600" height="300" style="width: 100%; max-width: 600px; height: auto; border: 1px solid var(--border); border-radius: 8px; background: rgba(255, 255, 255, 0.9);"></canvas>
+              
+              <div style="display: flex; gap: 16px; margin-top: 16px; flex-wrap: wrap;">
+                <div style="padding: 8px 12px; background: rgba(11, 61, 145, 0.08); border-radius: 6px; font-size: 13px;">
+                  <strong>Overshoot:</strong> <span id="sat-overshoot">—</span>%
+                </div>
+                <div style="padding: 8px 12px; background: rgba(11, 61, 145, 0.08); border-radius: 6px; font-size: 13px;">
+                  <strong>Settling time:</strong> <span id="sat-settling">—</span>s
+                </div>
+                <div style="padding: 8px 12px; background: rgba(11, 61, 145, 0.08); border-radius: 6px; font-size: 13px;">
+                  <strong>Oscillations:</strong> <span id="sat-oscillations">—</span>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+          
+          <p style="margin-top: 32px; padding: 16px; background: rgba(11, 61, 145, 0.05); border-left: 3px solid var(--accent); border-radius: 6px; font-size: 14px; color: var(--text-secondary);">
+            <strong>Demo note:</strong> Synthetic evaluation only (illustrative). Production deployment requires custom integration, validation, and domain modelling.
+          </p>
+          
+              <div style="margin-top: 24px;">
+                <a class="btn secondary" href="./demo/">Explore full demo →</a>
+              </div>
+            </div>
+          </details>
+        </section>
+
         <section class="preview reveal" aria-label="Demo Preview">
           <div class="card">
             <div class="preview-row">
@@ -1369,7 +1551,7 @@
 
       <section class="reveal" aria-label="How Zero Overshoot Is Used">
         <h2>How Zero Overshoot Is Used</h2>
-        <p class="note" style="margin-bottom: 24px;">Three engagement paths for teams evaluating or deploying Zero Overshoot.</p>
+        <p class="note" style="margin-bottom: 24px;">Three engagement paths for teams evaluating or deploying Zero Overshoot. Most teams begin with a system audit or shadow evaluation before production deployment.</p>
         
         <div class="engagement-grid">
           <div class="card engagement-card">
@@ -1435,7 +1617,7 @@
         </div>
       </section>
 
-      <header class="legacy-header reveal" aria-label="Overview header">
+      <header id="technical" class="legacy-header reveal" aria-label="Overview header">
         <h1>Gradient-Stabilized Recursive Filtering (GSRF)</h1>
         <p class="subtitle">A deterministic safety layer for systems that cannot fail unpredictably.</p>
         <p style="margin-top: 16px; font-size: 15px; color: var(--text-secondary);">GSRF (Zero Overshoot) is a deterministic safety filter for recursive and safety-critical systems.</p>

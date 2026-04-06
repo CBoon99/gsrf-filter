@@ -759,6 +759,7 @@
           </a>
           <nav class="topnav" aria-label="Top">
             <a href="#comparison">Start here</a>
+            <a href="#engineers">For engineers</a>
             <a href="./paper-gsrf-framework.html">Abstracts</a>
             <a href="#papers">Papers</a>
             <a href="#contact">Licensing</a>
@@ -778,7 +779,7 @@
           <!-- Option 3: "A deterministic stability layer for safety-critical systems requiring bounded, rate-limited behaviour." -->
           <p class="tagline" style="font-size: 16px; font-weight: normal; margin-top: 8px;">
             Recursive systems amplify small errors into instability.<br>
-            Zero Overshoot enforces bounded updates before unsafe propagation spreads.
+            Zero Overshoot is a separate deterministic enforcement layer that constrains updates before unsafe propagation spreads.
           </p>
           <ul style="margin: 14px 0 0; padding-left: 20px; line-height: 1.7; color: var(--text-secondary); font-size: 14px;">
             <li>Prevents runaway feedback amplification</li>
@@ -786,11 +787,11 @@
             <li>Separates risk from behaviour</li>
           </ul>
           <p style="margin-top: 10px; font-size: 14px; color: var(--text-secondary);">
-            Deploy in audit, shadow, or live enforcement modes.
+            Not another smoother, estimator, or shutdown rule. Deploy in audit, shadow, or live enforcement modes.
           </p>
           <div class="actions">
             <a class="btn primary" href="./demo/">Run Demo</a>
-            <a class="btn secondary" href="mailto:info@boonmind.io?subject=Request%20Engineering%20Brief">Request Engineering Brief</a>
+            <a class="btn secondary" href="#engineers">For Engineers / Evaluation</a>
           </div>
           <p class="commercial-notice" style="margin-top: 16px; font-size: 13px; color: var(--text-secondary); padding: 12px; background: rgba(11, 61, 145, 0.05); border-left: 3px solid var(--accent); border-radius: 6px;">
             <strong>Commercial Product:</strong> Zero Overshoot is proprietary technology. Patent applications are in preparation. Production use requires a commercial license. Demo use does not grant any rights. See <a href="./commercial-licensing-notes.html" style="color: var(--accent); text-decoration: underline;">Licensing Notes</a> for details.
@@ -879,6 +880,9 @@
           The result is fragmented responsibility, probabilistic or delayed enforcement, and debugging that’s harder because risk and behavior are entangled.
           Zero Overshoot becomes obvious once you separate risk from behavior and enforce allowed updates structurally—before unsafe propagation spreads.
         </p>
+        <p style="margin-bottom: 22px; padding: 14px 16px; background: rgba(11, 61, 145, 0.03); border-left: 4px solid var(--accent); border-radius: 8px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
+          <strong>Verdict:</strong> most current safeguards manage symptoms inside the loop. Zero Overshoot separates risk from behavior and enforces allowed updates before unsafe propagation spreads.
+        </p>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 20px;">
           <div class="card" style="padding: 20px;">
             <h3 style="font-size: 18px; font-weight: 950; margin-bottom: 12px; color: var(--text); padding: 10px 12px; background: rgba(11, 61, 145, 0.06); border-left: 4px solid var(--accent); border-radius: 10px; letter-spacing: -0.2px;">Noise filtering / smoothing</h3>
@@ -942,8 +946,8 @@
       <section id="comparison" class="reveal" aria-label="Old way vs structural enforcement comparison matrix" style="margin: 12px 0 48px;">
         <h2 style="font-size: 24px; font-weight: 950; margin-bottom: 12px; color: var(--text); letter-spacing: -0.3px;">Current approaches vs Zero Overshoot (GSRF)</h2>
         <p style="margin-bottom: 16px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
-          Most current approaches reduce symptoms of instability. Zero Overshoot enforces bounded behaviour structurally.
-          This comparison matrix makes the key shift explicit: most methods reduce symptoms, but only Zero Overshoot applies bounded, structural enforcement as a separate layer.
+          Most current approaches reduce symptoms of instability inside the loop. Zero Overshoot moves risk into a separate enforcement layer and applies bounded behaviour structurally.
+          This comparison matrix makes the shift explicit: most methods reduce symptoms, but Zero Overshoot is designed to enforce allowed updates as a separate layer.
         </p>
         <div class="comparison-table-wrap" role="region" aria-label="Comparison matrix: old approaches vs Zero Overshoot">
           <table class="comparison-table" role="table">
@@ -1739,24 +1743,58 @@
         </div>
       </section>
 
+      <section id="engineers" class="reveal" aria-label="For engineers and evaluation" style="margin: 40px 0 24px;">
+        <div class="card" style="padding: 22px; border-left: 4px solid var(--accent); background: rgba(11, 61, 145, 0.04); box-shadow: var(--shadow);">
+          <div style="font-size: 12px; text-transform: uppercase; letter-spacing: .14em; font-weight: 900; color: var(--text-secondary); margin-bottom: 10px;">
+            For engineers / evaluation
+          </div>
+          <h2 style="font-size: 24px; font-weight: 950; margin-bottom: 12px; color: var(--text); letter-spacing: -0.3px;">Technical evaluation pack</h2>
+          <p style="margin-bottom: 0; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
+            Use this path for assumptions, deployment model, shadow deployment, validation sequence, and integration guidance.
+            The demo is intuition-first; the documents below are the engineering handoff.
+          </p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 18px;">
+            <a class="card" href="./docs/engineering-brief.html" style="display: block; padding: 18px; text-decoration: none; color: var(--text);">
+              <div style="font-size: 12px; text-transform: uppercase; letter-spacing: .14em; font-weight: 900; color: var(--text-secondary); margin-bottom: 8px;">Engineering Brief</div>
+              <p style="margin: 0; color: var(--text-secondary); line-height: 1.7;">What GSRF is, what it is not, where it sits in the loop, and the recommended first application shapes.</p>
+            </a>
+            <a class="card" href="./docs/integration-guide.html" style="display: block; padding: 18px; text-decoration: none; color: var(--text);">
+              <div style="font-size: 12px; text-transform: uppercase; letter-spacing: .14em; font-weight: 900; color: var(--text-secondary); margin-bottom: 8px;">Integration Guide</div>
+              <p style="margin: 0; color: var(--text-secondary); line-height: 1.7;">Assumptions, deployment shape, shadow mode, metrics, and the recommended validation sequence.</p>
+            </a>
+            <a class="card" href="./integration-overview.html" style="display: block; padding: 18px; text-decoration: none; color: var(--text);">
+              <div style="font-size: 12px; text-transform: uppercase; letter-spacing: .14em; font-weight: 900; color: var(--text-secondary); margin-bottom: 8px;">Integration Overview</div>
+              <p style="margin: 0; color: var(--text-secondary); line-height: 1.7;">Production context, supported system types, guarantees, limits, and where the enforcement layer sits.</p>
+            </a>
+            <a class="card" href="./production-readiness.html" style="display: block; padding: 18px; text-decoration: none; color: var(--text);">
+              <div style="font-size: 12px; text-transform: uppercase; letter-spacing: .14em; font-weight: 900; color: var(--text-secondary); margin-bottom: 8px;">Production Readiness</div>
+              <p style="margin: 0; color: var(--text-secondary); line-height: 1.7;">Evaluation flow, deployment modes, licensing path, and the transition from shadow mode to live use.</p>
+            </a>
+          </div>
+          <p class="note" style="margin-top: 14px; max-width: 78ch;">
+            Recommended starting point for manufacturing and aerospace teams: shadow or supervisory deployment on a single bounded channel before granting live enforcement authority.
+          </p>
+        </div>
+      </section>
+
       <header id="technical" class="legacy-header reveal" aria-label="Overview header">
         <h1>Gradient-Stabilized Recursive Filtering (GSRF)</h1>
-        <p class="subtitle">A deterministic safety layer for systems that cannot fail unpredictably.</p>
-        <p style="margin-top: 16px; font-size: 15px; color: var(--text-secondary);">GSRF (Zero Overshoot) is a deterministic safety filter for recursive and safety-critical systems.</p>
+        <p class="subtitle">On-page technical overview.</p>
+        <p style="margin-top: 16px; font-size: 15px; color: var(--text-secondary);">For the fastest technical read, use the evaluation pack above for assumptions, deployment model, and validation sequence. The accordion below is the on-page reference.</p>
       </header>
 
       <section class="accordion" aria-label="Overview">
         <p class="commercial-notice" style="margin-bottom: 20px; font-size: 13px; color: var(--text-secondary); padding: 14px; background: rgba(11, 61, 145, 0.05); border-left: 3px solid var(--accent); border-radius: 6px;">
           <strong>Commercial Product:</strong> Zero Overshoot is proprietary technology. Production use requires a commercial license. See <a href="./commercial-licensing-notes.html" style="color: var(--accent); text-decoration: underline;">Commercial &amp; Licensing Notes</a>.
         </p>
-        <details open>
+        <details>
           <summary>What problem this solves</summary>
           <div class="details-body">
             <p>Recursive systems—whether in control loops, optimisation engines, or autonomous agents—exhibit a class of failure modes that conventional safeguards cannot reliably prevent. The core issue is structural: when a system's output feeds back into its own inputs, small errors can compound exponentially.</p>
             <p><strong>Runaway gradients</strong> occur when optimisation processes update parameters without bounds, leading to values that grow unboundedly large or oscillate violently. In recursive systems, this is not an edge case but a predictable failure mode under specific conditions.</p>
             <p><strong>Recursive amplification</strong> compounds errors across iterations. A 1% deviation in iteration <em>n</em> can become a 50% deviation by iteration <em>n+10</em> if the system lacks inherent stability constraints. This is why systems that "usually work" fail catastrophically under pressure.</p>
             <p><strong>Delayed failure detection</strong> is endemic to recursive architectures. By the time monitoring systems register anomalous behaviour, the underlying state may already be irrecoverable. Probabilistic safeguards, which trigger on statistical anomalies, often activate too late or not at all when the system drifts gradually rather than failing abruptly.</p>
-            <p><strong>Optimisation loops</strong> in safety-critical systems present a specific risk: they are designed to seek extrema, but without deterministic constraints, they cannot distinguish between beneficial optimisation and runaway optimisation toward destructive states. Alignment—ensuring a system pursues intended goals—is necessary but insufficient. A well-aligned system can still exhibit recursive instability if its underlying dynamics are unbounded.</p>
+            <p><strong>Optimisation loops</strong> in safety-critical systems present a specific risk: they are designed to seek extrema, but without deterministic constraints, they cannot distinguish between beneficial optimisation and runaway optimisation toward destructive states.</p>
             <p>In safety-critical systems, probabilistic safeguards provide statistical guarantees that hold on average. But averages do not prevent the single catastrophic failure that destroys a turbine, crashes an aircraft, or corrupts a financial system. Zero Overshoot is designed to enforce bounded behaviour within a defined envelope under stated assumptions. When correctly configured, it can provide deterministic boundedness criteria relative to declared system constraints and update limits.</p>
           </div>
         </details>
@@ -1764,13 +1802,13 @@
         <details>
           <summary>How GSRF works (high level)</summary>
           <div class="details-body">
-            <p>GSRF is a zero-overshoot safety filter for recursive and safety-critical systems. It enforces deterministic constraints before execution, not after failure detection. The framework is designed to maintain stability with zero overshoot under recursion.</p>
-            <p><strong>Gradient bounding</strong> is designed to enforce that update magnitudes remain within predefined envelopes. Rather than allowing gradients to grow without limit and then attempting to detect runaway states, GSRF constrains the rate of change structurally. Within the configured envelope and under stated assumptions, the system cannot produce unbounded updates because the update mechanism itself is bounded.</p>
-            <p><strong>Recursive depth constraints</strong> limit how far feedback can propagate through the system before encountering a stabilising checkpoint. This prevents the exponential error amplification that characterises unconstrained recursion.</p>
+            <p>GSRF is a bounded recursive safety filter for systems where overshoot, nuisance triggering, and unstable recursion matter more than maximal tracking speed. It enforces deterministic constraints before execution, not after failure detection.</p>
+            <p><strong>Gradient-guided restoration</strong> pulls the filtered state back toward a configured target band center. Rather than letting update magnitudes grow without limit and then reacting, GSRF keeps state evolution inside a configured envelope.</p>
+            <p><strong>Bounded memory</strong> adds short-term history through a saturating term so recent movement influences the next step without overwhelming present evaluation.</p>
+            <p><strong>Explicit parameter envelopes</strong> keep coupling, memory, and baseline terms inside declared operating ranges. That makes the operating region inspectable, testable, and easier to audit.</p>
             <p><strong>Stability enforcement prior to execution</strong> means that GSRF validates system state and proposed actions against stability criteria before they are committed. GSRF acts as a deterministic, zero-overshoot safety filter: actions that would violate stability constraints are rejected or modified before they affect system state.</p>
-            <p><strong>Prevention of uncontrolled system divergence</strong> follows from the above. By bounding gradients, limiting recursion depth, and filtering decisions prior to execution, GSRF eliminates the pathways through which recursive systems typically fail.</p>
             <p>The framework operates on mathematical foundations. The stability bounds are derived analytically and are designed to provide deterministic bounds within the defined envelope, bounded-by-construction under stated assumptions. This is what distinguishes a deterministic safety layer from probabilistic monitoring.</p>
-            <p>An <a href="./demo/">interactive demonstration</a> compares bounded (GSRF) versus unbounded (EMA) filtering on synthetic signals.</p>
+            <p>An <a href="./demo/">interactive demonstration</a> compares bounded (GSRF) versus unbounded (EMA) filtering on synthetic signals. Use the evaluation pack above for assumptions, deployment shape, and validation sequence.</p>
             <p style="margin-top: 10px; font-size: 14px; color: var(--text-secondary); max-width: 78ch;">
               <em>Non-overshooting convergence (plain language).</em> For monotonic bounded-reference inputs approaching the target band from one side, with parameters within the defined envelopes and bounded disturbance \(|\eta_t| \le \delta\), the framework is designed so that the filtered trajectory does not overshoot the configured band.
             </p>
@@ -1852,7 +1890,6 @@ class GSRFilter:
             <ul>
               <li><strong>Not a plug-and-play library.</strong> GSRF requires system-specific analysis to configure stability bounds and integration points. There is no generic "install and run" implementation.</li>
               <li><strong>Not a SaaS product.</strong> GSRF is a framework deployed through tailored engineering work, not a hosted service.</li>
-              <li><strong>Not a general AI alignment solution.</strong> GSRF addresses recursive stability, not value alignment, goal specification, or intent interpretation. These are separate problems.</li>
               <li><strong>Not probabilistic or heuristic-based.</strong> The boundedness criteria GSRF is designed to provide are deterministic. If probabilistic monitoring is sufficient for your application, GSRF may be more rigorous than necessary.</li>
             </ul>
           </div>
@@ -1861,15 +1898,15 @@ class GSRFilter:
         <details>
           <summary>Use cases</summary>
           <div class="details-body">
-            <p>GSRF is designed for systems where failure is not tolerable and where recursive dynamics create instability risk. Zero overshoot behaviour is essential in safety-critical control systems where even momentary excursions beyond acceptable bounds can cause irreversible damage:</p>
+            <p>GSRF is designed for systems where failure is not tolerable and where recursive dynamics create instability risk. Core near-term use cases are safety-critical control, industrial automation, robotics, monitoring, and bounded decision systems. Autonomous and agentic systems remain a secondary or emerging use case.</p>
             <ul>
-              <li><strong>Autonomous control systems</strong> — including vehicle control, flight systems, and process control where feedback loops must remain stable under all conditions</li>
               <li><strong>Robotics</strong> — particularly systems with learned controllers or adaptive behaviours that could exhibit runaway optimisation</li>
               <li><strong>Optimisation engines</strong> — any system that iteratively improves toward an objective and risks divergence if unconstrained</li>
-              <li><strong>Reinforcement learning pipelines</strong> — where reward-seeking behaviour must be bounded to prevent unsafe policy development</li>
               <li><strong>Industrial automation</strong> — control systems governing physical processes where instability has immediate physical consequences</li>
               <li><strong>Financial or operational decision systems</strong> — automated trading, resource allocation, or scheduling systems where recursive optimisation must be bounded</li>
               <li><strong>Safety-critical software environments</strong> — any context where deterministic boundedness criteria are required by regulation, liability, or operational necessity</li>
+              <li><strong>Autonomous control systems</strong> — a secondary / emerging use case, including vehicle or flight systems where the supervisory enforcement layer and operating envelope are already clearly defined</li>
+              <li><strong>Reinforcement learning and agentic pipelines</strong> — a secondary / emerging use case where reward-seeking behaviour must be bounded after the core control and supervisory framing is validated</li>
             </ul>
           </div>
         </details>

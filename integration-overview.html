@@ -101,13 +101,12 @@
   <h1>Zero Overshoot — Integration Overview</h1>
 
   <h2>What Zero Overshoot Is</h2>
-  <p>Zero Overshoot is a deterministic safety filter for recursive and feedback-driven systems. It enforces bounded update dynamics to prevent runaway amplification in systems where outputs feed back into inputs. The framework constrains gradient magnitudes and recursion depth structurally, rather than relying on late-stage failure detection.</p>
+  <p>Zero Overshoot (GSRF) is a deterministic safety filter for recursive and feedback-driven systems. It enforces bounded update dynamics to prevent runaway amplification in systems where outputs feed back into inputs. The framework constrains gradient magnitudes and recursion depth structurally, rather than relying on late-stage failure detection.</p>
   <p>Zero Overshoot operates on mathematical foundations: stability bounds are derived analytically and are designed to provide deterministic constraints within a defined envelope, bounded-by-construction under stated assumptions. This distinguishes it from probabilistic monitoring systems that provide statistical guarantees on average.</p>
 
   <h2>What It Is NOT</h2>
   <p>Zero Overshoot is not a plug-and-play library. It requires system-specific analysis to configure stability bounds and integration points. There is no generic "install and run" implementation.</p>
   <p>Zero Overshoot is not a SaaS product. It is deployed through tailored engineering work, not a hosted service.</p>
-  <p>Zero Overshoot is not a general AI alignment solution. It addresses recursive stability, not value alignment, goal specification, or intent interpretation. These are separate problems.</p>
   <p>Zero Overshoot is not probabilistic or heuristic-based. The boundedness criteria it is designed to provide are deterministic. If probabilistic monitoring is sufficient for your application, Zero Overshoot may be more rigorous than necessary.</p>
 
   <h2>Where It Sits in a System</h2>
@@ -115,6 +114,7 @@
   <p>In a control loop, Zero Overshoot filters the control signal before it reaches the actuator. In an optimization engine, it bounds the parameter update step before it is applied. In an autonomous agent, it constrains action selection before execution.</p>
   <p>The filter does not replace the underlying control or optimization logic. Instead, it enforces deterministic envelopes around the update dynamics, ensuring that even if the core logic would produce an unbounded update, the filtered output remains within safe bounds.</p>
   <p>Integration requires identifying the feedback pathways in your system and establishing measurement points where Zero Overshoot can intercept and filter updates. The framework must be configured with system-specific bounds that reflect the physical or operational constraints of your application domain.</p>
+  <p>In practice, many teams begin with shadow deployment or supervisory enforcement on a single bounded channel before granting live authority.</p>
 
   <h2>What It Guarantees</h2>
   <p>Zero Overshoot is designed to enforce that update magnitudes remain within predefined envelopes under recursion when correctly configured. It is designed to prevent exponential error amplification by bounding gradient steps and limiting recursion depth.</p>
@@ -180,8 +180,9 @@
   <ul>
     <li>Autonomous vehicle control (yaw, attitude, trajectory tracking)</li>
     <li>Flight control systems (pitch, roll, altitude stabilization)</li>
+    <li>Drone and drone-swarm control (position / attitude tracking and coordination)</li>
     <li>Industrial process control (temperature, flow, pressure regulation)</li>
-    <li>Robotic control (joint torque, grasp force, motion planning)</li>
+    <li>Robotic control (joint torque, grasp force, motion planning, and actuator command shaping)</li>
   </ul>
   
   <h3>Optimization Engines</h3>
@@ -209,7 +210,7 @@
     <li>Medical devices and life-critical systems</li>
     <li>Financial trading and risk management</li>
     <li>Industrial automation and process control</li>
-    <li>Autonomous vehicles and robotics</li>
+    <li>Autonomous vehicles and robotics (including drones and drone swarms)</li>
   </ul>
   
   <p>If your system does not fit these categories but exhibits recursive or feedback-driven dynamics, contact <a href="mailto:info@boonmind.io">info@boonmind.io</a> to discuss applicability.</p>

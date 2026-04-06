@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zero Overshoot — Engineering Brief</title>
+  <meta name="description" content="Engineering brief for Zero Overshoot: deterministic safety filter for recursive systems. Commercial proprietary technology. Patent applications are in preparation.">
+  <link rel="canonical" href="https://zeroovershoot.com/docs/engineering-brief.html">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <style>
+    @page {
+      size: letter;
+      margin: 1in;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 11pt;
+      line-height: 1.6;
+      color: #1a1a1a;
+      max-width: 8.5in;
+      margin: 0 auto;
+      padding: 1in;
+      background: white;
+    }
+    h1 {
+      font-size: 24pt;
+      font-weight: 900;
+      margin-bottom: 12pt;
+      letter-spacing: -0.5pt;
+      border-bottom: 2px solid #1a1a1a;
+      padding-bottom: 8pt;
+    }
+    h2 {
+      font-size: 14pt;
+      font-weight: 800;
+      margin-top: 20pt;
+      margin-bottom: 8pt;
+      color: #1a1a1a;
+    }
+    h3 {
+      font-size: 12pt;
+      font-weight: 700;
+      margin-top: 14pt;
+      margin-bottom: 6pt;
+    }
+    p {
+      margin-bottom: 10pt;
+    }
+    ul, ol {
+      margin: 10pt 0;
+      padding-left: 24pt;
+    }
+    li {
+      margin-bottom: 6pt;
+    }
+    strong {
+      font-weight: 700;
+    }
+    .notice {
+      padding: 12pt;
+      background: #f0f4ff;
+      border-left: 3px solid #0b3d91;
+      margin: 16pt 0;
+      font-size: 10pt;
+    }
+    .footer {
+      margin-top: 32pt;
+      padding-top: 16pt;
+      border-top: 1px solid #ccc;
+      font-size: 10pt;
+      color: #666;
+    }
+    @media print {
+      body {
+        padding: 0;
+      }
+      .no-print {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Zero Overshoot — Engineering Brief</h1>
+
+  <div class="notice">
+    <p><strong>Commercial Product:</strong> Zero Overshoot is proprietary technology. Patent applications are in preparation. Commercial use requires a license.</p>
+  </div>
+
+  <h2>What Zero Overshoot Is</h2>
+  <p>Zero Overshoot (GSRF) is a deterministic safety filter for recursive and feedback-driven systems. I designed it to enforce bounded update dynamics and prevent runaway amplification in systems where outputs feed back into inputs.</p>
+  <p>The framework operates on mathematical foundations: stability bounds are derived analytically and are designed to provide deterministic constraints within a defined envelope, bounded-by-construction under stated assumptions. This distinguishes it from probabilistic monitoring systems that provide statistical guarantees on average.</p>
+
+  <h2>What It Is NOT</h2>
+  <p>Zero Overshoot is not a plug-and-play library. It requires system-specific analysis to configure stability bounds and integration points. There is no generic "install and run" implementation.</p>
+  <p>Zero Overshoot is not a SaaS product. It is deployed through tailored engineering work, not a hosted service.</p>
+  <p>Zero Overshoot is not probabilistic or heuristic-based. The boundedness criteria it is designed to provide are deterministic. If probabilistic monitoring is sufficient for your application, Zero Overshoot may be more rigorous than necessary.</p>
+
+  <h2>Where It Sits in a System</h2>
+  <p>Zero Overshoot acts as a pre-decision constraint layer. It sits between the system's decision-making or optimization logic and the actuators or outputs that affect system state. When a proposed update is generated, Zero Overshoot evaluates it against stability bounds before it is committed.</p>
+  <p>This is different from post-execution monitoring: Zero Overshoot prevents unstable updates from being applied, rather than detecting and responding to instability after it occurs.</p>
+
+  <h2>Assumptions &amp; Envelope</h2>
+  <p>Zero Overshoot is designed to enforce bounded behaviour within a defined envelope under stated assumptions. When correctly configured, it can provide deterministic boundedness criteria relative to declared system constraints and update limits.</p>
+  <p>The boundedness criteria hold for the specific system configuration and bounds that were established during integration. They are not universal guarantees for arbitrary systems or configurations.</p>
+  <p>Deterministic boundedness criteria require deterministic assumptions. If your system operates under conditions that violate the stated assumptions—for example, if feedback pathways change dynamically in ways not accounted for in the configuration—the boundedness criteria may not hold.</p>
+
+  <h2>Recommended First Evaluation Shapes</h2>
+  <p>For manufacturing, aerospace, and other safety-critical teams, the lowest-friction starting point is usually a narrow supervisory deployment rather than immediate full-loop authority.</p>
+  <ul>
+    <li><strong>Shadow deployment:</strong> Run Zero Overshoot alongside the current controller, estimator, or alerting logic and compare bounded versus current behavior without affecting outputs.</li>
+    <li><strong>Supervisory enforcement layer:</strong> Intercept proposed updates at a single bounded interface and constrain only that channel.</li>
+    <li><strong>Command shaping:</strong> Apply bounded update logic to actuator or setpoint commands where overshoot, chatter, or nuisance correction is costly.</li>
+    <li><strong>Bounded alerting:</strong> Apply the filter to alarm, trip, or decision thresholds where nuisance triggers carry operational cost.</li>
+  </ul>
+
+  <h2>Metrics to Record</h2>
+  <p>Evaluation should focus on a small set of metrics that make the cost-of-safety trade-off inspectable:</p>
+  <ul>
+    <li><strong>Max overshoot:</strong> Largest excursion beyond the declared target band</li>
+    <li><strong>Band crossings / nuisance trips:</strong> How often the output repeatedly exits and re-enters the acceptable band</li>
+    <li><strong>Time to stability:</strong> First point at which the output remains within the target band for the declared stability window</li>
+    <li><strong>RMS trade-off:</strong> Accuracy cost accepted in exchange for bounded behavior</li>
+  </ul>
+
+  <h2>Recommended First Validation Sequence</h2>
+  <ol>
+    <li>Baseline the current system on representative step, ramp, disturbance, and noisy transient cases.</li>
+    <li>Define the target band, disturbance bounds, and unacceptable overshoot or nuisance-trigger conditions.</li>
+    <li>Run bench or simulation tests on a single bounded channel first.</li>
+    <li>Record max overshoot, band crossings / nuisance trips, time to stability, and RMS trade-off.</li>
+    <li>Deploy in shadow mode before enabling live enforcement.</li>
+    <li>Only then consider live enforcement on the validated channel.</li>
+  </ol>
+
+  <h2>Integration Modes</h2>
+  <h3>Advisory (Design Review)</h3>
+  <p>For teams evaluating runaway feedback risk in an existing system. Includes review of signal → actuator loop, identification of instability / overshoot points, and written assessment and recommendation.</p>
+
+  <h3>Assisted Integration</h3>
+  <p>For teams ready to deploy Zero Overshoot in a real system. Includes reference implementation guidance, parameter selection + constraints, and validation and testing support.</p>
+
+  <h3>Licensed Embedding</h3>
+  <p>For organisations embedding Zero Overshoot in a product or platform. Includes deterministic filter logic, patent-pending system, and commercial license required for production use.</p>
+
+  <h2>How to Proceed</h2>
+  <p>If you're evaluating Zero Overshoot for a production system, email <a href="mailto:info@boonmind.io">info@boonmind.io</a> with:</p>
+  <ul>
+    <li>System domain and architecture overview</li>
+    <li>Intended use case (research, internal tool, customer-facing product, safety/compliance driven)</li>
+    <li>What happens if this system overshoots or exhibits runaway behavior</li>
+    <li>Integration timeline and requirements</li>
+  </ul>
+  <p>I'll respond with relevant documentation, integration guidance, and licensing information tailored to your system.</p>
+
+  <div class="footer">
+    <p>Zero Overshoot (GSRF) — Engineering Brief<br>
+    © 2026 Carl Boon (BoonMind)<br>
+    <a href="https://zeroovershoot.com">zeroovershoot.com</a> · <a href="mailto:info@boonmind.io">info@boonmind.io</a></p>
+  </div>
+</body>
+</html>

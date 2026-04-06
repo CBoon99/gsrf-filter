@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zero Overshoot — Integration Guide</title>
+  <meta name="description" content="Integration guide for Zero Overshoot: practical steps, assumptions, inputs required, and validation workflow. Commercial proprietary technology. Patent applications are in preparation.">
+  <link rel="canonical" href="https://zeroovershoot.com/docs/integration-guide.html">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <style>
+    @page {
+      size: letter;
+      margin: 1in;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 11pt;
+      line-height: 1.6;
+      color: #1a1a1a;
+      max-width: 8.5in;
+      margin: 0 auto;
+      padding: 1in;
+      background: white;
+    }
+    h1 {
+      font-size: 24pt;
+      font-weight: 900;
+      margin-bottom: 12pt;
+      letter-spacing: -0.5pt;
+      border-bottom: 2px solid #1a1a1a;
+      padding-bottom: 8pt;
+    }
+    h2 {
+      font-size: 14pt;
+      font-weight: 800;
+      margin-top: 20pt;
+      margin-bottom: 8pt;
+      color: #1a1a1a;
+    }
+    h3 {
+      font-size: 12pt;
+      font-weight: 700;
+      margin-top: 14pt;
+      margin-bottom: 6pt;
+    }
+    p {
+      margin-bottom: 10pt;
+    }
+    ul, ol {
+      margin: 10pt 0;
+      padding-left: 24pt;
+    }
+    li {
+      margin-bottom: 6pt;
+    }
+    strong {
+      font-weight: 700;
+    }
+    code {
+      font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+      font-size: 10pt;
+      background: #f5f5f5;
+      padding: 2pt 4pt;
+      border-radius: 3pt;
+    }
+    .notice {
+      padding: 12pt;
+      background: #f0f4ff;
+      border-left: 3px solid #0b3d91;
+      margin: 16pt 0;
+      font-size: 10pt;
+    }
+    .footer {
+      margin-top: 32pt;
+      padding-top: 16pt;
+      border-top: 1px solid #ccc;
+      font-size: 10pt;
+      color: #666;
+    }
+    @media print {
+      body {
+        padding: 0;
+      }
+      .no-print {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Zero Overshoot — Integration Guide</h1>
+
+  <div class="notice">
+    <p><strong>Commercial Product:</strong> Zero Overshoot is proprietary technology. Patent applications are in preparation. Commercial use requires a license.</p>
+  </div>
+
+  <h2>Overview</h2>
+  <p>This guide outlines the practical steps for integrating Zero Overshoot into a production system. Integration is not a drop-in process: it requires system analysis, bound configuration, and validation specific to your application.</p>
+
+  <h2>Prerequisites</h2>
+  <p>Before beginning integration, you should have:</p>
+  <ul>
+    <li>Clear understanding of your system's feedback pathways and recursion points</li>
+    <li>Defined stability requirements: what boundedness criteria are required?</li>
+    <li>Performance requirements: what are acceptable trade-offs (speed, efficiency)?</li>
+    <li>Validation requirements: how will you verify the integrated system meets requirements?</li>
+    <li>Operational requirements: what monitoring and maintenance are needed?</li>
+  </ul>
+
+  <h2>Integration Steps</h2>
+
+  <h3>Step 1: System Analysis</h3>
+  <p>Identify all feedback pathways in your system where outputs feed back into inputs. Map the decision-making or optimization logic that generates updates. Document the current update mechanism and any existing constraints or bounds.</p>
+  <p><strong>Inputs required:</strong></p>
+  <ul>
+    <li>System architecture diagram showing feedback loops</li>
+    <li>Current update/control logic documentation</li>
+    <li>Known failure modes and instability conditions</li>
+  </ul>
+
+  <h3>Step 2: Bound Configuration</h3>
+  <p>Define stability bounds for your system. This includes:</p>
+  <ul>
+    <li>Maximum update magnitude per iteration</li>
+    <li>Maximum rate of change for updates</li>
+    <li>Target band and stability window boundaries</li>
+    <li>Stability envelope boundaries</li>
+  </ul>
+  <p><strong>Inputs required:</strong></p>
+  <ul>
+    <li>Operational constraints and limits</li>
+    <li>Safety margins and acceptable overshoot thresholds</li>
+    <li>Performance requirements vs. safety requirements trade-offs</li>
+  </ul>
+
+  <h3>Step 3: Integration Point Selection</h3>
+  <p>Determine where Zero Overshoot will sit in your system architecture. It should intercept proposed updates before they are committed to system state. This typically means:</p>
+  <ul>
+    <li>Between decision logic and actuator/output interfaces</li>
+    <li>Before state updates are applied</li>
+    <li>At points where feedback loops are most critical</li>
+  </ul>
+
+  <h3>Step 4: Implementation</h3>
+  <p>Implement the constraint layer using the configured bounds. This involves:</p>
+  <ul>
+    <li>Integrating the bounded update logic</li>
+    <li>Connecting to your system's update mechanism</li>
+    <li>Implementing rejection/modification logic for updates that violate bounds</li>
+  </ul>
+  <p><strong>Note:</strong> Implementation details are system-specific and require engineering work. There is no generic implementation that works for all systems. For first deployment, shadow mode is usually preferable to immediate live enforcement.</p>
+
+  <h3>Step 5: Validation and Testing</h3>
+  <p>Verify that the integrated system achieves the required stability criteria:</p>
+  <ul>
+    <li>Test under normal operating conditions</li>
+    <li>Test under stress conditions and edge cases</li>
+    <li>Verify that bounds are enforced correctly</li>
+    <li>Record max overshoot, band crossings / nuisance trips, time to stability, and RMS trade-off</li>
+    <li>Confirm that performance trade-offs are acceptable</li>
+    <li>Validate that the system behaves deterministically within the defined envelope</li>
+  </ul>
+
+  <h2>Recommended First Deployment Shapes</h2>
+  <p>For manufacturing, aerospace, and similar safety-critical teams, start narrow. The first deployment should usually validate one bounded interface rather than attempt immediate full-loop authority.</p>
+  <ul>
+    <li><strong>Shadow deployment:</strong> Run alongside the current controller or alerting logic and compare behavior without affecting outputs.</li>
+    <li><strong>Supervisory enforcement layer:</strong> Constrain proposed updates at a single interface before they reach actuators or state transitions.</li>
+    <li><strong>Command shaping:</strong> Apply the bounded update rule to actuator or setpoint commands where overshoot creates operational cost.</li>
+    <li><strong>Bounded alerting:</strong> Apply the filter to alarm, trip, or decision thresholds where nuisance triggers are expensive.</li>
+  </ul>
+
+  <h2>Shadow Deployment Before Live Enforcement</h2>
+  <p>Shadow mode is the recommended first operational test. Run Zero Overshoot in parallel with the existing system, feed it the same proposed updates or observations, and log the bounded output without granting control authority.</p>
+  <p>Shadow deployment lets your team verify boundedness behavior, compare metrics against the current system, and expose assumption violations before live integration.</p>
+
+  <h2>Recommended First Validation Sequence</h2>
+  <ol>
+    <li><strong>Baseline current behavior:</strong> Record current overshoot, nuisance-trigger, and settling characteristics on representative cases.</li>
+    <li><strong>Define the envelope:</strong> Declare target band, disturbance bounds, stability window, and unacceptable failure conditions.</li>
+    <li><strong>Bench or simulation testing:</strong> Start with step, ramp, disturbance, and noisy transient cases on a single bounded channel.</li>
+    <li><strong>Record core metrics:</strong> Track max overshoot, band crossings / nuisance trips, time to stability, and RMS trade-off.</li>
+    <li><strong>Shadow deployment:</strong> Run in parallel with the existing system before granting live authority.</li>
+    <li><strong>Live enforcement on a validated channel:</strong> Enable live use only after the bounded channel is understood and the assumptions are holding.</li>
+  </ol>
+
+  <h2>Assumptions &amp; Envelope</h2>
+  <p>Zero Overshoot is designed to enforce bounded behaviour within a defined envelope under stated assumptions. The boundedness criteria hold for the specific system configuration and bounds that were established during integration.</p>
+  <p><strong>Key assumptions:</strong></p>
+  <ul>
+    <li>Feedback pathways are known and documented</li>
+    <li>System operates within the analyzed envelope</li>
+    <li>Bounds are configured correctly for the system</li>
+    <li>Integration points are correctly identified and implemented</li>
+  </ul>
+  <p><strong>Envelope boundaries:</strong></p>
+  <ul>
+    <li>Defined by the stability bounds configured during integration</li>
+    <li>Limited to the system conditions analyzed during integration</li>
+    <li>May not apply if system architecture or operational conditions change beyond the analyzed scope</li>
+  </ul>
+
+  <h2>What Zero Overshoot Does NOT Guarantee</h2>
+  <p>Zero Overshoot does not guarantee that your system will meet all performance objectives. It constrains updates to remain within bounds, but it does not optimize for speed, efficiency, or other non-safety criteria.</p>
+  <p>Zero Overshoot does not guarantee correct behavior if the bounds are configured incorrectly. If the stability envelope is set too loosely or does not account for all feedback pathways, the system may still exhibit instability outside the defined bounds.</p>
+  <p>Zero Overshoot does not guarantee protection against all failure modes. It addresses recursive instability and runaway amplification. It does not prevent failures from external inputs, hardware faults, logic errors, or other classes of system failure.</p>
+
+  <h2>Validation Workflow</h2>
+  <ol>
+    <li><strong>Pre-integration baseline:</strong> Document current system behavior, including known instability modes and failure conditions.</li>
+    <li><strong>Bound verification:</strong> Verify that configured bounds are appropriate for your system's operational requirements.</li>
+    <li><strong>Integration testing:</strong> Test the integrated system under controlled conditions to verify boundedness enforcement.</li>
+    <li><strong>Stress testing:</strong> Test under stress conditions to verify that bounds hold under load.</li>
+    <li><strong>Operational validation:</strong> Validate that the system meets stability requirements in production-like conditions.</li>
+  </ol>
+
+  <h2>How to Proceed</h2>
+  <p>If you're ready to begin integration, email <a href="mailto:info@boonmind.io">info@boonmind.io</a> with:</p>
+  <ul>
+    <li>System architecture and feedback pathway documentation</li>
+    <li>Stability requirements and boundedness criteria</li>
+    <li>Integration timeline and constraints</li>
+    <li>Questions about bound configuration or integration approach</li>
+  </ul>
+  <p>I'll provide integration guidance, reference implementation support, and licensing information for your specific system.</p>
+
+  <div class="footer">
+    <p>Zero Overshoot (GSRF) — Integration Guide<br>
+    © 2026 Carl Boon (BoonMind)<br>
+    <a href="https://zeroovershoot.com">zeroovershoot.com</a> · <a href="mailto:info@boonmind.io">info@boonmind.io</a></p>
+  </div>
+</body>
+</html>

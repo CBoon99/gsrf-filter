@@ -160,6 +160,10 @@
       font-size: 14px;
       -webkit-appearance: none;
     }
+
+    option {
+      white-space: normal;
+    }
     
     input[type="range"] {
       padding: 0;
@@ -391,6 +395,22 @@
       .chart-container {
         height: 280px;
       }
+
+      .kpis {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      
+      .kpi {
+        padding: 10px;
+      }
+      
+      .kpi .v { font-size: 15px; }
+      .kpi .l { font-size: 10.5px; }
+
+      .hint {
+        font-size: 11.5px;
+      }
       
       .btns {
         flex-direction: column;
@@ -414,14 +434,14 @@
 <body class="theme-dark">
   <a class="skip-link" href="#main">Skip to content</a>
   <header>
-    <a href="../" class="back-link" id="backLink">← Back to GSRF</a>
+    <a href="../" class="back-link" id="backLink">← Back to Zero Overshoot</a>
     <button class="secondary" id="copyLinkBtn" type="button" style="margin-left: 10px;">Copy share link</button>
     <div class="title">
-      <h1>GSRF Interactive Demonstration</h1>
+      <h1>Zero Overshoot (GSRF) Interactive Demonstration</h1>
     </div>
     <p class="sub">
       Bounded versus unbounded recursive filtering under identical inputs.
-      This demonstration compares GSRF (bounded, zero-overshoot behaviour) against EMA on controlled synthetic signals.
+      This demonstration compares Zero Overshoot (GSRF) (bounded, zero-overshoot behaviour) against EMA on controlled synthetic signals.
     </p>
   </header>
 
@@ -434,11 +454,15 @@
       <div class="bd">
         <ol style="margin: 0; padding-left: 18px; color: var(--muted); font-size: 13px; line-height: 1.6;">
           <li>Start with <strong>Step</strong> + <strong>EMA (α=0.50)</strong> to see overshoot.</li>
-          <li>Switch to <strong>GSRF</strong> and compare how the output stays within the target band.</li>
+          <li>Switch to <strong>Zero Overshoot (GSRF)</strong> and compare how the output stays within the target band.</li>
           <li>Use <strong>Max overshoot</strong> and <strong>Band crossings</strong> as a quick boundedness read.</li>
         </ol>
         <p style="margin-top: 12px; margin-bottom: 0; color: var(--muted); font-size: 12px;">
-          Synthetic, domain-shaped signals (not real-world data). Filter math is unchanged. Read overshoot, crossings, and time-to-stability to compare bounded vs unbounded behavior.
+          Synthetic, domain-shaped signals (not real-world data). Filter math is unchanged.
+          <strong>Max overshoot</strong> is the largest amount the output leaves the target band.
+          <strong>Band crossings</strong> counts how often it repeatedly exits/returns to the band.
+          <strong>Time to stability</strong> is the first step where the output stays within the band for the stability window.
+          Read these together to compare bounded vs unbounded behavior.
         </p>
         <p style="margin-top: 12px; margin-bottom: 0; color: var(--muted); font-size: 12px;">
           Learn more: <a href="../deterministic-safety-recursive-systems.html">deterministic safety</a>,
@@ -459,8 +483,9 @@
           <option value="">General (default)</option>
           <option value="autonomous">Autonomous control</option>
           <option value="robotics">Robotics</option>
-          <option value="finance">Finance / Trading systems</option>
           <option value="industrial">Industrial control</option>
+          <option value="finance">Finance / trading</option>
+          <option value="medical">Medical / life-critical monitoring</option>
         </select>
 
         <label for="signalModel">Signal model</label>
@@ -574,7 +599,7 @@
               <div class="ctx-v" id="ctxPattern">—</div>
             </div>
             <div class="ctx-item">
-              <div class="ctx-k">What GSRF constrains</div>
+              <div class="ctx-k">What Zero Overshoot constrains</div>
               <div class="ctx-v" id="ctxConstrains">—</div>
             </div>
           </div>
@@ -862,8 +887,8 @@
         axis: { x: "Time (steps)", y: "Tracking error (deg, example)" },
         defaults: { signalType: "step", target: 0.0, band: 0.6, noise: 0.10, beta: 0.28, kreturn: 1.20, mem: 0.18, baseline: 0.00, mode: "gsrf" },
         context: {
-          title: "Industry context: autonomous control",
-          optimizes: "Tracking error, settling time, and actuator smoothness",
+          title: "Industry context: autonomous control (drones and drone swarms)",
+          optimizes: "Tracking error, settling time, and actuator smoothness for flight and swarm controllers",
           pattern: "Overshoot/oscillation after step changes; unstable correction loops",
           constrains: "Update step size so response stays within the target band",
           examples: "Examples: target 0.0° ±0.6°, σ=0.10; 0.18s settling (example)"
@@ -875,8 +900,8 @@
         axis: { x: "Time (steps)", y: "Command deviation (%, example)" },
         defaults: { signalType: "ramp", target: 0.0, band: 12.0, noise: 0.12, beta: 0.26, kreturn: 1.10, mem: 0.22, baseline: 0.00, mode: "gsrf" },
         context: {
-          title: "Industry context: robotics",
-          optimizes: "Task success, smooth motion, and constraint compliance",
+          title: "Industry context: robotics (actuators; drones and drone swarms)",
+          optimizes: "Task success, smooth motion, and constraint compliance for actuator commands (incl. future drone swarms)",
           pattern: "Adaptive drift and unstable corrections under feedback",
           constrains: "Per-step change so commands stay within a safe envelope",
           examples: "Examples: band ±12%, σ=0.12; 35-step stability window (example)"
@@ -884,7 +909,7 @@
       },
       finance: {
         key: "finance",
-        name: "Finance / Trading systems",
+        name: "Finance / trading",
         axis: { x: "Time (steps)", y: "Signal / exposure (normalized, example)" },
         defaults: { signalType: "sine", target: 1.0, band: 0.25, noise: 0.25, beta: 0.22, kreturn: 0.95, mem: 0.25, baseline: 0.05, mode: "ema_fast" },
         context: {
@@ -906,6 +931,19 @@
           pattern: "Slow drift, saturation, and delayed divergence in feedback loops",
           constrains: "Bounded response within a configured tolerance band",
           examples: "Examples: band ±3.0%, σ=0.06; 0.9s settling (example)"
+        }
+      },
+      medical: {
+        key: "medical",
+        name: "Medical / life-critical monitoring",
+        axis: { x: "Time (steps)", y: "Deviation / monitoring metric (example)" },
+        defaults: { signalType: "step", target: 1.0, band: 0.15, noise: 0.15, beta: 0.30, kreturn: 1.00, mem: 0.20, baseline: 0.00, mode: "gsrf" },
+        context: {
+          title: "Industry context: medical / life-critical monitoring",
+          optimizes: "Deviation boundedness under recursive estimation/control updates",
+          pattern: "Instability can show up as alert/decision churn in a recursive pipeline",
+          constrains: "Bound update dynamics so deviations stay within a configured tolerance band",
+          examples: "Examples: band ±0.15, σ=0.15; illustrative stability window (example)"
         }
       }
     };

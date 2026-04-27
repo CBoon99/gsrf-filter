@@ -1,0 +1,23 @@
+# Zero Overshoot (GSRF)
+
+> Proprietary deterministic safety filter for recursive and safety-critical systems. Commercial product; production use requires a license. The site also describes separate, pre-commercial research in quantum error correction and decoder belief propagation—not a public product.
+
+This file is for language models and agents. For crawl policy see `/robots.txt`. For a full URL list see `/sitemap.xml`. Primary entry: the homepage. Use the contact form at `https://zeroovershoot.com/#contact` for licensing, integration, or quantum research inquiries (form includes routing options).
+
+## Product and evaluation
+
+- [Homepage](https://zeroovershoot.com/): Product overview, demo links, technical papers, licensing and contact.
+- [Interactive demo](https://zeroovershoot.com/demo/): Synthetic bounded vs unbounded behaviour; evaluation only.
+- [Integration overview](https://zeroovershoot.com/integration-overview.html): How embedding and enforcement fit system architecture.
+- [Commercial and licensing notes](https://zeroovershoot.com/commercial-licensing-notes.html): License boundaries and terms summary.
+
+## Research and deep dives
+
+- [Deterministic safety for recursive systems](https://zeroovershoot.com/deterministic-safety-recursive-systems.html): Framing and use cases.
+- [Paper abstracts](https://zeroovershoot.com/paper-gsrf-framework.html): Entry point for formal write-ups; access may require contact.
+
+## Optional
+
+- [Applications index](https://zeroovershoot.com/applications.html): Vertical summaries.
+- [Production readiness](https://zeroovershoot.com/production-readiness.html): Deployment-oriented guidance.
+- [Sitemap (machine URL list)](https://zeroovershoot.com/sitemap.xml): All major indexable pages for search engines.

@@ -6,8 +6,8 @@
   
   <!-- Primary SEO -->
   <title>Zero Overshoot — Commercial Safety Filter for Recursive Systems</title>
-  <meta name="description" content="Zero Overshoot: Proprietary, licensed safety filter for recursive systems. Production deployment requires a commercial license. Run the demo, review integration options, and contact for licensing.">
-  <meta name="keywords" content="GSRF, gradient stabilized recursive filtering, zero overshoot, deterministic safety, safety-critical systems, bounded recursion, recursive instability, control systems safety, safety filter, runaway optimisation">
+  <meta name="description" content="Zero Overshoot: Proprietary, licensed safety filter for recursive systems. Production deployment requires a commercial license. Run the demo, review integration options, and contact for licensing. Separate research in quantum error correction and decoder belief propagation is pre-commercial and in progress—see the site.">
+  <meta name="keywords" content="GSRF, gradient stabilized recursive filtering, zero overshoot, deterministic safety, safety-critical systems, bounded recursion, recursive instability, control systems safety, safety filter, runaway optimisation, quantum error correction research, belief propagation, surface code decoder, QEC">
   <meta name="robots" content="index, follow">
   <meta name="author" content="BoonMind">
   <link rel="canonical" href="https://zeroovershoot.com/">
@@ -20,7 +20,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://zeroovershoot.com/">
   <meta property="og:title" content="Zero Overshoot — Commercial Safety Filter for Recursive Systems">
-  <meta property="og:description" content="Proprietary, licensed safety filter for recursive systems. Production deployment requires a commercial license. Run the demo and contact for licensing.">
+  <meta property="og:description" content="Proprietary, licensed safety filter for recursive systems. Production deployment requires a commercial license. Run the demo and contact for licensing. Ongoing, understated quantum error correction research is described on the site; it is not a public product.">
   <meta property="og:site_name" content="GSRF">
   <meta property="og:image" content="https://zeroovershoot.com/favicon.svg">
   <meta property="og:image:alt" content="Zero Overshoot (GSRF)">
@@ -28,7 +28,7 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Zero Overshoot">
-  <meta name="twitter:description" content="Commercial safety filter for recursive systems. Production use requires a license.">
+  <meta name="twitter:description" content="Commercial safety filter for recursive systems. Production use requires a license. Quantum-related work is research-stage only and is summarized briefly on the site.">
   <meta name="twitter:image" content="https://zeroovershoot.com/favicon.svg">
   
   <!-- Structured Data -->
@@ -78,6 +78,24 @@
             }
           }
         ]
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://zeroovershoot.com/#product-zero-overshoot",
+        "name": "Zero Overshoot (GSRF)",
+        "applicationCategory": "BusinessApplication",
+        "url": "https://zeroovershoot.com/#contact",
+        "description": "Proprietary deterministic safety filter and GSRF enforcement for recursive systems. Commercial licensing; use the homepage contact form.",
+        "publisher": { "@id": "https://zeroovershoot.com/#org" },
+        "provider": { "@id": "https://zeroovershoot.com/#org" }
+      },
+      {
+        "@type": "ResearchProject",
+        "@id": "https://zeroovershoot.com/#research-quantum-qec",
+        "name": "Quantum error correction and decoder research (GSRF)",
+        "description": "Active, pre-commercial investigation; not a standalone public product. Benchmarks and methodology discussed under appropriate terms; use the homepage contact form.",
+        "url": "https://zeroovershoot.com/#contact",
+        "creator": { "@id": "https://zeroovershoot.com/#org" }
       }
     ]
   }
@@ -763,6 +781,7 @@
             <a href="./paper-gsrf-framework.html">Abstracts</a>
             <a href="#papers">Papers</a>
             <a href="#contact">Licensing</a>
+            <a href="#quantum-research">Quantum Research</a>
             <a class="cta" href="./demo/">Run the Demo</a>
           </nav>
         </div>
@@ -1636,6 +1655,77 @@
           </details>
         </section>
 
+        <div role="separator" aria-hidden="true" style="border-top: 1px solid var(--border); margin: 48px 0 32px;"></div>
+
+        <section id="quantum-research" class="reveal" aria-label="Quantum Error Correction Research" style="margin: 0 0 48px;">
+          <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 16px; color: var(--text);">Quantum Error Correction Research</h2>
+          <p style="margin-bottom: 12px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
+            Zero Overshoot's core GSRF engine operates natively in log-space —
+            the same mathematical domain where quantum probability amplitudes,
+            log-likelihood ratios, and Bayesian inference naturally live.
+          </p>
+          <p style="margin-bottom: 12px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
+            We are investigating whether this log-space architecture can address
+            a well-known limitation in quantum error correction: belief
+            propagation (BP) decoders getting trapped in pseudo-codeword
+            attractors on surface codes.
+          </p>
+          <h3 style="font-size: 20px; font-weight: 800; margin: 24px 0 12px; color: var(--text);">What we are investigating</h3>
+          <p style="margin-bottom: 12px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
+            GSRF wraps around standard belief propagation as an external
+            preprocessing layer. It shapes the soft-decision reliability
+            landscape between BP iterations, damping oscillations that cause
+            BP to converge to incorrect solutions.
+          </p>
+          <p style="margin-bottom: 12px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
+            The architecture is the same as Zero Overshoot's classical
+            deployment model: the filter sits outside the system it improves.
+            Risk is separated from logic. The quantum code and decoder remain
+            untouched.
+          </p>
+          <h3 style="font-size: 20px; font-weight: 800; margin: 24px 0 12px; color: var(--text);">Research status</h3>
+          <p style="margin-bottom: 12px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
+            Active Monte Carlo benchmarking is underway on CSS surface codes
+            and LDPC codes under multiple noise models. Results to date are
+            promising across several code distances and noise conditions.
+          </p>
+          <p style="margin-bottom: 12px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
+            All testing follows the same methodology as our classical work:
+            pre-declared statistical rules, documented failures alongside wins,
+            SHA-256 hash chains for reproducibility, and honest reporting of
+            limitations.
+          </p>
+          <h3 style="font-size: 20px; font-weight: 800; margin: 24px 0 12px; color: var(--text);">What this is not</h3>
+          <p style="margin-bottom: 12px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
+            This is active research. It is not a product, not validated on
+            quantum hardware, and not a claim of fault-tolerance thresholds
+            or quantum speedup. Peer review and independent replication are
+            required before any deployment claims.
+          </p>
+          <h3 style="font-size: 20px; font-weight: 800; margin: 24px 0 12px; color: var(--text);">Why it matters</h3>
+          <p style="margin-bottom: 12px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
+            If log-space signal processing can reliably improve BP decoding
+            on surface codes, it could provide a lightweight, external,
+            debuggable alternative to more computationally expensive decoders
+            — without modifying the quantum error correction architecture.
+          </p>
+          <p style="margin-bottom: 12px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
+            The same filter. The same log-space mathematics. A different domain.
+          </p>
+          <h3 style="font-size: 20px; font-weight: 800; margin: 24px 0 12px; color: var(--text);">For quantum teams</h3>
+          <p style="margin-bottom: 12px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
+            We are open to confidential discussions with quantum hardware and
+            software teams interested in evaluating this research. Detailed
+            benchmarking data, methodology, and technical reports are available
+            under NDA.
+          </p>
+          <p style="margin-bottom: 0; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
+            Contact: <a href="mailto:info@boonmind.io?subject=Quantum%20Research%20Inquiry" style="color: var(--accent);">info@boonmind.io</a> (subject line &quot;Quantum Research Inquiry&quot;) or use the <a href="#contact" style="color: var(--accent);">contact form</a> and select the quantum research options so we can route your inquiry.
+          </p>
+        </section>
+
+        <div role="separator" aria-hidden="true" style="border-top: 1px solid var(--border); margin: 0 0 48px;"></div>
+
         <section class="preview reveal" aria-label="Demo Preview">
           <div class="card">
             <div class="preview-row">
@@ -2061,6 +2151,37 @@ class GSRFilter:
               <span>Email</span>
               <input type="email" name="email" autocomplete="email" required>
             </label>
+            
+            <label>
+              <span>Primary reason for contact <em>(optional)</em></span>
+              <select name="primary-inquiry" class="contact-form-select">
+                <option value="">Select one…</option>
+                <option value="commercial-licensing">Commercial licensing (Zero Overshoot product)</option>
+                <option value="quantum-research-qec">Quantum error correction / decoder research</option>
+                <option value="other-mixed">Other or mixed (describe in message)</option>
+              </select>
+            </label>
+            
+            <label>
+              <span>Quantum technical focus <em>(optional)</em></span>
+              <select name="quantum-technical-focus" class="contact-form-select">
+                <option value="">Not applicable / not quantum</option>
+                <option value="decoders-bp">Decoders, belief propagation, soft information</option>
+                <option value="surface-css">Surface / CSS family codes</option>
+                <option value="ldpc-related">LDPC or related code families</option>
+                <option value="other-quantum">Other quantum QEC context (describe in message)</option>
+              </select>
+            </label>
+            
+            <fieldset>
+              <legend>Quantum inquiry options <em>(optional)</em></legend>
+              <div class="checkbox-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" name="quantum-nda-or-confidential" value="yes">
+                  <span>Interested in NDA-gated materials or confidential discussion (quantum research)</span>
+                </label>
+              </div>
+            </fieldset>
             
             <label>
               <span>Industry / System domain <em>(optional)</em></span>

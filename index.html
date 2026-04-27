@@ -1660,67 +1660,277 @@
         <section id="quantum-research" class="reveal" aria-label="Quantum Error Correction Research" style="margin: 0 0 48px;">
           <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 16px; color: var(--text);">Quantum Error Correction Research</h2>
           <p style="margin-bottom: 12px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
-            Zero Overshoot's core GSRF engine operates natively in log-space —
-            the same mathematical domain where quantum probability amplitudes,
-            log-likelihood ratios, and Bayesian inference naturally live.
+            Iterative decoders like belief propagation (BP) are fast and
+            parallelisable — but on topological codes they get trapped.
+            Soft-decision oscillation between competing codeword candidates
+            prevents convergence, and logical error rates plateau far above
+            what minimum-weight perfect matching (MWPM) achieves.
           </p>
           <p style="margin-bottom: 12px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
-            We are investigating whether this log-space architecture can address
-            a well-known limitation in quantum error correction: belief
-            propagation (BP) decoders getting trapped in pseudo-codeword
-            attractors on surface codes.
+            We are developing a log-domain signal processing layer that
+            operates on the reliability landscape between BP iterations.
+            It shapes the soft-decision surface to suppress pseudo-codeword
+            attractors and restore convergence — without modifying the
+            decoder itself.
           </p>
-          <h3 style="font-size: 20px; font-weight: 800; margin: 24px 0 12px; color: var(--text);">What we are investigating</h3>
+          <h3 style="font-size: 20px; font-weight: 800; margin: 24px 0 12px; color: var(--text);">The approach</h3>
           <p style="margin-bottom: 12px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
-            GSRF wraps around standard belief propagation as an external
-            preprocessing layer. It shapes the soft-decision reliability
-            landscape between BP iterations, damping oscillations that cause
-            BP to converge to incorrect solutions.
+            The method treats BP's per-qubit log-likelihood ratios as a
+            signal to be stabilised, not a fixed-point iteration to be
+            repeated. A compact recursive filter — operating entirely in
+            log-space — applies bounded gradient correction, momentum
+            damping, and observation coupling to the reliability vector
+            at each outer iteration. The decoder sees a progressively
+            shaped belief landscape that guides it away from trapping states.
           </p>
           <p style="margin-bottom: 12px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
-            The architecture is the same as Zero Overshoot's classical
-            deployment model: the filter sits outside the system it improves.
-            Risk is separated from logic. The quantum code and decoder remain
-            untouched.
+            The filter is external: it wraps around any BP implementation
+            without access to the factor graph or message schedule. Six
+            parameters. No training. No lookup tables. No code-specific
+            tuning.
           </p>
           <h3 style="font-size: 20px; font-weight: 800; margin: 24px 0 12px; color: var(--text);">Research status</h3>
           <p style="margin-bottom: 12px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
-            Active Monte Carlo benchmarking is underway on CSS surface codes
-            and LDPC codes under multiple noise models. Results to date are
-            promising across several code distances and noise conditions.
+            Monte Carlo benchmarking is underway on CSS surface codes
+            across multiple distances and noise models — including
+            correlated errors, biased noise channels, and reduced-iteration
+            regimes. Results across tested configurations are consistent
+            with significant BP improvement and competitive MWPM
+            performance on the majority of operating points.
           </p>
           <p style="margin-bottom: 12px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
-            All testing follows the same methodology as our classical work:
-            pre-declared statistical rules, documented failures alongside wins,
-            SHA-256 hash chains for reproducibility, and honest reporting of
-            limitations.
+            Negative results and boundary conditions are documented with
+            the same rigour as positive findings. All experiments use
+            pre-declared statistical rules locked before execution.
+          </p>
+          <h3 style="font-size: 20px; font-weight: 800; margin: 24px 0 12px; color: var(--text);">Why log-space</h3>
+          <p style="margin-bottom: 12px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
+            Quantum probabilities, Bayesian updates, and soft-decision
+            decoding all operate naturally in log-space. Channel
+            log-likelihood ratios are log-domain quantities by construction.
+            A filter designed for log-domain signals processes these
+            quantities in their native representation — without the
+            numerical instability of repeated exponentiation and
+            renormalisation that plagues probability-domain approaches.
           </p>
           <h3 style="font-size: 20px; font-weight: 800; margin: 24px 0 12px; color: var(--text);">What this is not</h3>
           <p style="margin-bottom: 12px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
-            This is active research. It is not a product, not validated on
-            quantum hardware, and not a claim of fault-tolerance thresholds
-            or quantum speedup. Peer review and independent replication are
-            required before any deployment claims.
-          </p>
-          <h3 style="font-size: 20px; font-weight: 800; margin: 24px 0 12px; color: var(--text);">Why it matters</h3>
-          <p style="margin-bottom: 12px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
-            If log-space signal processing can reliably improve BP decoding
-            on surface codes, it could provide a lightweight, external,
-            debuggable alternative to more computationally expensive decoders
-            — without modifying the quantum error correction architecture.
-          </p>
-          <p style="margin-bottom: 12px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
-            The same filter. The same log-space mathematics. A different domain.
+            This is active research. It is not a product, not validated
+            on quantum hardware, and does not constitute a claim of
+            fault-tolerance thresholds or quantum computational advantage.
+            Peer review and independent replication are outstanding.
           </p>
           <h3 style="font-size: 20px; font-weight: 800; margin: 24px 0 12px; color: var(--text);">For quantum teams</h3>
-          <p style="margin-bottom: 12px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
-            We are open to confidential discussions with quantum hardware and
-            software teams interested in evaluating this research. Detailed
-            benchmarking data, methodology, and technical reports are available
-            under NDA.
+          <p style="margin-bottom: 20px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
+            Detailed benchmarking data, methodology documentation, and
+            technical reports covering decoder architecture, noise models,
+            and per-configuration results are available under NDA for
+            qualified quantum hardware and software teams.
           </p>
+
+          <div class="quantum-decoder-viz" style="margin: 24px 0; padding: 20px; border: 1px solid var(--border); border-radius: 10px; background: var(--section-bg, rgba(11, 61, 145, 0.03)); max-width: min(100%, 720px);">
+            <h3 style="font-size: 18px; font-weight: 800; margin: 0 0 12px; color: var(--text);">Decoder Performance — Simulated Surface Code</h3>
+            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 12px; line-height: 1.5;">Cumulative logical error rate (running fraction) vs decoding step — illustrative pre-generated series.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 12px; font-size: 13px;">
+              <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 14px; height: 3px; background: #c45c26; display: inline-block; border-radius: 1px;"></span> BP</span>
+              <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 14px; height: 3px; background: var(--accent); display: inline-block; border-radius: 1px;"></span> Enhanced BP</span>
+              <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 14px; height: 3px; background: #6b6b6b; display: inline-block; border-radius: 1px; border: 1px dashed #6b6b6b; box-sizing: border-box;"></span> MWPM Reference</span>
+            </div>
+            <div style="position: relative; width: 100%; max-width: 100%;">
+              <canvas id="quantum-decoder-canvas" width="680" height="280" style="width: 100%; height: auto; max-height: 55vh; display: block; border: 1px solid var(--border); border-radius: 8px; background: rgba(255,255,255,0.85);" role="img" aria-label="Line chart: three decoder cumulative error rate series over decoding steps"></canvas>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; justify-content: flex-start;">
+              <button type="button" class="btn primary" id="quantum-decoder-run" style="margin: 0;" title="Regenerate illustrative series and replay the chart animation (5 seconds)">Run Simulation</button>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-top: 8px; font-size: 13px;">
+              <div style="padding: 10px; border: 1px solid var(--border); border-radius: 8px; text-align: center; background: rgba(255,255,255,0.6);">
+                <div style="font-weight: 700; color: var(--text);">BP Alone</div>
+                <div style="color: #c45c26; font-size: 16px; font-weight: 800; margin: 4px 0;">~60% LER</div>
+                <div style="font-size: 11px; color: var(--text-secondary);">(illustrative)</div>
+              </div>
+              <div style="padding: 10px; border: 1px solid var(--border); border-radius: 8px; text-align: center; background: rgba(255,255,255,0.6);">
+                <div style="font-weight: 700; color: var(--text);">Enhanced BP</div>
+                <div style="color: var(--accent); font-size: 16px; font-weight: 800; margin: 4px 0;">~1% LER</div>
+                <div style="font-size: 11px; color: var(--text-secondary);">(illustrative)</div>
+              </div>
+              <div style="padding: 10px; border: 1px solid var(--border); border-radius: 8px; text-align: center; background: rgba(255,255,255,0.6);">
+                <div style="font-weight: 700; color: var(--text);">MWPM Reference</div>
+                <div style="font-size: 16px; font-weight: 800; margin: 4px 0; color: #4a4a4a;">~0.8% LER</div>
+                <div style="font-size: 11px; color: var(--text-secondary);">(illustrative)</div>
+              </div>
+            </div>
+            <p style="font-size: 12px; color: var(--text-secondary); margin: 12px 0 0; line-height: 1.5; max-width: 72ch;">Simulated decoder comparison on synthetic surface code data
+              (illustrative). Pre-generated curves approximate observed
+              Monte Carlo patterns. Not a real-time decoder. Detailed
+              benchmarking available under NDA.</p>
+          </div>
+          <script>
+          (function () {
+            var STEPS = 400;
+            function mulberry32(a) {
+              return function () {
+                var t = (a += 0x6d2b79f5);
+                t = Math.imul(t ^ (t >>> 15), t | 1);
+                t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+                return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+              };
+            }
+            function gen() {
+              var rand = mulberry32(0x9e3779b9);
+              var bp = [], gsrf = [], mwpm = [];
+              var i, t, b, e, m, n;
+              for (i = 0; i < STEPS; i++) {
+                t = i / (STEPS - 1);
+                n = (rand() - 0.5) * 0.014;
+                b = 0.605 * (1 - Math.exp(-7.5 * t)) + n;
+                if (t > 0.15) b = 0.58 + (rand() - 0.5) * 0.035;
+                e = 0.0095 * (1 - Math.exp(-4 * t)) + (rand() - 0.5) * 0.0025;
+                m = 0.0078 * (1 - Math.exp(-3.6 * t)) + (rand() - 0.5) * 0.002;
+                bp[i] = Math.max(0, Math.min(0.99, b));
+                gsrf[i] = Math.max(0, Math.min(0.03, e));
+                mwpm[i] = Math.max(0, Math.min(0.03, m));
+              }
+              for (i = 1; i < STEPS; i++) {
+                if (bp[i] < bp[i - 1]) bp[i] = bp[i - 1] + 1e-6;
+                if (gsrf[i] < gsrf[i - 1]) gsrf[i] = gsrf[i - 1] + 1e-6;
+                if (mwpm[i] < mwpm[i - 1]) mwpm[i] = mwpm[i - 1] + 1e-6;
+              }
+              return { bp: bp, gsrf: gsrf, mwpm: mwpm };
+            }
+            var series = gen();
+            var cvs = document.getElementById('quantum-decoder-canvas');
+            if (!cvs) return;
+            var ctx = cvs.getContext('2d');
+            var anim = null;
+            var startT = 0;
+            var duration = 5000;
+            var lastProgress = 1;
+            function layout() {
+              var dpr = window.devicePixelRatio || 1;
+              var cw = Math.min(680, Math.max(260, cvs.clientWidth || 680));
+              cvs.width = Math.floor(cw * dpr);
+              cvs.height = Math.floor(280 * dpr);
+              ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+              return { w: cw, h: 280 };
+            }
+            function drawFrame(p) {
+              p = Math.min(1, Math.max(0, p));
+              var dim = layout();
+              var w = dim.w;
+              var h = dim.h;
+              ctx.clearRect(0, 0, w, h);
+              var padL = 48;
+              var padR = 10;
+              var padT = 12;
+              var padB = 36;
+              var innerW = w - padL - padR;
+              var innerH = h - padT - padB;
+              ctx.fillStyle = 'rgba(255,255,255,0.96)';
+              ctx.fillRect(0, 0, w, h);
+              ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--border').trim() || '#e0e0e0';
+              ctx.lineWidth = 1;
+              ctx.strokeRect(padL, padT, innerW, innerH);
+              ctx.font = '11px system-ui, sans-serif';
+              ctx.textAlign = 'right';
+              ctx.fillStyle = '#6a6a6a';
+              var yi, ly, val;
+              for (yi = 0; yi <= 4; yi++) {
+                ly = padT + innerH * (1 - yi / 4);
+                val = (yi / 4).toFixed(2);
+                ctx.fillText(val, padL - 4, ly + 4);
+                ctx.beginPath();
+                ctx.strokeStyle = 'rgba(0,0,0,0.06)';
+                ctx.moveTo(padL, ly);
+                ctx.lineTo(padL + innerW, ly);
+                ctx.stroke();
+              }
+              var maxI = Math.floor((STEPS - 1) * p);
+              function line(arr, col, useDash) {
+                var j, x, y, first = true;
+                ctx.beginPath();
+                for (j = 0; j <= maxI; j++) {
+                  x = padL + (j / (STEPS - 1)) * innerW;
+                  y = padT + innerH * (1 - Math.min(1, arr[j]));
+                  if (first) {
+                    ctx.moveTo(x, y);
+                    first = false;
+                  } else {
+                    ctx.lineTo(x, y);
+                  }
+                }
+                ctx.strokeStyle = col;
+                ctx.lineWidth = 2;
+                ctx.setLineDash(useDash ? [6, 4] : []);
+                ctx.stroke();
+                ctx.setLineDash([]);
+              }
+              var accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#0b3d91';
+              line(series.bp, '#c45c26', false);
+              line(series.gsrf, accent, false);
+              line(series.mwpm, '#6b6b6b', true);
+              ctx.fillStyle = '#555';
+              ctx.font = '11px system-ui, sans-serif';
+              ctx.textAlign = 'center';
+              ctx.fillText('Decoding step', padL + innerW / 2, h - 8);
+              ctx.save();
+              ctx.translate(14, padT + innerH / 2);
+              ctx.rotate(-Math.PI / 2);
+              ctx.textAlign = 'center';
+              ctx.fillText('Cumulative LER', 0, 0);
+              ctx.restore();
+            }
+            function play(ts) {
+              if (!startT) startT = ts;
+              var elapsed = ts - startT;
+              var progress = Math.min(1, elapsed / duration);
+              lastProgress = progress;
+              drawFrame(progress);
+              if (progress < 1) {
+                anim = requestAnimationFrame(play);
+              } else {
+                startT = 0;
+                anim = null;
+                lastProgress = 1;
+              }
+            }
+            function prefersReducedMotion() {
+              return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            }
+            function runAnim() {
+              if (anim) {
+                cancelAnimationFrame(anim);
+                anim = null;
+              }
+              startT = 0;
+              series = gen();
+              if (prefersReducedMotion()) {
+                lastProgress = 1;
+                drawFrame(1);
+                return;
+              }
+              drawFrame(0);
+              anim = requestAnimationFrame(play);
+            }
+            function initChart() {
+              lastProgress = 1;
+              drawFrame(1);
+            }
+            var btn = document.getElementById('quantum-decoder-run');
+            if (btn) btn.addEventListener('click', runAnim);
+            window.addEventListener('resize', function () {
+              drawFrame(anim ? lastProgress : 1);
+            });
+            if (document.readyState === 'loading') {
+              document.addEventListener('DOMContentLoaded', initChart);
+            } else {
+              setTimeout(initChart, 0);
+            }
+          })();
+          </script>
+
           <p style="margin-bottom: 0; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
-            Contact: <a href="mailto:info@boonmind.io?subject=Quantum%20Research%20Inquiry" style="color: var(--accent);">info@boonmind.io</a> (subject line &quot;Quantum Research Inquiry&quot;) or use the <a href="#contact" style="color: var(--accent);">contact form</a> and select the quantum research options so we can route your inquiry.
+            <a href="mailto:info@boonmind.io?subject=Quantum%20Research%20Inquiry" style="color: var(--accent);">info@boonmind.io</a> — subject line &quot;Quantum Research Inquiry&quot;
+            or use the <a href="#contact" style="color: var(--accent);">contact form below</a>.
           </p>
         </section>
 

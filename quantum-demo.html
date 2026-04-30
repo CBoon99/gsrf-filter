@@ -571,8 +571,8 @@
     <span class="ctrl-label">Error rate</span>
     <select id="pSelect" class="q-select">
       <option value="0.05">p=5% (easy)</option>
-      <option value="0.10" selected>p=10% (medium)</option>
-      <option value="0.15">p=15% (hard)</option>
+      <option value="0.10">p=10% (medium)</option>
+      <option value="0.15" selected>p=15% (hard)</option>
       <option value="0.20">p=20% (very hard)</option>
     </select>
     <span class="ctrl-label">Max iterations</span>
@@ -746,11 +746,21 @@ const rng = {
   _seed: Date.now(),
   next() {
     this._seed ^= this._seed << 13;
-    this._seed ^= this._seed >> 17;
+    this._seed ^= this._seed >>> 17;
     this._seed ^= this._seed << 5;
-    return (this._seed >>> 0) / 0xFFFFFFFF;
+    this._seed >>>= 0;
+    if (!this._seed) this._seed = 0x9e3779b9;
+    return this._seed / 4294967296;
   },
-  reseed() { this._seed = Date.now() ^ Math.floor(Math.random() * 1e9); }
+  reseed() {
+    let s = Date.now() ^ Math.floor(Math.random() * 1e9);
+    if (typeof crypto !== 'undefined' && crypto.getRandomValues) {
+      const buf = new Uint32Array(1);
+      crypto.getRandomValues(buf);
+      s ^= buf[0];
+    }
+    this._seed = (s >>> 0) || 0x9e3779b9;
+  }
 };
 
 function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
@@ -829,6 +839,15 @@ function sampleErrors(n, p) {
       const u = rng.next();
       errors[i] = u < 1/3 ? 1 : u < 2/3 ? 2 : 3;
     }
+  }
+  let hasErr = false;
+  for (let i = 0; i < n; i++) {
+    if (errors[i] > 0) { hasErr = true; break; }
+  }
+  if (!hasErr) {
+    const i = Math.floor(rng.next() * n);
+    const u = rng.next();
+    errors[i] = u < 1/3 ? 1 : u < 2/3 ? 2 : 3;
   }
   return errors;
 }
@@ -957,7 +976,7 @@ function gsrfShape(L_ch, L_intermediate) {
 }
 
 // ---- State machine -----------------------------------------
-let d = 3, p = 0.10, kMax = 10;
+let d = 3, p = 0.15, kMax = 10;
 let errors = null;
 let code = null;
 let bpState = null, gsrfState = null;
@@ -1339,8 +1358,15 @@ document.getElementById('stepMode').addEventListener('change', function() {
   });
 });
 
-// ---- Boot --------------------------------------------------
+// ---- Boot: initialise grid only — do not auto-run ----------------------------
+running = false;
+if (animTimer) { clearInterval(animTimer); animTimer = null; }
+sessionTrials = sessionGSRFWins = sessionBPWins = 0;
+stepMode = document.getElementById('stepMode').checked;
+stepRunArmed = false;
+
 initDemo();
+updateSessionStats();
 </script>
 
 <footer>

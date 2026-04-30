@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   <!-- Primary SEO -->
-  <title>Zero Overshoot — Commercial Safety Filter for Recursive Systems</title>
-  <meta name="description" content="Zero Overshoot: Proprietary, licensed safety filter for recursive systems. Production deployment requires a commercial license. Run the demo, review integration options, and contact for licensing. Separate research in quantum error correction and decoder belief propagation is pre-commercial and in progress—see the site.">
-  <meta name="keywords" content="GSRF, gradient stabilized recursive filtering, zero overshoot, deterministic safety, safety-critical systems, bounded recursion, recursive instability, control systems safety, safety filter, runaway optimisation, quantum error correction research, belief propagation, surface code decoder, QEC">
+  <title>Zero Overshoot (GSRF) — Quantum Decoding, Distributed Validation &amp; Safety-Critical Control</title>
+  <meta name="description" content="Zero Overshoot (GSRF): 36% better quantum error correction. 4.2× distributed validation consensus on Holochain. 35% oscillation reduction in industrial control. 47 patent claims pending including novel mathematics. 2.82 GB of validated test data.">
+  <meta name="keywords" content="GSRF, gradient stabilized recursive filtering, zero overshoot, quantum error correction, belief propagation decoder, surface code, Holochain, distributed validation, agent-centric, convergence preprocessing, deterministic safety, safety-critical systems, industrial control, oscillation reduction, patent pending">
   <meta name="robots" content="index, follow">
   <meta name="author" content="BoonMind">
   <link rel="canonical" href="https://zeroovershoot.com/">
@@ -778,7 +778,8 @@
           <nav class="topnav" aria-label="Top">
             <a href="#comparison">Start here</a>
             <a href="#engineers">For engineers</a>
-            <a href="./paper-gsrf-framework.html">Abstracts</a>
+            <a href="./quantum-error-correction.html">Quantum</a>
+            <a href="./holochain-distributed-validation.html">Holochain</a>
             <a href="#papers">Papers</a>
             <a href="#contact">Licensing</a>
             <a href="#quantum-research">Quantum Research</a>
@@ -797,8 +798,12 @@
           <!-- Option 2: "A deterministic stability layer enforcing bounded behaviour in safety-critical control systems." -->
           <!-- Option 3: "A deterministic stability layer for safety-critical systems requiring bounded, rate-limited behaviour." -->
           <p class="tagline" style="font-size: 16px; font-weight: normal; margin-top: 8px;">
-            Recursive systems amplify small errors into instability.<br>
-            Zero Overshoot is a separate deterministic enforcement layer that constrains updates before unsafe propagation spreads.
+            The convergence problem holding back quantum computing, distributed data networks, and industrial control — solved with a single external preprocessing layer.
+          </p>
+          <p style="font-size: 14px; color: var(--text-secondary); margin-top: 10px; line-height: 1.7; max-width: 64ch;">
+            36% better quantum decoding. 4.2× distributed validation consensus. 35% oscillation reduction in industrial control.
+            Validated across <strong>2.82+ GB of pure numerical test data</strong> — no images, no video, just numbers — run continuously across 3 machines, 7 days straight.
+            <strong>47 patent claims pending</strong>, including novel mathematical methods.
           </p>
           <ul style="margin: 14px 0 0; padding-left: 20px; line-height: 1.7; color: var(--text-secondary); font-size: 14px;">
             <li>Prevents runaway feedback amplification</li>
@@ -1342,7 +1347,6 @@
                   <a class="btn primary launch" href="./demo/?industry=medical">Launch demo</a>
                 </div>
               </div>
-            </div>
 
               <div class="card industry-card" data-industry="agents">
                 <div class="k">AI / autonomous agents</div>
@@ -1357,23 +1361,74 @@
                   <a class="btn primary launch" href="./demo/?industry=finance">Launch demo</a>
                 </div>
               </div>
+
+              <div class="card industry-card" data-industry="quantum">
+                <div class="k">Quantum computing</div>
+                <div class="t">Belief propagation decoder preprocessing for surface codes</div>
+                <div class="p">
+                  BP decoders are the only viable path to real-time quantum error correction at scale — and they have a structural convergence failure on surface codes.
+                  GSRF preprocessing fixes this from the outside, without modifying the decoder.
+                  <strong>Confirmed results:</strong> 36% more logical successes at d=9, 2.5× fewer never-converge failures, advantage confirmed d=5 through d=13.
+                </div>
+                <div class="ex"><strong>Scalability:</strong> MWPM (current standard) fails above ~d=15 due to superlinear cost. GSRF+BP is linear time and parallelisable — the only combination that scales.</div>
+                <div class="row">
+                  <a class="btn primary launch" href="./quantum-error-correction.html">See quantum results</a>
+                </div>
+              </div>
+
+              <div class="card industry-card" data-industry="holochain">
+                <div class="k">Holochain &amp; distributed validation</div>
+                <div class="t">Convergence preprocessing for agent-centric validation networks</div>
+                <div class="p">
+                  Holochain's agent-centric architecture is the correct solution for data sovereignty and scalable distributed applications.
+                  Its validation gossip mechanism fails to converge above approximately 160 agents under real-world Byzantine noise conditions.
+                  GSRF preprocessing calibrates trust priors before gossip begins — breaking the scalability ceiling without protocol changes.
+                  <strong>Confirmed results:</strong> 17% → 72% validation consensus at 10% Byzantine noise rate.
+                </div>
+                <div class="ex"><strong>Applications unlocked:</strong> Medical data sovereignty. Supply chain provenance. Decentralised identity. Financial settlement without clearing houses. Holographic data storage at scale.</div>
+                <div class="row">
+                  <a class="btn primary launch" href="./holochain-distributed-validation.html">See Holochain results</a>
+                </div>
+              </div>
+            </div>
           </section>
 
-          <div class="stats" aria-label="Key claims">
+          <div class="stats" aria-label="Key results">
             <div class="stat">
-              <div class="k">Deterministic bounds</div>
-              <div class="v">Bounded-by-enforcement</div>
-              <div class="d">Constrain allowed update behavior structurally—so unsafe propagation can’t “finish” inside the loop.</div>
+              <div class="k">Quantum — surface codes d=9 (81 qubits)</div>
+              <div class="v" style="font-size: 26px; letter-spacing: -0.8px; color: var(--accent);">36% more successes</div>
+              <div class="d">GSRF at 4 iterations outperforms unassisted BP at 10. 66.7% vs 48.8% logical success rate. 2.5× fewer never-converge failures. Advantage holds from d=5 through d=13 (169 qubits). <a href="./quantum-error-correction.html" style="color: var(--accent);">See full results →</a></div>
             </div>
             <div class="stat">
-              <div class="k">Stops unsafe propagation</div>
-              <div class="v">Fail-closed where it matters</div>
-              <div class="d">Acts before execution: it evaluates proposed updates against stability bounds before they reach actuators or outputs.</div>
+              <div class="k">Distributed validation — Holochain networks</div>
+              <div class="v" style="font-size: 26px; letter-spacing: -0.8px; color: var(--accent2);">4.2× consensus</div>
+              <div class="d">Validation consensus from 17% to 72% with ensemble preprocessing. Breaks the scalability ceiling that limits agent-centric networks above ~160 agents. Zero protocol changes. <a href="./holochain-distributed-validation.html" style="color: var(--accent2);">See full results →</a></div>
             </div>
             <div class="stat">
-              <div class="k">Risk separated by design</div>
-              <div class="v">Enforcement outside the strategy</div>
-              <div class="d">Keeps risk enforcement separate from the system’s own decision logic for explainability, auditing, and clearer debugging.</div>
+              <div class="k">Industrial actuator control</div>
+              <div class="v" style="font-size: 26px; letter-spacing: -0.8px; color: var(--accent);">35% less oscillation</div>
+              <div class="d">Oscillation reduced 35% vs EMA across 1,000-hour actuator signals. Zero command lag. Wear reduction confirmed on oscillation-dominant regimes. 3 seeds, hash-verified evaluator. <a href="./applications.html" style="color: var(--accent);">See applications →</a></div>
+            </div>
+          </div>
+          <div style="margin: 20px 0 0; padding: 18px 20px; background: rgba(11,61,145,0.04); border: 1px solid rgba(11,61,145,0.12); border-radius: 12px;">
+            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: .14em; font-weight: 900; color: var(--text-secondary); margin-bottom: 14px;">Evidence base — this is not demo-grade simulation</div>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; text-align: center;">
+              <div>
+                <div style="font-size: 22px; font-weight: 950; color: var(--accent); letter-spacing: -0.5px;">2.82+ GB</div>
+                <div style="font-size: 12px; color: var(--text-secondary); margin-top: 4px; line-height: 1.4;">Pure numerical test data. No images. No video. Just numbers.</div>
+              </div>
+              <div>
+                <div style="font-size: 22px; font-weight: 950; color: var(--accent); letter-spacing: -0.5px;">504 hrs</div>
+                <div style="font-size: 12px; color: var(--text-secondary); margin-top: 4px; line-height: 1.4;">3 machines running continuously for 7 days. Tests verified against themselves.</div>
+              </div>
+              <div>
+                <div style="font-size: 22px; font-weight: 950; color: var(--accent); letter-spacing: -0.5px;">47</div>
+                <div style="font-size: 12px; color: var(--text-secondary); margin-top: 4px; line-height: 1.4;">Patent claims pending — including novel mathematical methods across 3 domains.</div>
+              </div>
+              <div>
+                <div style="font-size: 22px; font-weight: 950; color: var(--accent); letter-spacing: -0.5px;">4,000+</div>
+                <div style="font-size: 12px; color: var(--text-secondary); margin-top: 4px; line-height: 1.4;">Hours of research and development from first principles.</div>
+              </div>
             </div>
           </div>
         </div>
@@ -1967,9 +2022,11 @@
       </div>
 
       <nav class="nav reveal" aria-label="Explore">
+        <a href="./quantum-error-correction.html">⚛ Quantum</a>
+        <a href="./holochain-distributed-validation.html">🔗 Holochain</a>
+        <a href="./applications.html">Applications</a>
         <a href="./deterministic-safety-recursive-systems.html">Deterministic safety</a>
         <a href="./runaway-feedback-loop-prevention.html">Runaway feedback</a>
-        <a href="./applications.html">Applications</a>
         <a href="./paper-gsrf-framework.html">Paper abstracts</a>
         <a href="./integration-overview.html">Integration Overview</a>
         <a href="./production-readiness.html">Production Readiness</a>
@@ -2397,10 +2454,13 @@ class GSRFilter:
               <span>Industry / System domain <em>(optional)</em></span>
               <select name="industry" class="contact-form-select">
                 <option value="">Select an industry...</option>
+                <option value="quantum-computing">Quantum computing / error correction</option>
+                <option value="holochain-distributed">Holochain / distributed validation</option>
                 <option value="autonomous-control">Autonomous control</option>
                 <option value="robotics">Robotics</option>
                 <option value="finance-trading">Finance / Trading systems</option>
                 <option value="industrial-control">Industrial control</option>
+                <option value="medical">Medical / life-critical monitoring</option>
                 <option value="other">Other (specify in message)</option>
               </select>
             </label>
@@ -2561,7 +2621,7 @@ class GSRFilter:
     
     <footer>
       <p style="margin-bottom: 12px; font-size: 13px; color: var(--muted);">
-        © 2026 Carl Boon (BoonMind). Zero Overshoot is proprietary technology. Patent applications are in preparation. Commercial use requires a license.
+        © 2026 Carl Boon (BoonMind). Zero Overshoot is proprietary technology. 47 patent claims pending including novel mathematical methods. Commercial use requires a license.
         Contact: <a href="mailto:info@boonmind.io">info@boonmind.io</a>.
         <a href="./LICENSE">LICENSE</a> · <a href="./README.md">README</a>
       </p>

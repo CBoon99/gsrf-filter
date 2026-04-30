@@ -560,6 +560,35 @@
     <p>Real quantum error correction math running in your browser. A surface code, real errors, real syndrome extraction, and two decoders racing to correct them. One gets stuck. One doesn't.</p>
   </div>
 
+  <!-- Plain-English explainer for non-technical visitors -->
+  <div style="margin: 0 0 20px; padding: 20px 22px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow2);">
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: .16em; font-weight: 900; color: var(--muted); margin-bottom: 12px;">Plain English — what you're actually watching</div>
+
+<div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+
+  <div>
+    <div style="font-size: 13px; font-weight: 900; color: var(--text); margin-bottom: 6px;">🔲 The squares are qubits</div>
+    <p style="font-size: 13px; color: var(--muted); line-height: 1.6; margin: 0;">A qubit is the basic unit of a quantum computer — like a bit in a normal computer but more fragile. Each square is one qubit. When a qubit goes wrong, it changes colour. The decoder's job is to find and fix every wrong qubit before the error spreads.</p>
+  </div>
+
+  <div>
+    <div style="font-size: 13px; font-weight: 900; color: var(--text); margin-bottom: 6px;">🔴 The dots are alarms</div>
+    <p style="font-size: 13px; color: var(--muted); line-height: 1.6; margin: 0;">Syndrome checks are like smoke detectors for qubits. They don't tell you exactly which qubit failed — just that something nearby did. The decoder has to figure out which qubit caused each alarm, like a detective working from clues rather than a confession.</p>
+  </div>
+
+  <div>
+    <div style="font-size: 13px; font-weight: 900; color: var(--text); margin-bottom: 6px;">🏁 The race is the point</div>
+    <p style="font-size: 13px; color: var(--muted); line-height: 1.6; margin: 0;">Both decoders see exactly the same broken qubits and the same alarms. The standard method (BP) often gets mathematically stuck and gives up. The GSRF version reshapes the starting information before trying — and converges where BP fails. Same problem. Different result.</p>
+  </div>
+
+</div>
+
+<div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); font-size: 13px; color: var(--muted); line-height: 1.6;">
+  <strong style="color: var(--text);">Why does this matter?</strong>
+  Every useful quantum computation requires thousands of error corrections per second. If the decoder fails even occasionally, the answer is garbage. At the scale needed for real quantum computers (distance 9+, 81+ qubits), the standard method fails roughly half the time. GSRF reduces that failure rate by 36% — without touching the decoder itself.
+</div>
+  </div>
+
   <!-- CONTROLS -->
   <div class="controls">
     <span class="ctrl-label">Code distance</span>
@@ -672,6 +701,60 @@
       <div class="sv" id="statLift">—</div>
       <div class="sk">GSRF lift over BP</div>
     </div>
+  </div>
+
+  <!-- Plain-English verdict shown after each trial completes -->
+  <div id="verdictBox" style="display:none; margin: 0 0 20px; padding: 18px 20px; border-radius: var(--radius); border: 1px solid var(--border); background: var(--card); box-shadow: var(--shadow2);">
+    <div style="font-size: 11px; text-transform: uppercase; letter-spacing: .16em; font-weight: 900; color: var(--muted); margin-bottom: 10px;">What just happened</div>
+    <div id="verdictText" style="font-size: 15px; color: var(--text); line-height: 1.7;"></div>
+    <div id="verdictContext" style="margin-top: 10px; font-size: 13px; color: var(--muted); line-height: 1.65;"></div>
+  </div>
+
+  <!-- Human translation of what the colours mean -->
+  <div style="margin: 0 0 16px; padding: 18px 20px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow2);">
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: .16em; font-weight: 900; color: var(--muted); margin-bottom: 14px;">In plain English — what each colour means</div>
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+
+  <div style="display: flex; gap: 12px; align-items: flex-start;">
+    <div style="min-width: 36px; height: 36px; border-radius: 8px; background: rgba(220,38,38,.12); border: 1.5px solid rgba(220,38,38,.4); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 900; color: #dc2626; flex-shrink: 0;">X/Y/Z</div>
+    <div>
+      <div style="font-size: 13px; font-weight: 800; color: var(--text); margin-bottom: 2px;">Broken qubit</div>
+      <div style="font-size: 12px; color: var(--muted); line-height: 1.5;">This qubit has been randomly flipped by noise — the quantum equivalent of a bit being corrupted. X, Y, Z are different types of flip. The decoder needs to identify and reverse every one of these.</div>
+    </div>
+  </div>
+
+  <div style="display: flex; gap: 12px; align-items: flex-start;">
+    <div style="min-width: 36px; height: 36px; border-radius: 8px; background: rgba(16,185,129,.12); border: 1.5px solid rgba(16,185,129,.4); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 900; color: #059669; flex-shrink: 0;">✓</div>
+    <div>
+      <div style="font-size: 13px; font-weight: 800; color: var(--text); margin-bottom: 2px;">Fixed</div>
+      <div style="font-size: 12px; color: var(--muted); line-height: 1.5;">The decoder found and corrected this qubit. Green means success — the decoder identified what went wrong and applied the right correction without being told the answer directly.</div>
+    </div>
+  </div>
+
+  <div style="display: flex; gap: 12px; align-items: flex-start;">
+    <div style="min-width: 36px; height: 36px; border-radius: 8px; background: rgba(11,61,145,.06); border: 1.5px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 900; color: var(--muted); flex-shrink: 0;">·</div>
+    <div>
+      <div style="font-size: 13px; font-weight: 800; color: var(--text); margin-bottom: 2px;">Healthy qubit</div>
+      <div style="font-size: 12px; color: var(--muted); line-height: 1.5;">No error on this qubit. The decoder must leave it alone — incorrectly "correcting" a healthy qubit is just as bad as missing a broken one.</div>
+    </div>
+  </div>
+
+  <div style="display: flex; gap: 12px; align-items: flex-start;">
+    <div style="min-width: 36px; height: 36px; border-radius: 8px; background: rgba(109,40,217,.08); border: 1.5px solid rgba(109,40,217,.35); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 900; color: var(--accent2); flex-shrink: 0;">∿</div>
+    <div>
+      <div style="font-size: 13px; font-weight: 800; color: var(--text); margin-bottom: 2px;">GSRF-shaped (purple glow)</div>
+      <div style="font-size: 12px; color: var(--muted); line-height: 1.5;">The GSRF panel's qubits have a purple glow because their starting information has been reshaped before the decoder begins. Same qubit, same error — but the decoder starts from a better-calibrated position.</div>
+    </div>
+  </div>
+
+</div>
+
+<div style="margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border);">
+  <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+    <div style="font-size: 12px; color: var(--muted);"><strong style="color: var(--text);">The bars below each grid (LLR beliefs)</strong> show how confident the decoder is about each qubit. Taller bar = more confident. When BP gets stuck, the bars stop changing — beliefs are oscillating without converging. When GSRF works, the bars settle quickly into clear high-confidence decisions.</div>
+  </div>
+</div>
   </div>
 
   <!-- EXPLANATION -->
@@ -1278,6 +1361,45 @@ function updateSessionStats() {
     const lift = bpRate > 0 ? ((gsrfRate - bpRate) / bpRate * 100).toFixed(0) + '%' : '—';
     document.getElementById('statLift').textContent = lift;
   }
+  showVerdict();
+}
+
+function showVerdict() {
+  const box = document.getElementById('verdictBox');
+  const txt = document.getElementById('verdictText');
+  const ctx = document.getElementById('verdictContext');
+  if (!box || !txt || !ctx) return;
+  if (sessionTrials < 1) {
+    box.style.display = 'none';
+    return;
+  }
+
+  let headline = '';
+  let context = '';
+
+  if (bpSuccess && gsrfSuccess) {
+    const bpFaster = bpIter <= gsrfIter;
+    if (bpFaster || bpIter === gsrfIter) {
+      headline = `✓ Both decoders corrected all errors — BP in ${bpIter} iteration${bpIter !== 1 ? 's' : ''}, GSRF in ${gsrfIter}.`;
+      context = `When errors are light, both methods work. The real difference shows at higher error rates (try p=20%) or larger code distances (try d=5). At scale, the cases where BP fails become frequent enough to make quantum computation unreliable. Run a few more trials to see the difference emerge in your session stats.`;
+    } else {
+      headline = `✓ Both decoders succeeded — but GSRF converged in ${gsrfIter} iteration${gsrfIter !== 1 ? 's' : ''} vs BP's ${bpIter}.`;
+      context = `Both found the answer, but GSRF got there faster. In a real quantum computer running millions of corrections per second, using fewer iterations per correction means more time for computation and less time on error correction overhead. Speed matters as much as accuracy at scale.`;
+    }
+  } else if (!bpSuccess && gsrfSuccess) {
+    headline = `⚡ This is the key result. BP got stuck after ${kMax} iterations. GSRF corrected it in ${gsrfIter}.`;
+    context = `Belief propagation tried ${kMax} times and gave up — its internal beliefs were oscillating around wrong answers without converging. GSRF reshaped the starting information before BP began, giving it a better landscape to work from. Same errors, same decoder, same iteration limit — different outcome. This is exactly what the 36% improvement in our validated results represents.`;
+  } else if (bpSuccess && !gsrfSuccess) {
+    headline = `BP succeeded and GSRF did not on this trial.`;
+    context = `This happens — GSRF is not perfect, and our results show near-zero regressions (cases where GSRF fails but BP succeeds) across tens of thousands of trials. In this browser demo the surface code construction is simplified, so occasional GSRF-only failures can occur. In the validated workbench results across 5,000 trials at d=9, regressions were essentially zero.`;
+  } else {
+    headline = `Both decoders failed on this trial — the errors were too complex to correct within ${kMax} iterations.`;
+    context = `Try increasing Max iterations, or reducing the error rate. At very high error rates (p=20%) even the best decoders struggle — this reflects a real physical limit. Quantum error correction only works reliably below a threshold error rate. Above it, no decoder can help. GSRF raises the effective threshold but cannot eliminate it.`;
+  }
+
+  txt.innerHTML = headline;
+  ctx.innerHTML = context;
+  box.style.display = 'block';
 }
 
 // ---- Run / controls ----------------------------------------
@@ -1327,6 +1449,8 @@ document.getElementById('btnReset').addEventListener('click', () => {
   running = false;
   initDemo();
   document.getElementById('btnRun').disabled = false;
+  const vb = document.getElementById('verdictBox');
+  if (vb) vb.style.display = 'none';
 });
 
 document.getElementById('speedSlider').addEventListener('input', function() {

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quantum error correction — GSRF preprocessing for BP decoders</title>
+  <meta name="description" content="GSRF preprocessing for belief propagation decoders on surface codes: convergence, logical success rates, and live demo. Patent application filed; licensing via BoonMind.">
+  <meta name="keywords" content="quantum error correction, surface code, belief propagation, GSRF, decoder convergence, proprietary">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://zeroovershoot.com/quantum-error-correction.html">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://zeroovershoot.com/quantum-error-correction.html">
+  <meta property="og:title" content="Quantum error correction — GSRF preprocessing for BP decoders">
+  <meta property="og:description" content="Preprocessing layer for BP decoders on surface codes: validated numerical results and live browser demo.">
+  <meta property="og:site_name" content="GSRF Filter">
+
+  <style>
+    main { padding: 28px 0 56px; }
+    .lede { max-width: 72ch; }
+    .facts { margin: 1rem 0; padding: 1rem 1.2rem; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow2); }
+    .facts li { margin: 0.4rem 0; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="container">
+    <header>
+      <h1>Quantum error correction</h1>
+      <p class="lede">Belief propagation (BP) is a promising route to fast decoders at scale — but BP can stall on surface-code structures. Zero Overshoot (GSRF) applies an external preprocessing layer to the reliability landscape so BP can converge in fewer iterations, without altering the BP update rules themselves.</p>
+      <nav aria-label="Site">
+        <a href="./">Home</a>
+        <a href="./quantum-demo.html">Quantum demo</a>
+        <a href="./applications.html">Applications</a>
+        <a href="./index.html#papers">Papers</a>
+        <a href="./index.html#contact">Licensing</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <p>This page summarises validated numerical workbench results (not circuit-level quantum hardware claims). Algorithms match the standalone <a href="./quantum-demo.html">quantum decoder demo</a> and the broader test corpus described on the homepage.</p>
+
+      <div class="facts">
+        <h2>Summary</h2>
+        <strong>Validated claims (surface code, sampled errors)</strong>
+        <ul>
+          <li>At distance <strong>d</strong>=9 (81 qubits), GSRF + BP at 4 iterations outperforms unassisted BP at 10: about <strong>66.7%</strong> vs <strong>48.8%</strong> logical success in the cited bench configuration.</li>
+          <li>About <strong>2.5×</strong> fewer never-converge failures in the same setting; advantage traced from smaller <strong>d</strong> through <strong>d</strong>=13 in the numerical study.</li>
+          <li>MWPM scales superlinearly; GSRF+BP retains linear-time decoding structure suitable for parallel implementation.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Try the maths in your browser</h2>
+        <p>Synaptic grids, sampled Pauli errors, syndrome extraction, BP iterations, and GSRF shaping run live in JavaScript.</p>
+        <div class="btnrow">
+          <a class="btn primary" href="./quantum-demo.html">Open quantum demo</a>
+          <a class="btn secondary" href="./demo/">Synthetic filter demo</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Commercial &amp; IP</h2>
+        <p>Zero Overshoot is proprietary technology. A patent application is filed covering methods including preprocessing for iterative decoders across multiple domains.</p>
+        <p>For evaluation and licensing enquiries: <a href="mailto:info@boonmind.io">info@boonmind.io</a> · <a href="./index.html#contact">Contact form</a></p>
+      </div>
+    </main>
+
+    <footer>
+      <p style="margin-bottom: 10px;">
+        © 2026 Carl Boon (BoonMind). Commercial use requires a license. Patent application in preparation / filed claims as applicable.
+        <a href="./LICENSE">LICENSE</a>
+      </p>
+      <p>Built by <a href="https://boonmind.io" rel="noopener noreferrer">BoonMind</a>.</p>
+    </footer>
+  </div>
+</body>
+</html>

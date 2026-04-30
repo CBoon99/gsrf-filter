@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Holochain &amp; distributed validation — GSRF convergence preprocessing</title>
+  <meta name="description" content="GSRF preprocessing for agent-centric validation: consensus improvement under Byzantine noise, scalability framing, licensing. Patent application filed; proprietary.">
+  <meta name="keywords" content="Holochain, distributed validation, Byzantine tolerance, gossip convergence, GSRF, proprietary">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://zeroovershoot.com/holochain-distributed-validation.html">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://zeroovershoot.com/holochain-distributed-validation.html">
+  <meta property="og:title" content="Holochain &amp; distributed validation — GSRF convergence preprocessing">
+  <meta property="og:description" content="Convergence preprocessing for validation gossip under realistic noise models; numerical simulation framing.">
+  <meta property="og:site_name" content="GSRF Filter">
+
+  <style>
+    main { padding: 28px 0 56px; }
+    .lede { max-width: 72ch; }
+    .facts { margin: 1rem 0; padding: 1rem 1.2rem; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow2); }
+    .facts li { margin: 0.4rem 0; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="container">
+    <header>
+      <h1>Holochain &amp; distributed validation</h1>
+      <p class="lede">Agent-centric networks gossip validation observations until they settle on a coherent view — but convergence can collapse once graphs get dense and Byzantine behaviour is realistic. GSRF calibrates trust priors before gossip begins so the iterative validation process aligns faster, without changing Holochain’s protocol semantics.</p>
+      <nav aria-label="Site">
+        <a href="./">Home</a>
+        <a href="./quantum-demo.html">Quantum demo</a>
+        <a href="./applications.html">Applications</a>
+        <a href="./index.html#papers">Papers</a>
+        <a href="./index.html#contact">Licensing</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <p>Results cited on the homepage are drawn from numerical simulation ensembles with controlled Byzantine rates (not claimed as live-production network audits). Figures below restate those claims for evaluator clarity.</p>
+
+      <div class="facts">
+        <h2>Summary</h2>
+        <strong>Numerical validation (ensemble simulation)</strong>
+        <ul>
+          <li>Validation consensus approximately <strong>17% → 72%</strong> at a <strong>10%</strong> Byzantine noise rate under the ensemble settings used for benchmarking.</li>
+          <li>Standard gossip layers often struggle beyond roughly <strong>~160 agents</strong> on dense graphs with realistic noise — GSRF preprocessing targets that ceiling.</li>
+          <li><strong>No protocol changes</strong> are required at the gossip layer when priors are prepared upstream.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Where this applies</h2>
+        <p>Medical data sovereignty, supply-chain provenance, decentralised identity, and large-scale holographic-style storage architectures all hinge on validators actually reaching agreement despite adversarial noise.</p>
+        <div class="btnrow">
+          <a class="btn primary" href="./index.html#contact">Discuss licensing</a>
+          <a class="btn secondary" href="./applications.html">All applications</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Commercial &amp; IP</h2>
+        <p>Zero Overshoot is proprietary technology. Patent application filing is in progress covering mathematical preprocessing methods across quantum decoding, distributed validation, and related safety-critical recursion domains.</p>
+        <p><a href="mailto:info@boonmind.io">info@boonmind.io</a> · <a href="./index.html#contact">Contact form</a></p>
+      </div>
+    </main>
+
+    <footer>
+      <p style="margin-bottom: 10px;">
+        © 2026 Carl Boon (BoonMind). Commercial use requires a license. Patent application in preparation / filed claims as applicable.
+        <a href="./LICENSE">LICENSE</a>
+      </p>
+      <p>Built by <a href="https://boonmind.io" rel="noopener noreferrer">BoonMind</a>.</p>
+    </footer>
+  </div>
+</body>
+</html>

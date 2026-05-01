@@ -4,18 +4,36 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Quantum error correction — GSRF preprocessing for BP decoders</title>
-  <meta name="description" content="GSRF preprocessing for belief propagation decoders on surface codes: convergence, logical success rates, and live demo. Patent application filed; licensing via BoonMind.">
-  <meta name="keywords" content="quantum error correction, surface code, belief propagation, GSRF, decoder convergence, proprietary">
-  <meta name="robots" content="index, follow">
+  <meta name="description" content="GSRF external preprocessing improves belief-propagation (BP) decoder logical success on surface codes — e.g. 66.7% vs 48.8% at d=9 (code-capacity benchmarks), fewer never-converge events, linear-time structure for real-time QEC. Decoder stays unmodified. Patent pending; BoonMind licensing. Compare with MWPM/OSD paths on Google/IBM/IonQ-class hardware roadmaps.">
+  <meta name="keywords" content="quantum error correction, QEC, surface code, CSS surface code, belief propagation decoder, BP decoder, iterative decoding, MWPM, decoding latency, Google Willow, Google Quantum AI, IBM Quantum, IBM Eagle, IBM Heron, IonQ, Rigetti, Quantinuum, Honeywell Quantinuum, trapped ion, superconducting qubit, real-time decoder, syndrome, Tanner graph, pseudocodeword, GSRF, Zero Overshoot, BoonMind, patent, licensing, code capacity noise, fault tolerance">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="author" content="BoonMind">
   <link rel="canonical" href="https://zeroovershoot.com/quantum-error-correction.html">
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./og-share.jpg">
   <link rel="stylesheet" href="./style.css">
 
+  <meta property="og:locale" content="en_US">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://zeroovershoot.com/quantum-error-correction.html">
   <meta property="og:title" content="Quantum error correction — GSRF preprocessing for BP decoders">
-  <meta property="og:description" content="Preprocessing layer for BP decoders on surface codes: validated numerical results and live browser demo.">
-  <meta property="og:site_name" content="GSRF Filter">
+  <meta property="og:description" content="Improve BP convergence on surface codes without modifying the decoder: benchmarked logical success gains, fewer non-convergent trials, linear-time decoding path. Code-capacity validation; circuit-level research ongoing. Licensing via BoonMind.">
+  <meta property="og:site_name" content="Zero Overshoot (GSRF)">
+  <meta property="og:image" content="https://zeroovershoot.com/og-share.jpg">
+  <meta property="og:image:secure_url" content="https://zeroovershoot.com/og-share.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1536">
+  <meta property="og:image:height" content="1024">
+  <meta property="og:image:alt" content="Zero Overshoot (GSRF) — quantum decoder preprocessing and benchmarks">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="GSRF for quantum error correction — BP decoder preprocessing">
+  <meta name="twitter:description" content="Surface-code BP decoding: higher logical success at matched iterations, external preprocessing only. Demo + results.">
+  <meta name="twitter:image" content="https://zeroovershoot.com/og-share.jpg">
+  <meta name="twitter:image:alt" content="Zero Overshoot (GSRF)">
+
+  <meta name="theme-color" content="#0b3d91" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#070b14" media="(prefers-color-scheme: dark)">
 
   <style>
     main { padding: 28px 0 56px; }

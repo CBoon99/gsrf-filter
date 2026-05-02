@@ -16,8 +16,8 @@
   <meta property="og:locale" content="en_US">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://zeroovershoot.com/quantum-demo.html">
-  <meta property="og:title" content="Live quantum decoder demo — GSRF vs BP">
-  <meta property="og:description" content="Run surface-code decoding in your browser: same syndrome, two decoders — see convergence vs stall. From Zero Overshoot (GSRF).">
+  <meta property="og:title" content="Live Quantum Decoder — GSRF vs BP at Google Willow &amp; IBM Starling Scale">
+  <meta property="og:description" content="Watch GSRF preprocessing fix the belief propagation convergence failure that limits Google Willow and IBM Starling. Real surface code math in your browser — qubits, syndromes, two decoders racing. One gets stuck. One doesn't.">
   <meta property="og:site_name" content="Zero Overshoot (GSRF)">
   <meta property="og:image" content="https://zeroovershoot.com/og-share.jpg">
   <meta property="og:image:secure_url" content="https://zeroovershoot.com/og-share.jpg">
@@ -27,8 +27,8 @@
   <meta property="og:image:alt" content="Quantum decoder demo — Zero Overshoot (GSRF)">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Quantum decoder live demo — GSRF vs BP">
-  <meta name="twitter:description" content="Step-through surface code decoding in the browser.">
+  <meta name="twitter:title" content="Live Quantum Decoder — GSRF vs BP at Google Willow &amp; IBM Starling Scale">
+  <meta name="twitter:description" content="Watch GSRF fix BP convergence failures live in your browser. Real surface code math. One decoder gets stuck. One doesn't. GSRF@4 beats BP@10 at Google Willow's exact operating distance.">
   <meta name="twitter:image" content="https://zeroovershoot.com/og-share.jpg">
 
   <meta name="theme-color" content="#0b3d91">
@@ -582,7 +582,7 @@
   <div class="hero">
     <div class="hero-label">Live Quantum Decoder Demo</div>
     <h1>Watch Qubits <span>Fail</span> and<br>Be Saved — Step by Step</h1>
-    <div style="margin:16px 0 0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+    <div class="bench-strip" style="margin:16px 0 0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;--bench-cols:1fr 1fr 1fr;">
 
       <div style="padding:14px 16px;background:rgba(11,61,145,0.05);border:1px solid rgba(11,61,145,0.15);border-radius:12px;">
         <div style="font-size:10px;text-transform:uppercase;letter-spacing:.14em;font-weight:900;color:var(--muted);margin-bottom:6px;">Google Willow — today</div>
@@ -603,6 +603,11 @@
       </div>
 
     </div>
+    <style>
+      @media (max-width: 640px) {
+        .bench-strip { grid-template-columns: 1fr !important; }
+      }
+    </style>
     <div style="margin-top:10px;padding:10px 14px;background:rgba(11,61,145,0.03);border-radius:8px;border:1px solid rgba(11,61,145,0.08);font-size:12px;color:var(--muted);line-height:1.6;">
       <strong style="color:var(--text);">Note:</strong> Results shown are on the code-capacity noise model — the standard abstraction for decoder benchmarking, and the model used in our validated workbench results (2.82+ GB of test data). Google and IBM figures are from published hardware results and official roadmaps.
     </div>

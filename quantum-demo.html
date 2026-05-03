@@ -1199,8 +1199,17 @@ function initDemo() {
   // Initial LLR bars
   updateLLR('bpLLR', L_ch, false);
 
-  // GSRF shaping (done once upfront)
-  const L_shaped = gsrfShape(L_ch, L_ch);
+  // GSRF shaping — seeded from one preliminary BP pass so the intermediate
+  // LLR vector is non-uniform (matches the workbench mechanism).
+  // Initialise Mvc = L_ch (canonical BP start) so the first check→variable
+  // messages incorporate the channel LLR; otherwise a single step on Mvc=0
+  // leaves L_tot uniform for multi-degree checks and the shape collapses to zero.
+  const bpInit = initBP(allH, allSyn, L_ch);
+  for (let j = 0; j < bpInit.m; j++)
+    for (let i = 0; i < bpInit.n; i++)
+      if (allH[j][i]) bpInit.Mvc[j][i] = L_ch[i];
+  const initRes = bpStep(bpInit);
+  const L_shaped = gsrfShape(L_ch, initRes.L_tot);
   updateLLR('gsrfLLR', L_shaped, true);
   gsrfShaped = true;
 

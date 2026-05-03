@@ -1374,6 +1374,7 @@ function startRun() {
     stepRunArmed = true;
     syncStepButton();
     running = false;
+    document.getElementById('btnRun').textContent = '⚛ Step mode — use Step →';
     document.getElementById('btnRun').disabled = true;
     return;
   }
@@ -1401,6 +1402,7 @@ document.getElementById('btnReset').addEventListener('click', () => {
   clearInterval(animTimer);
   running = false;
   initDemo();
+  document.getElementById('btnRun').textContent = '▶ Run Demo';
   document.getElementById('btnRun').disabled = false;
 });
 

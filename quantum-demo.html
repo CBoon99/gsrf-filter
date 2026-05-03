@@ -609,7 +609,7 @@
       }
     </style>
     <div style="margin-top:10px;padding:10px 14px;background:rgba(11,61,145,0.03);border-radius:8px;border:1px solid rgba(11,61,145,0.08);font-size:12px;color:var(--muted);line-height:1.6;">
-      <strong style="color:var(--text);">Note:</strong> Results shown are on the code-capacity noise model — the standard abstraction for decoder benchmarking, and the model used in our validated workbench results (2.82+ GB of test data). Google and IBM figures are from published hardware results and official roadmaps.
+      <strong style="color:var(--text);">Note:</strong> Results shown are on the code-capacity noise model — the standard abstraction for decoder benchmarking, and the model used in our validated workbench results (3.1+ GB of test data). Google and IBM figures are from published hardware results and official roadmaps.
     </div>
     <p>Real quantum error correction math running in your browser. A surface code, real errors, real syndrome extraction, and two decoders racing to correct them. One gets stuck. One doesn't.</p>
   </div>
@@ -656,6 +656,12 @@
       </label>
     </span>
   </div>
+  <p style="font-size:12px;color:var(--muted);margin:0 0 16px;text-align:center;line-height:1.6;">
+    <strong style="color:var(--text);">Tip:</strong>
+    Outcomes vary by seed — click ↺ New Errors a few times to see
+    GSRF succeed where BP fails. Try p=20% (very hard) for the most
+    dramatic divergence between panels.
+  </p>
 
   <!-- MAIN PANELS -->
   <div class="demo-grid">
@@ -787,7 +793,7 @@
   <p class="disclaimer">
     This demo runs real surface code error correction mathematics in your browser using JavaScript.
     The qubit grid, error sampling, syndrome extraction, belief propagation, and GSRF shaping are all computed live.
-    Results match the Python workbench (2.82+ GB of test data) within statistical variation.
+    Results match the Python workbench (3.1+ GB of test data) within statistical variation.
     Not production quantum hardware — illustrative of the real algorithm behaviour.
   </p>
 
@@ -1235,7 +1241,7 @@ function initDemo() {
 
   log('bpLog', `d=${d}, n=${code.n} qubits, p=${(p*100).toFixed(0)}%`, 'info');
   const errLabels = ['','X','Y','Z'];
-  log('bpLog', `Errors: ${errors.map((e,i)=>e?`Q${i}→${errLabels[e]}`:'').filter(Boolean).join(', ')||'none'}`);
+  log('bpLog', `Errors: ${Array.from(errors).map((e,i)=>e?`Q${i}→${errLabels[e]}`:'').filter(Boolean).join(', ')||'none'}`);
   log('bpLog', `Syndromes triggered: ${Array.from(allSyn).filter(Boolean).length}/${allSyn.length}`);
 
   log('gsrfLog', `GSRF shaping applied to ${code.n} initial LLRs`, 'highlight');

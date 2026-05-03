@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   <!-- Primary SEO -->
-  <title>Zero Overshoot (GSRF) — Quantum Error Correction, Holochain Validation &amp; Safety-Critical Control</title>
-  <meta name="description" content="Zero Overshoot (GSRF) is proprietary preprocessing for recursive systems: ~36% higher logical success on surface-code BP decoders (code-capacity benchmarks), 4.2× validation consensus on Holochain-style agent networks, and ~35% oscillation reduction in industrial control. 2.82+ GB numerical evidence, 47 patent claims pending — BoonMind commercial licensing.">
+  <title>Zero Overshoot (GSRF) — Quantum Decoder Preprocessing · 6× Better at Google Willow Scale</title>
+  <meta name="description" content="GSRF preprocessing achieves 6× better logical error rates than belief propagation at d=7 — Google Willow's exact operating distance. 36% improvement at d=9. 47 patent claims pending. Validated across 3.1 GB of test data.">
   <meta name="keywords" content="Zero Overshoot, GSRF, gradient stabilized recursive filtering, BoonMind, quantum error correction, QEC, surface code, topological code, belief propagation, BP decoder, iterative decoder, MWPM, minimum weight perfect matching, BP OSD, decoder convergence, fault tolerant quantum computing, FTQC, Google Quantum AI, IBM Quantum, IonQ, Rigetti, Quantinuum, AWS Braket, Azure Quantum, quCPU roadmap, real-time decoding, syndrome decoding, Holochain, distributed validation, Byzantine fault tolerance, agent-centric network, consensus, cryptographic audit trail, safety-critical control, industrial automation, deterministic bounds, runaway feedback, overshoot suppression, licensing, patent pending">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="author" content="BoonMind">
@@ -22,8 +22,8 @@
   <meta property="og:locale" content="en_US">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://zeroovershoot.com/">
-  <meta property="og:title" content="Zero Overshoot (GSRF) — Quantum decoding, Holochain validation, safety control">
-  <meta property="og:description" content="External preprocessing that improves BP decoder convergence on surface codes (benchmarked), boosts agent-network validation consensus, and constrains overshoot in control — without rewriting the core algorithm. Evidence-backed; commercial license from BoonMind.">
+  <meta property="og:title" content="Zero Overshoot (GSRF) — 6× Better Quantum Decoding at Google Willow Scale">
+  <meta property="og:description" content="GSRF preprocessing fixes the belief propagation convergence failure holding back quantum computing. 6× better logical error rates at d=7. 36% better at d=9. 47 patent claims pending.">
   <meta property="og:site_name" content="Zero Overshoot (GSRF)">
   <meta property="og:image" content="https://zeroovershoot.com/og-share.jpg">
   <meta property="og:image:secure_url" content="https://zeroovershoot.com/og-share.jpg">
@@ -34,8 +34,8 @@
 
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Zero Overshoot (GSRF) — Quantum QEC, Holochain, industrial control">
-  <meta name="twitter:description" content="Belief-propagation decoding, distributed validation, and bounded control — numerical benchmarks, demo, licensing. BoonMind.">
+  <meta name="twitter:title" content="Zero Overshoot (GSRF) — 6× Better Quantum Decoding at Google Willow Scale">
+  <meta name="twitter:description" content="GSRF fixes BP convergence failures on surface codes. 6× better logical error rates at d=7. Live quantum demo running in browser. 47 patent claims pending.">
   <meta name="twitter:image" content="https://zeroovershoot.com/og-share.jpg">
   <meta name="twitter:image:alt" content="Zero Overshoot (GSRF) — share preview">
   
@@ -804,30 +804,25 @@
     <header class="hero" aria-label="Hero">
       <div class="hero-grid">
         <div class="reveal">
-          <div class="title">Deterministic Safety Enforcement for Recursive Systems</div>
-          <!-- Option 1: "A deterministic stability layer for safety-critical control where bounded behaviour is mandatory." -->
-          <!-- Option 2: "A deterministic stability layer enforcing bounded behaviour in safety-critical control systems." -->
-          <!-- Option 3: "A deterministic stability layer for safety-critical systems requiring bounded, rate-limited behaviour." -->
-          <p class="tagline" style="font-size: 16px; font-weight: normal; margin-top: 8px;">
-            The convergence problem holding back quantum computing, distributed data networks, and industrial control — solved with a single external preprocessing layer.
+          <div class="title" style="font-size:clamp(36px,5vw,56px);font-weight:950;letter-spacing:-1.5px;line-height:1.04;margin-bottom:12px;color:var(--text);">
+            The Decoder Preprocessing Layer<br>
+            <span style="color:var(--accent);">Quantum Computing</span> Has Been Waiting For
+          </div>
+          <p class="tagline" style="font-size:18px;color:var(--muted);max-width:64ch;line-height:1.65;margin:0;">
+            Belief propagation is the only decoder fast enough for real-time quantum error correction at scale.
+            It has a structural convergence failure on surface codes.
+            GSRF preprocessing fixes it — without touching the decoder.
           </p>
-          <p style="font-size: 14px; color: var(--text-secondary); margin-top: 10px; line-height: 1.7; max-width: 64ch;">
-            36% better quantum decoding (code-capacity). 4.2× distributed validation consensus. 35% oscillation reduction in industrial control.
-            Validated across <strong>2.82+ GB of pure numerical test data</strong> — no images, no video, just numbers — run continuously across 3 machines, 7 days straight.
-            <strong>47 patent claims pending</strong>, including novel mathematical methods.
-            Early evidence suggests the mechanism extends significantly further — testing is not exhausted.
+          <p style="font-size:14px;color:var(--muted);margin-top:12px;line-height:1.7;max-width:64ch;">
+            <strong style="color:var(--text);">At d=7 — Google Willow's exact operating distance:</strong>
+            GSRF achieves 2.35% logical error rate in 4 iterations.
+            BP achieves 14.75% in 10 iterations.
+            That is <strong style="color:var(--accent);">6× fewer errors in 60% fewer iterations.</strong>
           </p>
-          <ul style="margin: 14px 0 0; padding-left: 20px; line-height: 1.7; color: var(--text-secondary); font-size: 14px;">
-            <li>Prevents runaway feedback amplification</li>
-            <li>Constrains updates before execution</li>
-            <li>Separates risk from behaviour</li>
-          </ul>
-          <p style="margin-top: 10px; font-size: 14px; color: var(--text-secondary);">
-            Not another smoother, estimator, or shutdown rule. Deploy in audit, shadow, or live enforcement modes.
-          </p>
-          <div class="actions">
-            <a class="btn primary" href="./demo/">Run Demo</a>
-            <a class="btn secondary" href="#engineers">For Engineers / Evaluation</a>
+          <div class="actions" style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
+            <a class="btn primary" href="./quantum-demo.html">⚛ Watch it live — real qubits, real BP, real GSRF</a>
+            <a class="btn secondary" href="./quantum-error-correction.html">See validated results →</a>
+            <a class="btn secondary" href="./#contact">Licensing enquiry</a>
           </div>
           <p class="commercial-notice" style="margin-top: 16px; font-size: 13px; color: var(--text-secondary); padding: 12px; background: rgba(11, 61, 145, 0.05); border-left: 3px solid var(--accent); border-radius: 6px;">
             <strong>Commercial Product:</strong> Zero Overshoot is proprietary technology. Patent applications are in preparation. Production use requires a commercial license. Demo use does not grant any rights. See <a href="./commercial-licensing-notes.html" style="color: var(--accent); text-decoration: underline;">Licensing Notes</a> for details.
@@ -1405,37 +1400,54 @@
             </div>
           </section>
 
-          <div class="stats" aria-label="Key results">
-            <div class="stat">
-              <div class="k">Quantum — surface codes d=9 (81 qubits)</div>
-              <div class="v" style="font-size: 26px; letter-spacing: -0.8px; color: var(--accent);">36% more successes</div>
-              <div class="d">GSRF at 4 iterations outperforms unassisted BP at 10. 66.7% vs 48.8% logical success rate. 2.5× fewer never-converge failures. Advantage holds from d=5 through d=13 (169 qubits). Validated on code-capacity noise model; circuit-level research ongoing. <a href="./quantum-error-correction.html" style="color: var(--accent);">See full results →</a></div>
+          <div class="stats" aria-label="Key results" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px;">
+
+            <div class="stat" style="padding:16px;border-radius:var(--radius);border:1px solid var(--border);background:rgba(255,255,255,0.55);box-shadow:var(--shadow2);">
+              <div class="k" style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;font-weight:700;">Quantum · d=7 · Google Willow scale</div>
+              <div class="v" style="font-size:28px;font-weight:950;margin-top:6px;letter-spacing:-0.8px;color:var(--accent);">6× better</div>
+              <div class="d" style="font-size:13px;color:var(--muted);margin-top:6px;line-height:1.5;">2.35% vs 14.75% logical error rate. GSRF at 4 iterations vs BP at 10. Zero regressions. Code-capacity noise model.</div>
+              <div style="margin-top:8px;"><a href="./quantum-error-correction.html" style="font-size:12px;color:var(--accent);font-weight:700;">Full results →</a></div>
             </div>
-            <div class="stat">
-              <div class="k">Distributed validation — Holochain networks</div>
-              <div class="v" style="font-size: 26px; letter-spacing: -0.8px; color: var(--accent2);">4.2× consensus</div>
-              <div class="d">Validation consensus from 17% to 72% with ensemble preprocessing. Breaks the scalability ceiling that limits agent-centric networks above ~160 agents. Zero protocol changes. <a href="./holochain-distributed-validation.html" style="color: var(--accent2);">See full results →</a></div>
+
+            <div class="stat" style="padding:16px;border-radius:var(--radius);border:1px solid var(--border);background:rgba(255,255,255,0.55);box-shadow:var(--shadow2);">
+              <div class="k" style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;font-weight:700;">Quantum · d=9 · 81 qubits</div>
+              <div class="v" style="font-size:28px;font-weight:950;margin-top:6px;letter-spacing:-0.8px;color:var(--accent);">~36% better</div>
+              <div class="d" style="font-size:13px;color:var(--muted);margin-top:6px;line-height:1.5;">66.7% vs 48.8% logical success rate. Advantage confirmed d=5 through d=13. 5/5 independent seeds. Code-capacity noise model.</div>
+              <div style="margin-top:8px;"><a href="./quantum-error-correction.html" style="font-size:12px;color:var(--accent);font-weight:700;">Full results →</a></div>
             </div>
-            <div class="stat">
-              <div class="k">Industrial actuator control</div>
-              <div class="v" style="font-size: 26px; letter-spacing: -0.8px; color: var(--accent);">35% less oscillation</div>
-              <div class="d">Oscillation reduced 35% vs EMA across 1,000-hour actuator signals. Zero command lag. Wear reduction confirmed on oscillation-dominant regimes. 3 seeds, hash-verified evaluator. <a href="./applications.html" style="color: var(--accent);">See applications →</a></div>
+
+            <div class="stat" style="padding:16px;border-radius:var(--radius);border:1px solid var(--border);background:rgba(255,255,255,0.55);box-shadow:var(--shadow2);">
+              <div class="k" style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;font-weight:700;">Evidence base</div>
+              <div class="v" style="font-size:28px;font-weight:950;margin-top:6px;letter-spacing:-0.8px;color:var(--accent2);">3.1 GB</div>
+              <div class="d" style="font-size:13px;color:var(--muted);margin-top:6px;line-height:1.5;">Pure numerical test data. 45,000+ trials. 504 machine-hours. 47 patent claims pending including novel mathematical methods. Pre-declared verdict rules. SHA-256 verified.</div>
+              <div style="margin-top:8px;"><a href="./#contact" style="font-size:12px;color:var(--accent2);font-weight:700;">Licensing enquiry →</a></div>
             </div>
+
+          </div>
+          <div style="margin:16px 0 0;padding:14px 18px;background:rgba(11,61,145,0.04);border:1px solid rgba(11,61,145,0.12);border-radius:10px;font-size:13px;color:var(--muted);line-height:1.7;">
+            <strong style="color:var(--text);">Why quantum first:</strong>
+            The GSRF advantage on surface codes is the most rigorously validated result in the evidence base —
+            45,000+ trials, 5 independent seeds, pre-declared verdict rules, SHA-256 hash-verified evaluator.
+            The same mechanism also shows confirmed results in industrial actuator control (~35% oscillation reduction)
+            and Holochain distributed validation (approximately 4× consensus improvement at 10% Byzantine noise).
+            Industrial and Holochain results are documented on separate pages.
+            <a href="./quantum-error-correction.html" style="color:var(--accent);margin-left:4px;font-weight:700;">Quantum results →</a>
+            <a href="./applications.html" style="color:var(--accent);margin-left:10px;font-weight:700;">All domains →</a>
           </div>
           <div style="margin: 20px 0 0; padding: 18px 20px; background: rgba(11,61,145,0.04); border: 1px solid rgba(11,61,145,0.12); border-radius: 12px;">
             <div style="font-size: 11px; text-transform: uppercase; letter-spacing: .14em; font-weight: 900; color: var(--text-secondary); margin-bottom: 14px;">Evidence base — this is not demo-grade simulation</div>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; text-align: center;">
               <div>
-                <div style="font-size: 22px; font-weight: 950; color: var(--accent); letter-spacing: -0.5px;">2.82+ GB</div>
-                <div style="font-size: 12px; color: var(--text-secondary); margin-top: 4px; line-height: 1.4;">Pure numerical test data. No images. No video. Just numbers.</div>
+                <div style="font-size: 22px; font-weight: 950; color: var(--accent); letter-spacing: -0.5px;">3.1+ GB</div>
+                <div style="font-size: 12px; color: var(--text-secondary); margin-top: 4px; line-height: 1.4;">Pure numerical test data across quantum, industrial, and Holochain test suites</div>
               </div>
               <div>
                 <div style="font-size: 22px; font-weight: 950; color: var(--accent); letter-spacing: -0.5px;">504 hrs</div>
                 <div style="font-size: 12px; color: var(--text-secondary); margin-top: 4px; line-height: 1.4;">3 machines running continuously for 7 days. Tests verified against themselves.</div>
               </div>
               <div>
-                <div style="font-size: 22px; font-weight: 950; color: var(--accent); letter-spacing: -0.5px;">45k+</div>
-                <div style="font-size: 12px; color: var(--text-secondary); margin-top: 4px; line-height: 1.4;">45,000+ trials across distances and 5 independent seeds. Crossover confirmed in every replicate.</div>
+                <div style="font-size: 22px; font-weight: 950; color: var(--accent); letter-spacing: -0.5px;">45,000+</div>
+                <div style="font-size: 12px; color: var(--text-secondary); margin-top: 4px; line-height: 1.4;">Trials across distances, seeds, and noise regimes — all pre-declared</div>
               </div>
               <div>
                 <div style="font-size: 22px; font-weight: 950; color: var(--accent); letter-spacing: -0.5px;">47</div>

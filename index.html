@@ -1281,124 +1281,32 @@
         </div>
       </section>
 
-      <section class="industry reveal" aria-label="Choose an industry">
-            <h2>Choose an industry (launches the demo with industry framing)</h2>
-            <p class="sub">Each launch loads a domain-shaped synthetic preset and industry-tuned KPI wording for max overshoot (envelope violation), band crossings, and time-to-stability. Figures below are synthetic demo KPIs (illustrative), not validated performance claims.</p>
-            <div class="industry-grid">
-              <div class="card industry-card" data-industry="autonomous">
-                <div class="k">Autonomous systems</div>
-                <div class="t">Vehicle and flight control (including drones)</div>
-                <div class="p">
-                  Recursive perception and control loops can amplify small estimation errors into oscillatory corrections.
-                  Zero Overshoot constrains update dynamics before commands propagate.
-                  <strong>Potential benefits:</strong> reduced operator intervention, fewer oscillation patterns, fewer validation cycles.
-                </div>
-                <div class="ex"><strong>Synthetic demo KPI (illustrative):</strong> 0.6° peak envelope violation; 0.18 s time-to-stability (example)</div>
-                <div class="row">
-                  <a class="btn primary launch" href="./demo/?industry=autonomous">Launch demo</a>
-                </div>
-              </div>
-
-              <div class="card industry-card" data-industry="robotics">
-                <div class="k">Robotics</div>
-                <div class="t">Control with actuator commands (and future drones / drone swarms)</div>
-                <div class="p">
-                  Adaptive or learned control can create recursive command loops where drift and unstable corrections amplify into actuator stress.
-                  Zero Overshoot bounds update dynamics before actuators receive commands.
-                  <strong>Potential benefits:</strong> fewer tuning cycles, reduced wear, less instability-driven downtime.
-                </div>
-                <div class="ex"><strong>Synthetic demo KPI (illustrative):</strong> 12% peak deviation; 35 steps to stability window (example)</div>
-                <div class="row">
-                  <a class="btn primary launch" href="./demo/?industry=robotics">Launch demo</a>
-                </div>
-              </div>
-
-              <div class="card industry-card" data-industry="industrial">
-                <div class="k">Industrial control</div>
-                <div class="t">Process / PLC feedback (temperature, flow, pressure)</div>
-                <div class="p">
-                  Dead time, saturation, and recursive feedback can turn small drift into delayed divergence in process variables.
-                  Zero Overshoot constrains update behaviour within configured tolerance bands.
-                  <strong>Potential benefits:</strong> less scrap and rework, fewer instability-driven downtime events.
-                </div>
-                <div class="ex"><strong>Synthetic demo KPI (illustrative):</strong> 3.0% overshoot (envelope violation); 0.9 s time-to-stability (example)</div>
-                <div class="row">
-                  <a class="btn primary launch" href="./demo/?industry=industrial">Launch demo</a>
-                </div>
-              </div>
-
-              <div class="card industry-card" data-industry="finance">
-                <div class="k">Finance / trading</div>
-                <div class="t">Iterative signal + position sizing loop</div>
-                <div class="p">
-                  Recursive optimisation can amplify estimation error into oscillatory exposure changes and unstable signal chasing.
-                  Zero Overshoot enforces bounded-by-design update dynamics outside the trading strategy.
-                  <strong>Potential benefits:</strong> reduced incident-style risk breaches, less drawdown pressure, fewer fire-drill interventions.
-                </div>
-                <div class="ex"><strong>Synthetic demo KPI (illustrative):</strong> 2.5× peak envelope violation; 6 band crossings (example)</div>
-                <div class="row">
-                  <a class="btn primary launch" href="./demo/?industry=finance">Launch demo</a>
-                </div>
-              </div>
-
-              <div class="card industry-card" data-industry="medical">
-                <div class="k">Medical / life-critical monitoring</div>
-                <div class="t">Closed-loop monitoring and life-critical deviation control</div>
-                <div class="p">
-                  Recursive estimation/control pipelines can produce unstable deviation updates that contribute to alarm churn and unsafe corrective behaviour.
-                  Zero Overshoot constrains proposed updates to remain within a configured envelope.
-                  <strong>Potential benefits:</strong> reduced false-alarm burden, fewer high-intervention events.
-                </div>
-                <div class="ex"><strong>Synthetic demo KPI (illustrative):</strong> band ±0.15; 2 band crossings; stability window reached within the demo horizon (example)</div>
-                <div class="row">
-                  <a class="btn primary launch" href="./demo/?industry=medical">Launch demo</a>
-                </div>
-              </div>
-
-              <div class="card industry-card" data-industry="agents">
-                <div class="k">AI / autonomous agents</div>
-                <div class="t">Recursive decision and action pipelines</div>
-                <div class="p">
-                  Recursive decision loops in AI agents can amplify errors and unstable updates.
-                  Zero Overshoot can enforce bounded update dynamics externally, allowing safe auditing and enforcement without modifying the agent’s internal logic.
-                  <strong>Potential benefits:</strong> agent decision auditing, bounded recursive behaviour, independent risk enforcement.
-                </div>
-                <div class="ex"><strong>Synthetic demo KPI (illustrative):</strong> example risk-drift detection ahead of threshold crossing (see simulated benchmarks).</div>
-                <div class="row">
-                  <a class="btn primary launch" href="./demo/?industry=finance">Launch demo</a>
-                </div>
-              </div>
-
-              <div class="card industry-card" data-industry="quantum">
-                <div class="k">Quantum computing</div>
-                <div class="t">Belief propagation decoder preprocessing for surface codes</div>
-                <div class="p">
-                  BP decoders are the only viable path to real-time quantum error correction at scale — and they have a structural convergence failure on surface codes.
-                  GSRF preprocessing fixes this from the outside, without modifying the decoder.
-                  <strong>Confirmed results:</strong> 36% more logical successes at d=9, 2.5× fewer never-converge failures, advantage confirmed d=5 through d=13.
-                </div>
-                <div class="ex"><strong>Scalability:</strong> MWPM (current standard) fails above ~d=15 due to superlinear cost. GSRF+BP is linear time and parallelisable — the only combination that scales.</div>
-                <div class="row">
-                  <a class="btn primary launch" href="./quantum-error-correction.html">See quantum results</a>
-                </div>
-              </div>
-
-              <div class="card industry-card" data-industry="holochain">
-                <div class="k">Holochain &amp; distributed validation</div>
-                <div class="t">Convergence preprocessing for agent-centric validation networks</div>
-                <div class="p">
-                  Holochain's agent-centric architecture is the correct solution for data sovereignty and scalable distributed applications.
-                  Its validation gossip mechanism fails to converge above approximately 160 agents under real-world Byzantine noise conditions.
-                  GSRF preprocessing calibrates trust priors before gossip begins — breaking the scalability ceiling without protocol changes.
-                  <strong>Confirmed results:</strong> 17% → 72% validation consensus at 10% Byzantine noise rate.
-                </div>
-                <div class="ex"><strong>Applications unlocked:</strong> Medical data sovereignty. Supply chain provenance. Decentralised identity. Financial settlement without clearing houses. Holographic data storage at scale.</div>
-                <div class="row">
-                  <a class="btn primary launch" href="./holochain-distributed-validation.html">See Holochain results</a>
-                </div>
-              </div>
-            </div>
-          </section>
+      <section class="reveal" aria-label="Live quantum demo">
+        <div style="margin:24px 0;padding:20px 22px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow2);">
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;font-weight:900;color:var(--muted);margin-bottom:10px;">Live quantum demo</div>
+          <h3 style="font-size:18px;font-weight:900;color:var(--text);margin-bottom:8px;letter-spacing:-0.3px;">Watch GSRF fix BP convergence — real surface code qubits in your browser</h3>
+          <p style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:14px;">
+            Real belief propagation, real GSRF preprocessing, real syndrome extraction.
+            Select d=5 for Google Willow scale. Watch one decoder converge where the other fails.
+          </p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <a class="btn primary" href="./quantum-demo.html">⚛ Run quantum demo</a>
+            <a class="btn secondary" href="./quantum-error-correction.html">See full validated results</a>
+          </div>
+        </div>
+        <div style="margin:32px 0 16px;">
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;font-weight:900;color:var(--muted);margin-bottom:10px;">Other validated domains</div>
+          <p style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:14px;">
+            The same convergence mechanism shows confirmed results in industrial actuator control
+            (~35% oscillation reduction vs EMA baseline) and Holochain distributed validation
+            (~4× consensus improvement at 10% Byzantine noise). These are documented separately.
+          </p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <a class="btn secondary" href="./holochain-distributed-validation.html">Holochain validation results</a>
+            <a class="btn secondary" href="./applications.html">Industrial &amp; other domains</a>
+          </div>
+        </div>
+      </section>
 
           <div class="stats" aria-label="Key results" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px;">
 
@@ -1500,106 +1408,6 @@
           </div>
         </section>
 
-        <section class="reveal" aria-label="Simulated Benchmarks" style="margin: 48px 0;">
-          <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 16px; color: var(--text);">Simulated benchmarks (illustrative)</h2>
-
-          <div class="card" style="padding: 20px; margin-bottom: 24px;">
-            <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 8px; color: var(--text);">Simulated Benchmark: ICU Alarm Reduction</h3>
-            <p style="margin-bottom: 12px; color: var(--text-secondary); line-height: 1.7;">
-              Using a realistic synthetic model of heart rate and blood pressure signals (including motion artifacts, sensor noise, and true arrhythmia events), GSRF was compared to a standard low-gain EMA (α = 0.1) and a clamped EMA.
-            </p>
-            <div style="overflow-x: auto;">
-              <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
-                <thead>
-                  <tr>
-                    <th style="text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border);">Filter</th>
-                    <th style="text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border);">False Alarm Rate</th>
-                    <th style="text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border);">True Positive Rate</th>
-                    <th style="text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border);">Overshoot (max)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td style="padding: 6px 8px; border-bottom: 1px solid var(--border);">EMA (α = 0.1)</td>
-                    <td style="padding: 6px 8px; border-bottom: 1px solid var(--border);">18%</td>
-                    <td style="padding: 6px 8px; border-bottom: 1px solid var(--border);">92%</td>
-                    <td style="padding: 6px 8px; border-bottom: 1px solid var(--border);">0.12</td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 6px 8px; border-bottom: 1px solid var(--border);">Clamped EMA</td>
-                    <td style="padding: 6px 8px; border-bottom: 1px solid var(--border);">6%</td>
-                    <td style="padding: 6px 8px; border-bottom: 1px solid var(--border);">89%</td>
-                    <td style="padding: 6px 8px; border-bottom: 1px solid var(--border);">0.00 (hard clip)</td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 6px 8px; border-bottom: 1px solid var(--border);"><strong>GSRF (conservative)</strong></td>
-                    <td style="padding: 6px 8px; border-bottom: 1px solid var(--border);"><strong>4%</strong></td>
-                    <td style="padding: 6px 8px; border-bottom: 1px solid var(--border);"><strong>91%</strong></td>
-                    <td style="padding: 6px 8px; border-bottom: 1px solid var(--border);"><strong>0.00 (smooth)</strong></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <p style="margin-top: 10px; font-size: 13px; color: var(--text-secondary);">
-              Note: Simulated dataset of 10,000 ICU monitor minutes with 5% true arrhythmia events. GSRF parameters: β = 0.2, mem = 0.1, k_return = 1.5. Simulation parameters available upon request.
-            </p>
-          </div>
-
-          <div class="card" style="padding: 20px;">
-            <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 8px; color: var(--text);">Simulated Benchmark: Agent Risk Trend Detection</h3>
-            <p style="margin-bottom: 12px; color: var(--text-secondary); line-height: 1.7;">
-              A simulated agent performed 1,000 actions with risk scores ranging from 0.0 to 0.9. A slow risk drift from 0.1 to 0.7 was embedded, plus random spikes to 0.9.
-              GSRF (moderate parameters) detected the drift 12 steps before the raw risk score crossed the red threshold (0.8), with zero false alerts from spikes.
-            </p>
-            <div style="overflow-x: auto;">
-              <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
-                <thead>
-                  <tr>
-                    <th style="text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border);">Metric</th>
-                    <th style="text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border);">Raw Threshold</th>
-                    <th style="text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border);">GSRF Filtered</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td style="padding: 6px 8px; border-bottom: 1px solid var(--border);">Alert delay (after drift start)</td>
-                    <td style="padding: 6px 8px; border-bottom: 1px solid var(--border);">47 steps</td>
-                    <td style="padding: 6px 8px; border-bottom: 1px solid var(--border);">35 steps</td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 6px 8px; border-bottom: 1px solid var(--border);">False alerts from spikes</td>
-                    <td style="padding: 6px 8px; border-bottom: 1px solid var(--border);">8</td>
-                    <td style="padding: 6px 8px; border-bottom: 1px solid var(--border);">0</td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 6px 8px; border-bottom: 1px solid var(--border);">Time to red threshold (0.8)</td>
-                    <td style="padding: 6px 8px; border-bottom: 1px solid var(--border);">62 steps</td>
-                    <td style="padding: 6px 8px; border-bottom: 1px solid var(--border);">52 steps</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          <p style="margin-top: 14px; font-size: 13px; color: var(--text-secondary); max-width: 78ch;">
-            Real-world validation is in progress with industrial partner data (expected Q3 2026). Simulated benchmarks demonstrate GSRF's structural advantages.
-          </p>
-        </section>
-
-        <section class="reveal" aria-label="Agent and AI System Auditing" style="margin: 48px 0;">
-          <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 16px; color: var(--text);">Agent and AI System Auditing</h2>
-          <p style="margin-bottom: 12px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
-            Recursive decision loops are becoming common in AI agents and automated decision systems. Small policy or scoring errors can be amplified into unstable updates and unsafe behaviour.
-          </p>
-          <p style="margin-bottom: 12px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
-            Zero Overshoot can operate as an external auditing and enforcement layer that constrains update dynamics independently from the agent’s internal logic.
-          </p>
-          <ul style="margin: 0; padding-left: 20px; line-height: 1.8; max-width: 78ch; color: var(--text-secondary);">
-            <li>Agent decision auditing</li>
-            <li>Bounded recursive behaviour</li>
-            <li>Independent risk enforcement</li>
-          </ul>
-        </section>
 
         <section class="reveal" aria-label="Stability Demonstrations Interactive" style="margin: 48px 0;">
           <p style="margin-bottom: 16px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
@@ -1801,12 +1609,13 @@
             numerical instability of repeated exponentiation and
             renormalisation that plagues probability-domain approaches.
           </p>
-          <h3 style="font-size: 20px; font-weight: 800; margin: 24px 0 12px; color: var(--text);">What this is not</h3>
-          <p style="margin-bottom: 12px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
-            This is active research. It is not a product, not validated
-            on quantum hardware, and does not constitute a claim of
-            fault-tolerance thresholds or quantum computational advantage.
-            Peer review and independent replication are outstanding.
+          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-top:10px;padding:12px 16px;background:rgba(11,61,145,0.04);border-left:3px solid rgba(11,61,145,0.2);border-radius:0 8px 8px 0;">
+            <strong style="color:var(--text);">Validation scope:</strong>
+            Results are validated on code-capacity noise models — the standard abstraction
+            for decoder benchmarking — across distances d=5 through d=13.
+            Active research is extending validation to circuit-level noise models
+            and hardware-specific error channels.
+            <a href="./quantum-error-correction.html" style="color:var(--accent);font-weight:700;">Full methodology and boundaries →</a>
           </p>
           <h3 style="font-size: 20px; font-weight: 800; margin: 24px 0 12px; color: var(--text);">For quantum teams</h3>
           <p style="margin-bottom: 20px; color: var(--text-secondary); line-height: 1.7; max-width: 78ch;">
@@ -2239,41 +2048,6 @@ class GSRFilter:
         </details>
 
         <details>
-          <summary>API for Agent Audit</summary>
-          <div class="details-body">
-            <p>Example API sketch for auditing agent risk over time:</p>
-            <h3>POST <code>/v1/risk</code></h3>
-            <p>Authenticate with an API key (supplied upon license purchase). For each agent, maintain separate filter state. The API is <strong>stateless</strong> if the client provides the previous filtered value; otherwise the server maintains state (requires <code>agent_id</code>).</p>
-
-            <h4>Request (stateful – server maintains per-agent state)</h4>
-            <pre style="font-family: 'Monaco', 'Menlo', 'Courier New', monospace; font-size: 13px; line-height: 1.6; color: var(--text); overflow-x: auto; padding: 12px; background: rgba(0,0,0,0.04); border-radius: 6px;"><code>{
-  "agent_id": "agent-123",
-  "risk_score": 0.35,
-  "timestamp": "2025-03-31T10:00:00Z",
-  "receipt_hash": "sha256:abc123..."
-}</code></pre>
-
-            <h4>Response</h4>
-            <pre style="font-family: 'Monaco', 'Menlo', 'Courier New', monospace; font-size: 13px; line-height: 1.6; color: var(--text); overflow-x: auto; padding: 12px; background: rgba(0,0,0,0.04); border-radius: 6px;"><code>{
-  "filtered_risk": 0.32,
-  "alert_level": "green",
-  "thresholds": { "green": "0.0–0.4", "yellow": "0.4–0.7", "red": "0.7–1.0" }
-}</code></pre>
-
-            <h4>Stateless alternative (client sends previous filtered value)</h4>
-            <pre style="font-family: 'Monaco', 'Menlo', 'Courier New', monospace; font-size: 13px; line-height: 1.6; color: var(--text); overflow-x: auto; padding: 12px; background: rgba(0,0,0,0.04); border-radius: 6px;"><code>{
-  "agent_id": "agent-123",
-  "risk_score": 0.35,
-  "previous_filtered": 0.30,
-  "timestamp": "..."
-}</code></pre>
-            <p style="margin-top: 8px; color: var(--text-secondary); line-height: 1.7;">
-              In this mode the server returns the new filtered value and the client stores per-agent state. For trust and provenance guarantees in agent workflows, see the <a href="https://embassy-trust-protocol.netlify.app" target="_blank" rel="noopener noreferrer">Embassy Trust Protocol</a>.
-            </p>
-          </div>
-        </details>
-
-        <details>
           <summary>Limitations / what it isn’t</summary>
           <div class="details-body">
             <p>Clarity about scope prevents misapplication:</p>
@@ -2302,6 +2076,36 @@ class GSRFilter:
         </details>
       </section>
       
+      <div style="margin:32px 0;padding:20px 22px;background:rgba(220,38,38,0.03);border:1px solid rgba(220,38,38,0.12);border-radius:var(--radius);">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;font-weight:900;color:var(--muted);margin-bottom:10px;">Scope &amp; honest boundaries</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+          <div>
+            <div style="font-size:13px;font-weight:800;color:var(--text);margin-bottom:6px;">What is validated</div>
+            <ul style="font-size:13px;color:var(--muted);line-height:1.7;padding-left:16px;">
+              <li>Code-capacity noise model, d=5 through d=13</li>
+              <li>~36% improvement at d=9, ~6× at d=7 (p=0.01)</li>
+              <li>5 independent seeds, pre-declared verdict rules</li>
+              <li>Industrial actuator oscillation (~35% reduction)</li>
+              <li>Holochain consensus (~4× at 10% Byzantine noise)</li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-size:13px;font-weight:800;color:var(--text);margin-bottom:6px;">Active research (not yet validated)</div>
+            <ul style="font-size:13px;color:var(--muted);line-height:1.7;padding-left:16px;">
+              <li>Circuit-level noise models</li>
+              <li>Production-scale qLDPC codes</li>
+              <li>Real quantum hardware integration</li>
+              <li>Independent external replication</li>
+            </ul>
+          </div>
+        </div>
+        <p style="font-size:12px;color:var(--muted);margin-top:12px;line-height:1.6;">
+          All results use pre-declared verdict rules and SHA-256 hash-verified evaluator code.
+          Full methodology documentation available under NDA.
+          <a href="./#contact" style="color:var(--accent);font-weight:700;">Request access →</a>
+        </p>
+      </div>
+
       <section id="contact">
         <h2>Licensing &amp; Integration</h2>
         <p>Zero Overshoot is a proprietary commercial product. Patent applications are in preparation. Production deployment requires a commercial license. Each engagement is structured around the specific stability requirements and failure modes of the target system.</p>

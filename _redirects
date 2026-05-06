@@ -1,0 +1,10 @@
+# ============================================================
+# Maintenance mode — all paths redirect to / pending audit
+# Force flag (!) ensures existing .html files are also redirected
+# ============================================================
+
+# Allow the favicon used by the maintenance page itself
+/favicon.svg    /favicon.svg    200
+
+# Everything else redirects to /
+/*              /               302!

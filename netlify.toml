@@ -1,3 +1,21 @@
 [build]
   publish = "."
   command = ""
+
+# ============================================================
+# Maintenance mode — all paths redirect to / pending audit
+# Defined in netlify.toml (parsed authoritatively by Netlify)
+# ============================================================
+
+# Allow the favicon used by the maintenance page itself
+[[redirects]]
+  from = "/favicon.svg"
+  to = "/favicon.svg"
+  status = 200
+
+# Everything else redirects to / (force = true overrides existing files)
+[[redirects]]
+  from = "/*"
+  to = "/"
+  status = 302
+  force = true
